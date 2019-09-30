@@ -1,5 +1,5 @@
 var canvas = document.getElementById('canvas');
-canvas.width = window.innerWidth-200;
+canvas.width = window.innerWidth-150;
 canvas.height = window.innerHeight-200;
 document.getElementById('canvas').style.display='none';
 document.getElementById('showButton').style.display='none';
