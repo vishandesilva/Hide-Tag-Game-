@@ -4,21 +4,28 @@
   box-sizing: border-box;
 }
 
-body{
+html, body{
   font-family: 'Oswald', sans-serif;
   width:  100%;
   height: 100%;
   margin: 0;
-  }
-
 }
+
+#container {
+ min-height: 100%;
+}
+
+#main {
+  overflow: auto;
+  padding-bottom: 200px;
+}
+
 .logo-div,.nav-links{
   display: flex;
 }
 
 header{
   display: flex;
-  
   margin: auto;
   background-color: grey;
   min-height: 8vh;
@@ -27,14 +34,14 @@ header{
   width: 100%;
   overflow: auto;
 }
+
 .logo{
   font-weight: 400;
  text-transform: uppercase;
  letter-spacing: 2px;
   color: white;
-  
-
 }
+
 .nav-links{
   justify-content: space-around;
   list-style: none;
@@ -42,17 +49,18 @@ header{
   letter-spacing: 1px;
   font-size: 14px;
 }
+
 .nav-link{
   color: black;
   text-decoration: none;
   width: 1%;
-  
 }
+
 .logo-div{
 flex: 2;
 }
+
 nav{
-  
   display: flex;
   align-items: center;
   flex: 1;
@@ -64,6 +72,7 @@ nav{
     display: block;
   }
 }
+
 #canvas {
   position: absolute;
   top:0;
@@ -71,4 +80,21 @@ nav{
   left: 0;
   right: 0;
   margin:auto;
+}
+
+/* Footer Styling */
+.footer {
+  background: grey;
+  position: relative;
+  height: 200px;
+  margin-top: -200px;
+  clear: both;
+}
+
+.footer-content{
+  display: flex;
+}
+
+.footer-section {
+  padding: 25px;
 }
