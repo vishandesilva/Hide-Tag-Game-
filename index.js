@@ -1,8 +1,9 @@
-var canvas = document.createElement("canvas");
-ctx = canvas.getContext("2d");
-canvas.width = 500;
-canvas.height = 500;
-document.body.appendChild(canvas);
+window.onload = window.onresize = function() {
+    var canvas = document.getElementById('canvas');
+    canvas.width = 500;
+    canvas.height = 500;
+}
+let ctx = canvas.getContext("2d");
 ctx.fillStyle = "black";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
