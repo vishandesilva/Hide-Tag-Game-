@@ -54,22 +54,22 @@ ctx.fillRect(posX, posY, 10, 10);
 window.addEventListener("keydown",press001 , true);
 function press001(event) {
     switch (event.keyCode) {
-        case 37:
+        case 65:
             dx = -1;
             dy = 0;
             break;
 
-        case 38:
+        case 87:
             dx = 0;
             dy = -1;
             break;
 
-        case 39:
+        case 68:
             dx = 1;
             dy = 0;
             break;
 
-        case 40:
+        case 83:
             dx = 0;
             dy = 1;
             break;
