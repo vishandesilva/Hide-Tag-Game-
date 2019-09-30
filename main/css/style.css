@@ -6,6 +6,10 @@
 
 body{
   font-family: 'Oswald', sans-serif;
+  width:  100%;
+  height: 100%;
+  margin: 0;
+  }
 
 }
 .logo-div,.nav-links{
