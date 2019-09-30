@@ -11,7 +11,7 @@ body{
   margin: 0;
   }
 
-}
+
 .logo-div,.nav-links{
   display: flex;
 }
@@ -71,4 +71,5 @@ nav{
   left: 0;
   right: 0;
   margin:auto;
+  border:greenyellow 3px solid;
 }

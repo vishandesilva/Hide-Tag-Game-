@@ -1,5 +1,6 @@
-var canvas = document.getElementById('canvas');
-canvas.width = window.innerWidth-150;
+var canvas = document.getElementById('canvas'); 
+//innerWidth/innerHeight is a function which returns the current browsers width/height in pixels.
+canvas.width = window.innerWidth-200;
 canvas.height = window.innerHeight-200;
 document.getElementById('canvas').style.display='none';
 document.getElementById('showButton').style.display='none';
@@ -15,68 +16,78 @@ document.getElementById('showButton').style.display='none';
     }
 let ctx = canvas.getContext("2d");
 ctx.fillStyle = "black";
+/*fillRect is a function that draws the background of the game i.e black in our case.
+  fillRect takes 4 arguments : 
+  (a,b,c,d) : 
+   a = x coordinate of starting pixel
+   b = y coordinate of starting pixel
+   c = width of the rectange we want to draw (left to right)
+   d = height of the rectangle we want to draw (top to bottom) */
 ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-var posX = 0;
-posY = 0;
-dx = 0;
-dy = 0;
-
+//positionX and positionY defines the position of the moving charater on the x and y coordinates respectively.
+var positionX = 0;
+positionY = 0;
+x = 0;
+y = 0;
+/*setInterval function draws the character everytime the code runs and refreshes and also checks
+  if the character hits the corners/reaches the boundary of the canvas*/
 setInterval(function () {
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    posX += dx;
-    posY += dy;
+    positionX += x;
+    positionY += y;
 
-    if (posX > canvas.width-10) {
-        dx = 0;
-        posX = canvas.width-10;
+    if (positionX > canvas.width-13) {
+        x = 0;
+        positionX = canvas.width-13;
     }
 
-    if (posX < 0) {
-        dx = 0;
-        posX = 0;
+    if (positionX < 3) {
+        x = 0;
+        positionX = 3;
     }
 
-    if (posY >  canvas.height-10) {
-        dy = 0;
-        posY = canvas.height-10;
+    if (positionY >  canvas.height-13) {
+        y = 0;
+        positionY = canvas.height-13;
     }
 
-    if (posY < 0) {
-        dy = 0;
-        posY = 0;
+    if (positionY < 3) {
+        y = 0;
+        positionY = 3;
     }
-    ctx.fillStyle = "white";
-ctx.fillRect(posX, posY, 10, 10);
+    ctx.fillStyle = "red";
+ctx.fillRect(positionX, positionY, 10, 10);
 }, 2)
-
-window.addEventListener("keydown",press001 , true);
-function press001(event) {
+//EventListener is called everytime a key is pressed on the Keyboard.
+window.addEventListener("keydown",keyPressed , true);
+/*keyPressed function checks and compares the key we have pressed and increments or decrements
+  x or y in order to change the position of our character which moves it*/
+function keyPressed(event) {
     switch (event.keyCode) {
-        case 65:
-            dx = -1;
-            dy = 0;
+        case 37:
+            x = -1;
+            y = 0;
             break;
 
-        case 87:
-            dx = 0;
-            dy = -1;
+        case 38:
+            x = 0;
+            y = -1;
             break;
 
-        case 68:
-            dx = 1;
-            dy = 0;
+        case 39:
+            x = 1;
+            y = 0;
             break;
 
-        case 83:
-            dx = 0;
-            dy = 1;
+        case 40:
+            x = 0;
+            y = 1;
             break;
 
         case 32:
-            dx = 0;
-            dy = 0;
+            x = 0;
+            y = 0;
             break;
     }
 }
