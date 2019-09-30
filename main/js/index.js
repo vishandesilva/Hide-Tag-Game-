@@ -1,8 +1,18 @@
-window.onload = window.onresize = function() {
-    var canvas = document.getElementById('canvas');
-    canvas.width = window.innerWidth-900;
-    canvas.height = window.innerHeight-200;
-}
+var canvas = document.getElementById('canvas');
+canvas.width = window.innerWidth-200;
+canvas.height = window.innerHeight-200;
+document.getElementById('canvas').style.display='none';
+document.getElementById('showButton').style.display='none';
+    function showhidden()
+    {
+       document.getElementById('canvas').style.display='block';
+       document.getElementById('showButton').style.display='block';
+    }
+    function exit()
+    {
+       document.getElementById('canvas').style.display='none';
+       document.getElementById('showButton').style.display='none';
+    }
 let ctx = canvas.getContext("2d");
 ctx.fillStyle = "black";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -18,9 +28,9 @@ setInterval(function () {
     posX += dx;
     posY += dy;
 
-    if (posX > canvas.width) {
+    if (posX > canvas.width-10) {
         dx = 0;
-        posX = canvas.width;
+        posX = canvas.width-10;
     }
 
     if (posX < 0) {
@@ -28,9 +38,9 @@ setInterval(function () {
         posX = 0;
     }
 
-    if (posY >  canvas.height) {
+    if (posY >  canvas.height-10) {
         dy = 0;
-        posY = canvas.height;
+        posY = canvas.height-10;
     }
 
     if (posY < 0) {
