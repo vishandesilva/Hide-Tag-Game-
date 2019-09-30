@@ -1,13 +1,14 @@
-var canvas = document.createElement("canvas");
-ctx = canvas.getContext("2d");
-canvas.width = 500;
-canvas.height = 500;
-document.body.appendChild(canvas);
+window.onload = window.onresize = function() {
+    var canvas = document.getElementById('canvas');
+    canvas.width = window.innerWidth-900;
+    canvas.height = window.innerHeight-200;
+}
+let ctx = canvas.getContext("2d");
 ctx.fillStyle = "black";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-var posX = 250;
-posY = 250;
+var posX = 0;
+posY = 0;
 dx = 0;
 dy = 0;
 
@@ -17,9 +18,9 @@ setInterval(function () {
     posX += dx;
     posY += dy;
 
-    if (posX > 490) {
+    if (posX > canvas.width) {
         dx = 0;
-        posX = 490;
+        posX = canvas.width;
     }
 
     if (posX < 0) {
@@ -27,9 +28,9 @@ setInterval(function () {
         posX = 0;
     }
 
-    if (posY > 490) {
+    if (posY >  canvas.height) {
         dy = 0;
-        posY = 490;
+        posY = canvas.height;
     }
 
     if (posY < 0) {
