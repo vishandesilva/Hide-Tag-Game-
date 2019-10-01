@@ -1,4 +1,4 @@
-# Hide-Tag-Game-
+# Lights And Shadow's
 Group Project For Web Programming 2019 - 2020
 ------------------------------------------------------------------------------------------------------------------------------------------
 As per guidelines, we are supposed to make a Massively multiplayer game . 
