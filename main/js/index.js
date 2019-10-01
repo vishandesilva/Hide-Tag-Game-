@@ -1,19 +1,8 @@
 var canvas = document.getElementById('canvas'); 
 //innerWidth/innerHeight is a function which returns the current browsers width/height in pixels.
-canvas.width = window.innerWidth-200;
-canvas.height = window.innerHeight-200;
-document.getElementById('canvas').style.display='none';
-document.getElementById('showButton').style.display='none';
-    function showhidden()
-    {
-       document.getElementById('canvas').style.display='block';
-       document.getElementById('showButton').style.display='block';
-    }
-    function exit()
-    {
-       document.getElementById('canvas').style.display='none';
-       document.getElementById('showButton').style.display='none';
-    }
+canvas.width = window.innerHeight-300;
+canvas.height = window.innerHeight-300;
+
 let ctx = canvas.getContext("2d");
 ctx.fillStyle = "black";
 /*fillRect is a function that draws the background of the game i.e black in our case.
@@ -37,9 +26,9 @@ setInterval(function () {
     positionX += x;
     positionY += y;
 
-    if (positionX > canvas.width-13) {
+    if (positionX > canvas.width-(canvas.width/20)-3) {
         x = 0;
-        positionX = canvas.width-13;
+        positionX = canvas.width-(canvas.width/20)-3;
     }
 
     if (positionX < 3) {
@@ -47,9 +36,9 @@ setInterval(function () {
         positionX = 3;
     }
 
-    if (positionY >  canvas.height-13) {
+    if (positionY >  canvas.height-(canvas.height/20)-3) {
         y = 0;
-        positionY = canvas.height-13;
+        positionY = canvas.height-(canvas.height/20)-3;
     }
 
     if (positionY < 3) {
@@ -57,8 +46,8 @@ setInterval(function () {
         positionY = 3;
     }
     ctx.fillStyle = "red";
-ctx.fillRect(positionX, positionY, 10, 10);
-}, 2)
+ctx.fillRect(positionX, positionY, (canvas.width/20), (canvas.height/20));
+}, canvas.width/1)
 //EventListener is called everytime a key is pressed on the Keyboard.
 window.addEventListener("keydown",keyPressed , true);
 /*keyPressed function checks and compares the key we have pressed and increments or decrements
@@ -66,23 +55,23 @@ window.addEventListener("keydown",keyPressed , true);
 function keyPressed(event) {
     switch (event.keyCode) {
         case 37:
-            x = -1;
+            x = -canvas.width/20;
             y = 0;
             break;
 
         case 38:
             x = 0;
-            y = -1;
+            y = -canvas.width/20;
             break;
 
         case 39:
-            x = 1;
+            x = canvas.height/20;
             y = 0;
             break;
 
         case 40:
             x = 0;
-            y = 1;
+            y = canvas.height/20;
             break;
 
         case 32:
