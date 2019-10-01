@@ -1,17 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie-edge">
-    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-    <title>Template</title>
-    </head>
-  <body>
-    <header>
-      <div class="logo-div">
-        <h4 class="logo">Marco Polo</h4>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie-edge">
+  <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Template</title>
+</head>
+
+<body>
+  <header>
+    <div class="logo-div">
+      <h4 class="logo">Marco Polo</h4>
+    </div>
+    <nav class="nav-links">
+      <li><a class="nav-link" href="#">About Us</a></li>
+      <li><a class="nav-link" href="#">The Game</a></li>
+      <li><a class="nav-link" href="#">Leaderboards</a></li>
+    </nav>
+  </header>
+  <div>
+    <button type="button" onclick=showhidden()>Play Game</button>
+    <canvas id="canvas" width="400" height="300">No HTML5 canvas support</canvas>
+   <p id="showButton"> <button type="button" onclick=exit()>Exit Game</button></p>
+    </div>
+  <script src ="../js/index.js"></script>
+
+  <div id="container">
+    <div id="main">
+      <canvas id="canvas" width="400" height="300">No HTML5 canvas support</canvas>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer">
+      <div class="footer-content">
+        <div class="footer-section about">
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A, ipsum pariatur. Recusandae rerum numquam
+            labore sint sed officiis, fuga veniam aperiam ullam natus sapiente nesciunt quo vel placeat nisi velit!</p>
+        </div>
+        <div class="footer-section links">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab ullam cumque, similique, tempora quibusdam
+            excepturi repudiandae deleniti autem ipsa asperiores aperiam iusto eius saepe distinctio nobis ad molestiae
+            debitis doloribus?</p>
+        </div>
+        <div class="footer-section social-links">
+          <p>lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque dicta porro voluptatibus labore
+            consectetur obcaecati alias laborum, vero nam? Ex inventore minus doloribus dolore error repellat quae
+            labore excepturi earum.</p>
+        </div>
       </div>
       <div class="nav-links">
       <nav class="nav">
@@ -29,12 +68,11 @@
     
 
     </header>
-    <div>
-    <button type="button" onclick=showhidden()>Play Game</button>
-    <canvas id="canvas" width="400" height="300">No HTML5 canvas support</canvas>
-   <p id="showButton"> <button type="button" onclick=exit()>Exit Game</button></p>
-    </div>
-  <script src ="../js/index.js"></script>
    
-  </body>
+  
+    </div>
+  </footer>
+  <script src="../js/index.js"></script>
+</body>
 </html>
+
