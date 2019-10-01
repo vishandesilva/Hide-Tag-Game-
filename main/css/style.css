@@ -73,6 +73,10 @@ nav{
   }
 }
 
+.logo span {
+  color: orange;
+}
+
 #canvas {
   position: absolute;
   top:0;
@@ -97,4 +101,18 @@ nav{
 
 .footer-section {
   padding: 25px;
+}
+
+.footer .footer-content .links ul a {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.2;
+  transition: all .3s;
+}
+
+
+.footer .footer-content .links ul a:hover {
+color: orange;
+margin-left: 15px;
+transition: all .3s;
 }
