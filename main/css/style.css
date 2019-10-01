@@ -27,6 +27,11 @@ header{
   width: 100%;
   overflow: auto;
 }
+header li{
+ 
+  display:inline;
+  padding: 0 10px 0 10px;
+}
 .logo{
   font-weight: 400;
  text-transform: uppercase;
@@ -35,18 +40,33 @@ header{
   
 
 }
-.nav-links{
+
+.nav-links a{
+  float: left;
+  display: block;
+  color:whitesmoke;
+  text-align: center;
+  text-decoration: none;
   justify-content: space-around;
   list-style: none;
   width: 2%;
   letter-spacing: 1px;
-  font-size: 14px;
+  font-size: 17px;
 }
-.nav-link{
-  color: black;
-  text-decoration: none;
-  width: 1%;
+.nav-links a:hover{
+  background-color: grey;
+  color:black;
+}
+.nav-links .icon :nth-child(1){
+  width: 10px;
+  height: 3px;
+  background-color: white;
   
+}
+#nav-links .icon div{
+  width: 10px;
+  height: 5px;
+  background-color: white;
 }
 .logo-div{
 flex: 2;
@@ -57,6 +77,11 @@ nav{
   align-items: center;
   flex: 1;
   padding: 1%; 
+}
+.mobile div{
+  width: 10px;
+  height: 2px;
+  background-color: whitesmoke
 }
 @media screen and (max-width: 500px) {
   header {
