@@ -15,24 +15,23 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 initialize();
 
 function initialize() {
-    // Register an event listener to call the resizeCanvas() function 
-    // each time the window is resized.
+    // Register an event listener to call the resizeCanvas() function each time the window is resized.
     window.addEventListener('resize', resizeCanvas, false);
     // Draw canvas border for the first time.
     resizeCanvas();
  }
 
-        // Display custom canvas.  
-        // border that resizes along with the browser window.
+        // Display the canvas.  
+        // border resizes along with the browser window.
         function redraw() {
            ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
 
-        // Runs each time the DOM window resize event fires.
-        // Resets the canvas dimensions to match window,
+        // Runs each time the DOM window resize event loads.
+        // Resets the canvas dimensions to match window dimensions,
         // then draws the new borders accordingly.
         function resizeCanvas() {
-            canvas.width = window.innerWidth-100;
+            canvas.width = window.innerWidth-50;
             canvas.height = window.innerHeight-235;
             redraw();
         }
