@@ -1,7 +1,7 @@
 var canvas = document.getElementById('canvas'); 
 //innerWidth/innerHeight is a function which returns the current browsers width/height in pixels.
-canvas.width = window.innerHeight-300;
-canvas.height = window.innerHeight-300;
+canvas.width = window.innerWidth-100;
+canvas.height = window.innerHeight-235;
 
 let ctx = canvas.getContext("2d");
 ctx.fillStyle = "black";
@@ -26,9 +26,9 @@ setInterval(function () {
     positionX += x;
     positionY += y;
 
-    if (positionX > canvas.width-(canvas.width/20)-3) {
+    if (positionX > canvas.width-(canvas.width/100)-3) {
         x = 0;
-        positionX = canvas.width-(canvas.width/20)-3;
+        positionX = canvas.width-(canvas.width/100)-3;
     }
 
     if (positionX < 3) {
@@ -36,9 +36,9 @@ setInterval(function () {
         positionX = 3;
     }
 
-    if (positionY >  canvas.height-(canvas.height/20)-3) {
+    if (positionY >  canvas.height-(canvas.width/100)-3) {
         y = 0;
-        positionY = canvas.height-(canvas.height/20)-3;
+        positionY = canvas.height-(canvas.width/100)-3;
     }
 
     if (positionY < 3) {
@@ -46,37 +46,38 @@ setInterval(function () {
         positionY = 3;
     }
     ctx.fillStyle = "red";
-ctx.fillRect(positionX, positionY, (canvas.width/20), (canvas.height/20));
-}, canvas.width/1)
+ctx.fillRect(positionX, positionY, (canvas.width/100), (canvas.width/100));
+}, canvas.width/50)
 //EventListener is called everytime a key is pressed on the Keyboard.
 window.addEventListener("keydown",keyPressed , true);
+window.addEventListener("keyup" , keyReleased , true)
 /*keyPressed function checks and compares the key we have pressed and increments or decrements
   x or y in order to change the position of our character which moves it*/
 function keyPressed(event) {
     switch (event.keyCode) {
-        case 37:
-            x = -canvas.width/20;
+        case 65:
+            x = -canvas.width/100;
             y = 0;
             break;
 
-        case 38:
+        case 87:
             x = 0;
-            y = -canvas.width/20;
+            y = -canvas.width/100;
             break;
 
-        case 39:
-            x = canvas.height/20;
+        case 68:
+            x = canvas.width/100;
             y = 0;
             break;
 
-        case 40:
+        case 83:
             x = 0;
-            y = canvas.height/20;
-            break;
-
-        case 32:
-            x = 0;
-            y = 0;
+            y = canvas.width/100;
             break;
     }
+}
+function keyReleased(event) 
+{
+    x=0;
+    y=0;
 }
