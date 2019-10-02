@@ -2,7 +2,6 @@ var canvas = document.getElementById('canvas');
 //innerWidth/innerHeight is a function which returns the current browsers width/height in pixels.
 canvas.width = window.innerWidth-100;
 canvas.height = window.innerHeight-235;
-
 let ctx = canvas.getContext("2d");
 ctx.fillStyle = "black";
 /*fillRect is a function that draws the background of the game i.e black in our case.
@@ -13,6 +12,31 @@ ctx.fillStyle = "black";
    c = width of the rectange we want to draw (left to right)
    d = height of the rectangle we want to draw (top to bottom) */
 ctx.fillRect(0, 0, canvas.width, canvas.height);
+initialize();
+
+function initialize() {
+    // Register an event listener to call the resizeCanvas() function 
+    // each time the window is resized.
+    window.addEventListener('resize', resizeCanvas, false);
+    // Draw canvas border for the first time.
+    resizeCanvas();
+ }
+
+        // Display custom canvas.  
+        // border that resizes along with the browser window.
+        function redraw() {
+           ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // Runs each time the DOM window resize event fires.
+        // Resets the canvas dimensions to match window,
+        // then draws the new borders accordingly.
+        function resizeCanvas() {
+            canvas.width = window.innerWidth-100;
+            canvas.height = window.innerHeight-235;
+            redraw();
+        }
+
 //positionX and positionY defines the position of the moving charater on the x and y coordinates respectively.
 var positionX = 0;
 positionY = 0;
