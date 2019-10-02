@@ -13,6 +13,7 @@ ctx.fillStyle = "black";
    c = width of the rectange we want to draw (left to right)
    d = height of the rectangle we want to draw (top to bottom) */
 ctx.fillRect(0, 0, canvas.width, canvas.height);
+
 //positionX and positionY defines the position of the moving charater on the x and y coordinates respectively.
 var positionX = 0;
 positionY = 0;
