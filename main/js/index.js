@@ -18,6 +18,30 @@ var positionX = 0;
 positionY = 0;
 x = 0;
 y = 0;
+
+initialize();
+function initialize() {
+    // Register an event listener to call the resizeCanvas() function 
+    // each time the window is resized.
+    window.addEventListener('resize', resizeCanvas, false);
+    // Draw canvas border for the first time.
+    resizeCanvas();
+ }
+
+        // Display custom canvas.  
+        // border that resizes along with the browser window.
+        function redraw() {
+           ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // Runs each time the DOM window resize event fires.
+        // Resets the canvas dimensions to match window,
+        // then draws the new borders accordingly.
+        function resizeCanvas() {
+            canvas.width = window.innerWidth-50;
+            canvas.height = window.innerHeight-235;
+            redraw();
+        }
 /*setInterval function draws the character everytime the code runs and refreshes and also checks
   if the character hits the corners/reaches the boundary of the canvas*/
 setInterval(function () {
