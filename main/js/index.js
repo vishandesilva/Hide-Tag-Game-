@@ -1,7 +1,9 @@
 var canvas = document.getElementById('canvas'); 
 //innerWidth/innerHeight is a function which returns the current browsers width/height in pixels.
+
 canvas.width = window.innerWidth-100;
 canvas.height = window.innerHeight-235;
+
 
 let ctx = canvas.getContext("2d");
 ctx.fillStyle = "black";
@@ -53,6 +55,8 @@ setInterval(function () {
     if (positionX > canvas.width-(canvas.width/100)-3) {
         x = 0;
         positionX = canvas.width-(canvas.width/100)-3;
+
+
     }
 
     if (positionX < 3) {
@@ -70,8 +74,10 @@ setInterval(function () {
         positionY = 3;
     }
     ctx.fillStyle = "red";
+
 ctx.fillRect(positionX, positionY, (canvas.width/100), (canvas.width/100));
 }, canvas.width/50)
+
 //EventListener is called everytime a key is pressed on the Keyboard.
 window.addEventListener("keydown",keyPressed , true);
 window.addEventListener("keyup" , keyReleased , true)
