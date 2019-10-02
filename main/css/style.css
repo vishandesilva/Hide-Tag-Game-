@@ -133,73 +133,73 @@ nav{
 #cover path:nth-child(1){
 stroke-dasharray: 219.2;
 stroke-dashoffset: 219.2;
-animation: line-animation 2s ease forwards s;
+animation: line-animation 2s ease forwards 0.2s;
 }
 #cover path:nth-child(2){
   stroke-dasharray: 154.5;
   stroke-dashoffset: 154.5;
-  animation: line-animation 2s ease forwards;
+  animation: line-animation 2s ease forwards 0.4s;
 }
 #cover path:nth-child(3){
   stroke-dasharray: 378.7;
   stroke-dashoffset: 378.7;
-  animation: line-animation 2s ease forwards;
+  animation: line-animation 2s ease forwards 0.6s;
   
 }
 #cover path:nth-child(4){
   stroke-dasharray: 363.1;
   stroke-dashoffset:363.1;
-  animation: line-animation 2s ease forwards;
+  animation: line-animation 2s ease forwards 0.8s;
 }
 #cover path:nth-child(5){
   stroke-dasharray: 242.06;
   stroke-dashoffset: 242.06;
-  animation: line-animation 2s ease forwards;
+  animation: line-animation 2s ease forwards 1.0s;
 }
 #cover path:nth-child(6){
   stroke-dasharray: 355.6;
   stroke-dashoffset:355.6;
-  animation: line-animation 2s ease forwards;
+  animation: line-animation 2s ease forwards 1.2s;
 }
 #cover path:nth-child(7){
   stroke-dasharray: 403.06;
   stroke-dashoffset:403.06;
-  animation: line-animation 2s ease forwards;
+  animation: line-animation 2s ease forwards 1.4s;
 }
 #cover path:nth-child(8){
   stroke-dasharray: 355.59;
   stroke-dashoffset:355.59;
-  animation: line-animation 2s ease forwards;
+  animation: line-animation 2s ease forwards 1.6s;
 }
 #cover path:nth-child(9){
   stroke-dasharray: 363.18;
   stroke-dashoffset:363.18;
-  animation: line-animation 2s ease forwards;
+  animation: line-animation 2s ease forwards 1.8s;
 }
 #cover path:nth-child(10){
   stroke-dasharray: 330.14;
   stroke-dashoffset:330.14;
-  animation: line-animation 2s ease forwards;
+  animation: line-animation 2s ease forwards 2.0s;
 }
 #cover path:nth-child(11){
   stroke-dasharray: 361.78;
   stroke-dashoffset:361.78;
-  animation: line-animation 2s ease forwards;
+  animation: line-animation 2s ease forwards 2.2s;
 }
 #cover path:nth-child(12){
   stroke-dasharray: 351.61;
   stroke-dashoffset:351.61;
-  animation: line-animation 2s ease forwards;
+  animation: line-animation 2s ease forwards 2.4s;
 }
 #cover path:nth-child(13){
   stroke-dasharray: 526.57;
   stroke-dashoffset:526.57;
-  animation: line-animation 2s ease forwards;
+  animation: line-animation 2s ease forwards 2.6s;
 }
 #cover path:nth-child(14){
   stroke-dasharray: 355.6;
   stroke-dashoffset:355.6;
-  animation: line-animation 2s ease forwards;
+  animation: line-animation 2s ease forwards 2.8s;
 }
 @keyframes line-animation{
   to{
