@@ -55,8 +55,6 @@ setInterval(function () {
     if (positionX > canvas.width-(canvas.width/100)-3) {
         x = 0;
         positionX = canvas.width-(canvas.width/100)-3;
-
-
     }
 
     if (positionX < 3) {
