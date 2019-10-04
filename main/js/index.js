@@ -39,7 +39,7 @@ function initialize() {
         // Resets the canvas dimensions to match window,
         // then draws the new borders accordingly.
         function resizeCanvas() {
-            canvas.width = window.innerWidth-50;
+            canvas.width = window.innerWidth-70;
             canvas.height = window.innerHeight-235;
             redraw();
         }
