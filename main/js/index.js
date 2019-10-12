@@ -1,7 +1,7 @@
 var canvas = document.getElementById('canvas'); 
 //innerWidth/innerHeight is a function which returns the current browsers width/height in pixels.
-canvas.width = window.innerWidth-100;
-canvas.height = window.innerHeight-235;
+canvas.width = window.innerWidth - 30;
+canvas.height = (window.innerWidth - 30) * 0.5;
 
 let ctx = canvas.getContext("2d");
 ctx.fillStyle = "black";
@@ -39,8 +39,8 @@ function initialize() {
         // Resets the canvas dimensions to match window,
         // then draws the new borders accordingly.
         function resizeCanvas() {
-            canvas.width = window.innerWidth-50;
-            canvas.height = window.innerHeight-235;
+            canvas.width = window.innerWidth-30;
+            canvas.height = (window.innerWidth-30) * 0.5;
             redraw();
         }
 /*setInterval function draws the character everytime the code runs and refreshes and also checks
@@ -105,4 +105,12 @@ function keyReleased(event)
 {
     x=0;
     y=0;
+}
+document.getElementById("canvas").style.display="none";
+function myFunction()
+{
+   document.getElementById("canvas").style.display="block";
+   document.getElementById("gamebutton").style.display="none";
+   document.getElementById("header").style.display="none";
+   document.getElementById("footer").style.display="none";
 }
