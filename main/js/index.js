@@ -19,6 +19,10 @@ var positionX = 0;
 positionY = 0;
 x = 0;
 y = 0;
+var positionX1 = canvas.width - 3;
+positionY1 = canvas.height - 3;
+x1 = 0;
+y1 = 0;
 
 initialize();
 function initialize() {
@@ -45,11 +49,13 @@ function initialize() {
         }
 /*setInterval function draws the character everytime the code runs and refreshes and also checks
   if the character hits the corners/reaches the boundary of the canvas*/
-setInterval(function () {
+  setInterval(function () {
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     positionX += x;
     positionY += y;
+    positionX1 += x1;
+    positionY1 += y1;
 
     if (positionX > canvas.width-(canvas.width/100)-3) {
         x = 0;
@@ -70,8 +76,30 @@ setInterval(function () {
         y = 0;
         positionY = 3;
     }
+
+    if (positionX1 > canvas.width-(canvas.width/100)-3) {
+        x1 = 0;
+        positionX1 = canvas.width-(canvas.width/100)-3;
+    }
+
+    if (positionX1 < 3) {
+        x1 = 0;
+        positionX1 = 3;
+    }
+
+    if (positionY1 >  canvas.height-(canvas.width/100)-3) {
+        y1 = 0;
+        positionY1 = canvas.height-(canvas.width/100)-3;
+    }
+
+    if (positionY1 < 3) {
+        y1 = 0;
+        positionY1 = 3;
+    }
     ctx.fillStyle = "red";
 ctx.fillRect(positionX, positionY, (canvas.width/100), (canvas.width/100));
+ctx.fillStyle = "blue";
+ctx.fillRect(positionX1, positionY1, (canvas.width/100), (canvas.width/100));
 }, canvas.width/50)
 //EventListener is called everytime a key is pressed on the Keyboard.
 window.addEventListener("keydown",keyPressed , true);
@@ -99,13 +127,58 @@ function keyPressed(event) {
             x = 0;
             y = canvas.width/100;
             break;
+        case 74:
+            x1 = -canvas.width/100;
+            y1 = 0;
+            break;
+
+        case 73:
+            x1 = 0;
+            y1 = -canvas.width/100;
+            break;
+
+        case 76:
+            x1 = canvas.width/100;
+            y1 = 0;
+            break;
+
+        case 75:
+            x1 = 0;
+            y1 = canvas.width/100;
+            break;
     }
 }
 function keyReleased(event) 
 {
+    switch (event.keyCode)
+    {
+    case 65: x=0;
+    y=0; 
+    break;
+    case 87: y=0;
     x=0;
+    break;
+    case 68: x=0;
     y=0;
+    break;
+    case 83: y=0;
+    x=0;
+    break;
+    case 74: x1=0;
+    y1=0;
+    break;
+    case 73: x1=0;
+    y1=0;
+    break;
+    case 76: x1=0;
+    y1=0;
+    break;
+    case 75: x1=0;
+    y1=0;
+    break;
+    }
 }
+
 document.getElementById("canvas").style.display="none";
 function myFunction()
 {
