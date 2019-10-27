@@ -1,7 +1,8 @@
-var express    =    require('express');
-var app        =    express();
+const express    =    require('express');
+const bparser = require('body-parser');
+const app        =    express();
 
-require('./route/main')(app);
+require('./routes/main')(app);
 app.set('views',__dirname + '/views');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
