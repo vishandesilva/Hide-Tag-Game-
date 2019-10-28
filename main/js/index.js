@@ -47,6 +47,12 @@ function initialize() {
             canvas.height = (window.innerWidth-30) * 0.5;
             redraw();
         }
+
+var chkL = false;
+var chkU = false;
+var chkR = false;
+var chkD = false;
+
 /*setInterval function draws the character everytime the code runs and refreshes and also checks
   if the character hits the corners/reaches the boundary of the canvas*/
   setInterval(function () {
@@ -56,6 +62,42 @@ function initialize() {
     positionY += y;
     positionX1 += x1;
     positionY1 += y1;
+
+    if ((positionX - positionX1) >= 0 && (positionX - positionX1) <= (canvas.width/100) + 3){
+        // right to left collision for object 1
+        if (((positionY - positionY1) >= 0 && (positionY - positionY1) <= (canvas.height/100) + 10) || ((positionY1 - positionY) >= 0 && (positionY1 - positionY) <= (canvas.height/100) + 10)){
+            x = 0;
+            x1 = 0;
+            chkL = true;
+        }
+    }
+
+    if ((positionX1 - positionX) >= 0 && (positionX1 - positionX) <= (canvas.width/100) + 3) {
+        //left to right collision for object 1
+        if (((positionY - positionY1) >= 0 && (positionY - positionY1) <= (canvas.height/100) + 10) || ((positionY1 - positionY) >= 0 && (positionY1 - positionY) <= (canvas.height/100) + 10)){
+            x = 0;
+            x1 = 0;
+            chkR = true;
+        }
+    }
+
+    if ((positionY - positionY1) >= 0 && (positionY - positionY1) <= (canvas.height/100) + 10) {
+        //bottom to top collision for object 1
+        if (((positionX - positionX1) >= 0 && (positionX - positionX1) < (canvas.width/100) + 3) || ((positionX1 - positionX) >= 0 && (positionX1 - positionX) < (canvas.width/100) + 3)){
+            y = 0;
+            y1 = 0;
+            chkU = true;
+        }
+    }
+
+    if ((positionY1 - positionY) >= 0 && (positionY1 - positionY) <= (canvas.height/100) + 10) {
+        // top to bottom collision for object 1
+        if (((positionX - positionX1) >= 0 && (positionX - positionX1) < (canvas.width/100) + 3) || ((positionX1 - positionX) >= 0 && (positionX1 - positionX) < (canvas.width/100) + 3)){
+            y = 0;
+            y1 = 0;
+            chkD = true;
+        }
+    }
 
     if (positionX > canvas.width-(canvas.width/100)-3) {
         x = 0;
@@ -100,51 +142,76 @@ function initialize() {
 ctx.fillRect(positionX, positionY, (canvas.width/100), (canvas.width/100));
 ctx.fillStyle = "blue";
 ctx.fillRect(positionX1, positionY1, (canvas.width/100), (canvas.width/100));
-}, canvas.width/50)
+}, 2)
 //EventListener is called everytime a key is pressed on the Keyboard.
 window.addEventListener("keydown",keyPressed , true);
-window.addEventListener("keyup" , keyReleased , true)
+window.addEventListener("keyup" , keyReleased , true);
 /*keyPressed function checks and compares the key we have pressed and increments or decrements
   x or y in order to change the position of our character which moves it*/
 function keyPressed(event) {
     switch (event.keyCode) {
         case 65:
-            x = -canvas.width/100;
+            if (chkL == false){
+            x = -1;
             y = 0;
+            }
+            chkL = false;
             break;
 
         case 87:
+            if (chkU == false) {
             x = 0;
-            y = -canvas.width/100;
+            y = -1;
+            }
+            chkU = false;
             break;
 
         case 68:
-            x = canvas.width/100;
+            if (chkR == false) {
+            x = 1;
             y = 0;
+            }
+            chkR = false;
             break;
 
         case 83:
+            if (chkD == false) {
             x = 0;
-            y = canvas.width/100;
+            y = 1;
+            }
+            chkD = false;
             break;
+
         case 74:
-            x1 = -canvas.width/100;
+            if (chkR == false) {
+            x1 = -1;
             y1 = 0;
+            }
+            chkR == false;
             break;
 
         case 73:
+            if (chkD == false) {
             x1 = 0;
-            y1 = -canvas.width/100;
+            y1 = -1;
+            }
+            chkD = false;
             break;
 
         case 76:
-            x1 = canvas.width/100;
+            if (chkL == false) {
+            x1 = 1;
             y1 = 0;
+            }
+            chkL = false;
             break;
 
         case 75:
+            if (chkU == false) {
             x1 = 0;
-            y1 = canvas.width/100;
+            y1 = 1;
+            }
+            chkU = false;
             break;
     }
 }
