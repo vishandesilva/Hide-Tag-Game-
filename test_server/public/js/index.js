@@ -66,8 +66,8 @@ var chkD = false;
     if ((positionX - positionX1) >= 0 && (positionX - positionX1) <= (canvas.width/100) + 3){
         // right to left collision for object 1
         if (((positionY - positionY1) >= 0 && (positionY - positionY1) <= (canvas.height/100) + 10) || ((positionY1 - positionY) >= 0 && (positionY1 - positionY) <= (canvas.height/100) + 10)){
-            x+= 10;
-            x1-=10;
+            x+= 2;
+            x1-=2;
             chkL = true;
         }
     }
@@ -75,8 +75,8 @@ var chkD = false;
     if ((positionX1 - positionX) >= 0 && (positionX1 - positionX) <= (canvas.width/100) + 3) {
         //left to right collision for object 1
         if (((positionY - positionY1) >= 0 && (positionY - positionY1) <= (canvas.height/100) + 10) || ((positionY1 - positionY) >= 0 && (positionY1 - positionY) <= (canvas.height/100) + 10)){
-            x-=10;
-            x1+=10;
+            x-=2;
+            x1+=2;
             chkR = true;
         }
     }
@@ -84,8 +84,8 @@ var chkD = false;
     if ((positionY - positionY1) >= 0 && (positionY - positionY1) <= (canvas.height/100) + 10) {
         //bottom to top collision for object 1
         if (((positionX - positionX1) >= 0 && (positionX - positionX1) < (canvas.width/100) + 3) || ((positionX1 - positionX) >= 0 && (positionX1 - positionX) < (canvas.width/100) + 3)){
-            y +=10;
-            y1 -=10;
+            y +=2;
+            y1 -=2;
             chkU = true;
         }
     }
@@ -93,8 +93,8 @@ var chkD = false;
     if ((positionY1 - positionY) >= 0 && (positionY1 - positionY) <= (canvas.height/100) + 10) {
         // top to bottom collision for object 1
         if (((positionX - positionX1) >= 0 && (positionX - positionX1) < (canvas.width/100) + 3) || ((positionX1 - positionX) >= 0 && (positionX1 - positionX) < (canvas.width/100) + 3)){
-            y -=10;
-            y1 +=10;
+            y -=2;
+            y1 +=2;
             chkD = true;
         }
     }
