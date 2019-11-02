@@ -13,6 +13,9 @@ module.exports = function(app)
      app.get('/login',function(req,res){
         res.render('login.html');
     });
-    
-    
+
+    app.get('/game',function(req,res){
+      res.render('game.html');
+  });
+     
 }
