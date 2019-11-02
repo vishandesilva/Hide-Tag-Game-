@@ -9,5 +9,10 @@ module.exports = function(app)
      app.get('/leaderboards',function(req,res){
         res.render('leaderboards.html');
     });
+
+     app.get('/login',function(req,res){
+        res.render('login.html');
+    });
+    
     
 }
