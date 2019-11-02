@@ -66,8 +66,8 @@ var chkD = false;
     if ((positionX - positionX1) >= 0 && (positionX - positionX1) <= (canvas.width/100) + 3){
         // right to left collision for object 1
         if (((positionY - positionY1) >= 0 && (positionY - positionY1) <= (canvas.height/100) + 10) || ((positionY1 - positionY) >= 0 && (positionY1 - positionY) <= (canvas.height/100) + 10)){
-            x = 0;
-            x1 = 0;
+            x+= 10;
+            x1-=10;
             chkL = true;
         }
     }
@@ -75,8 +75,8 @@ var chkD = false;
     if ((positionX1 - positionX) >= 0 && (positionX1 - positionX) <= (canvas.width/100) + 3) {
         //left to right collision for object 1
         if (((positionY - positionY1) >= 0 && (positionY - positionY1) <= (canvas.height/100) + 10) || ((positionY1 - positionY) >= 0 && (positionY1 - positionY) <= (canvas.height/100) + 10)){
-            x = 0;
-            x1 = 0;
+            x-=10;
+            x1+=10;
             chkR = true;
         }
     }
@@ -84,8 +84,8 @@ var chkD = false;
     if ((positionY - positionY1) >= 0 && (positionY - positionY1) <= (canvas.height/100) + 10) {
         //bottom to top collision for object 1
         if (((positionX - positionX1) >= 0 && (positionX - positionX1) < (canvas.width/100) + 3) || ((positionX1 - positionX) >= 0 && (positionX1 - positionX) < (canvas.width/100) + 3)){
-            y = 0;
-            y1 = 0;
+            y +=10;
+            y1 -=10;
             chkU = true;
         }
     }
@@ -93,8 +93,8 @@ var chkD = false;
     if ((positionY1 - positionY) >= 0 && (positionY1 - positionY) <= (canvas.height/100) + 10) {
         // top to bottom collision for object 1
         if (((positionX - positionX1) >= 0 && (positionX - positionX1) < (canvas.width/100) + 3) || ((positionX1 - positionX) >= 0 && (positionX1 - positionX) < (canvas.width/100) + 3)){
-            y = 0;
-            y1 = 0;
+            y -=10;
+            y1 +=10;
             chkD = true;
         }
     }
@@ -142,10 +142,10 @@ var chkD = false;
 ctx.fillRect(positionX, positionY, (canvas.width/100), (canvas.width/100));
 ctx.fillStyle = "blue";
 ctx.fillRect(positionX1, positionY1, (canvas.width/100), (canvas.width/100));
-}, 2)
+}, 1)
 //EventListener is called everytime a key is pressed on the Keyboard.
 window.addEventListener("keydown",keyPressed , true);
-window.addEventListener("keyup" , keyReleased , true);
+
 /*keyPressed function checks and compares the key we have pressed and increments or decrements
   x or y in order to change the position of our character which moves it*/
 function keyPressed(event) {
@@ -215,36 +215,7 @@ function keyPressed(event) {
             break;
     }
 }
-function keyReleased(event) 
-{
-    switch (event.keyCode)
-    {
-    case 65: x=0;
-    y=0; 
-    break;
-    case 87: y=0;
-    x=0;
-    break;
-    case 68: x=0;
-    y=0;
-    break;
-    case 83: y=0;
-    x=0;
-    break;
-    case 74: x1=0;
-    y1=0;
-    break;
-    case 73: x1=0;
-    y1=0;
-    break;
-    case 76: x1=0;
-    y1=0;
-    break;
-    case 75: x1=0;
-    y1=0;
-    break;
-    }
-}
+
 
 document.getElementById("canvas").style.display="none";
 function myFunction()
