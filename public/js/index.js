@@ -1,213 +1,222 @@
-(function() { "use strict";
+var canvas = document.getElementById('canvas'); 
+//innerWidth/innerHeight is a function which returns the current browsers width/height in pixels.
+canvas.width = window.innerWidth - 30;
+canvas.height = (window.innerWidth - 30) * 0.5;
 
-  const sprSize = 32;
+let ctx = canvas.getContext("2d");
+ctx.fillStyle = "black";
+/*fillRect is a function that draws the background of the game i.e black in our case.
+  fillRect takes 4 arguments : 
+  (a,b,c,d) : 
+   a = x coordinate of starting pixel
+   b = y coordinate of starting pixel
+   c = width of the rectange we want to draw (left to right)
+   d = height of the rectangle we want to draw (top to bottom) */
+ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  var Animation = function(frame_set, delay) {
+//positionX and positionY defines the position of the moving charater on the x and y coordinates respectively.
+var positionX = 0;
+positionY = 0;
+x = 0;
+y = 0;
+var positionX1 = canvas.width - 3;
+positionY1 = canvas.height - 3;
+x1 = 0;
+y1 = 0;
 
-    this.count = 0;
-    this.delay = delay;// number of game cycles to wait until the next frame change
-    this.frame = 0;
-    this.frame_index = 0;// frame's index in the animation frame set
-    this.frame_set = frame_set;
+initialize();
+function initialize() {
+    // Register an event listener to call the resizeCanvas() function 
+    // each time the window is resized.
+    window.addEventListener('resize', resizeCanvas, false);
+    // Draw canvas border for the first time.
+    resizeCanvas();
+ }
 
-  };
-
-  Animation.prototype = {
-
-    change:function(frame_set, delay = 0) {
-
-      if (this.frame_set != frame_set) {
-
-        this.count = 0;
-        this.delay = delay;
-        this.frame_index = 0;
-        this.frame_set = frame_set;
-        this.frame = this.frame_set[this.frame_index];
-
-      }
-
-    },
-
-    update:function() {
-
-      this.count ++;// Keep track of cycles passed
-
-      if (this.count >= this.delay) {// checking if the game cycle has run a certain number of times before changing the frame for sprite
-        this.count = 0;
-        this.frame_index = (this.frame_index == this.frame_set.length - 1) ? 0 : this.frame_index + 1;// cycles between the frames of the required movement
-        this.frame = this.frame_set[this.frame_index];
-      }
-    }
-  };
-
-  var buffer, controller, display, loop, player, render, resize, sprite_sheet;
-
-  buffer = document.createElement("canvas").getContext("2d");
-  display = document.querySelector("canvas").getContext("2d");
-  var bgImage = new Image();
-  bgImage.src = '../media/testmap.png';
-
-  controller = {
-
-    left:  { active:false, state:false },
-    right: { active:false, state:false },
-    up:    { active:false, state:false },
-    down:  { active:false, state:false },
-
-    keyUpDown:function(event) {// checking if keys are pressed and executing required functions accordingly
-
-      var key_state = (event.type == "keydown") ? true : false; // variable turns to true when key is pressed
-
-      switch(event.keyCode) {
-        case 65:// left
-
-        if (controller.up.state == false && controller.down.state == false && controller.right.state == false){
-          if (controller.left.state != key_state) controller.left.active = key_state;
-          controller.left.state  = key_state;
+        // Display custom canvas.  
+        // border that resizes along with the browser window.
+        function redraw() {
+           ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
 
-        break;
-        case 87:// up
-
-        if (controller.left.state == false && controller.down.state == false && controller.right.state == false){
-          if (controller.up.state != key_state) controller.up.active = key_state;
-          controller.up.state  = key_state;
-      }
-
-        break;
-        case 68:// right
-
-        if (controller.up.state == false && controller.down.state == false && controller.left.state == false){
-          if (controller.right.state != key_state) controller.right.active = key_state;
-          controller.right.state  = key_state;
+        // Runs each time the DOM window resize event fires.
+        // Resets the canvas dimensions to match window,
+        // then draws the new borders accordingly.
+        function resizeCanvas() {
+            canvas.width = window.innerWidth-30;
+            canvas.height = (window.innerWidth-30) * 0.5;
+            redraw();
         }
 
-        break;
-        case 83:// down
+var chkL = false;
+var chkU = false;
+var chkR = false;
+var chkD = false;
 
-        if(controller.up.state == false && controller.left.state == false && controller.right.state == false){
-          if (controller.down.state != key_state) controller.down.active = key_state;
-          controller.down.state  = key_state;
+/*setInterval function draws the character everytime the code runs and refreshes and also checks
+  if the character hits the corners/reaches the boundary of the canvas*/
+  setInterval(function () {
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    positionX += x;
+    positionY += y;
+    positionX1 += x1;
+    positionY1 += y1;
+
+    if ((positionX - positionX1) >= 0 && (positionX - positionX1) <= (canvas.width/100) + 3){
+        // right to left collision for object 1
+        if (((positionY - positionY1) >= 0 && (positionY - positionY1) <= (canvas.height/100) + 10) || ((positionY1 - positionY) >= 0 && (positionY1 - positionY) <= (canvas.height/100) + 10)){
+            x+= 2;
+            x1-=2;
+            chkL = true;
         }
-
-        break;
-      }
-    }
-  };
-
-  player = {// defining dimensions and required variables for movement
-
-    animation:new Animation(),
-    height:64,
-    width:64,
-    x:0,
-    y:0,
-    x_velocity:0,
-    y_velocity:0
-  };
-
-  sprite_sheet = {// defining the number of frames in the srite
-
-    frame_sets:[[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]],// order : up, left, down, right, still
-    // stores each frame of each movement in groups
-    image:new Image()
-  };
-
-  loop = function() {// character movement on user input
-
-    if (controller.up.active) {// move character up
-
-      player.animation.change(sprite_sheet.frame_sets[0], 15);
-      player.y_velocity -= 0.2;
     }
 
-    if (controller.left.active) {// move character left
-
-      player.animation.change(sprite_sheet.frame_sets[1], 15);
-      player.x_velocity -= 0.2;
+    if ((positionX1 - positionX) >= 0 && (positionX1 - positionX) <= (canvas.width/100) + 3) {
+        //left to right collision for object 1
+        if (((positionY - positionY1) >= 0 && (positionY - positionY1) <= (canvas.height/100) + 10) || ((positionY1 - positionY) >= 0 && (positionY1 - positionY) <= (canvas.height/100) + 10)){
+            x-=2;
+            x1+=2;
+            chkR = true;
+        }
     }
 
-    if (controller.right.active) {// move character right
-
-      player.animation.change(sprite_sheet.frame_sets[3], 15);
-      player.x_velocity += 0.2;
+    if ((positionY - positionY1) >= 0 && (positionY - positionY1) <= (canvas.height/100) + 10) {
+        //bottom to top collision for object 1
+        if (((positionX - positionX1) >= 0 && (positionX - positionX1) < (canvas.width/100) + 3) || ((positionX1 - positionX) >= 0 && (positionX1 - positionX) < (canvas.width/100) + 3)){
+            y +=2;
+            y1 -=2;
+            chkU = true;
+        }
     }
 
-    if (controller.down.active) {// move character down
-
-        player.animation.change(sprite_sheet.frame_sets[2], 15);
-        player.y_velocity += 0.2;
-      }
-
-    if (!controller.left.active && !controller.right.active && !controller.up.active && !controller.down.active) {// when the character is still
-
-      player.animation.change(sprite_sheet.frame_sets[4], 15);
+    if ((positionY1 - positionY) >= 0 && (positionY1 - positionY) <= (canvas.height/100) + 10) {
+        // top to bottom collision for object 1
+        if (((positionX - positionX1) >= 0 && (positionX - positionX1) < (canvas.width/100) + 3) || ((positionX1 - positionX) >= 0 && (positionX1 - positionX) < (canvas.width/100) + 3)){
+            y -=2;
+            y1 +=2;
+            chkD = true;
+        }
     }
 
-    // changing the coordinates according to movement speed
-    player.x += player.x_velocity;
-    player.y += player.y_velocity;
-    player.x_velocity *= 0.91;
-    player.y_velocity *= 0.91;
-
-    // restricting movement to canvas to avoid overflow
-    if (player.x <= 30) {
-      player.x = 30;
-    }
-    else if (player.x + player.width >= buffer.canvas.width) {
-      player.x = buffer.canvas.width - player.width;
+    if (positionX > canvas.width-(canvas.width/100)-3) {
+        x = 0;
+        positionX = canvas.width-(canvas.width/100)-3;
     }
 
-    if (player.y <= 30) {
-        player.y = 30;
-      }
-      else if (player.y + player.height >= buffer.canvas.height) {
-        player.y = buffer.canvas.height - player.height;
-      }
-  
-    player.animation.update();
-    render();
-    window.requestAnimationFrame(loop);
-  };
-
-  render = function() {
-    buffer.drawImage(bgImage,0,0,buffer.canvas.width,buffer.canvas.height);
-    //buffer.fillStyle = "black";
-    //buffer.fillRect(0, 0, buffer.canvas.width, buffer.canvas.height);
-    buffer.drawImage(sprite_sheet.image, player.animation.frame * sprSize, 0, sprSize, sprSize, Math.floor(player.x), Math.floor(player.y), sprSize, sprSize);
-    display.drawImage(buffer.canvas, 0, 0, buffer.canvas.width, buffer.canvas.height, 0, 0, display.canvas.width, display.canvas.height);
-  };
-
-  resize = function() {
-
-    display.canvas.width = document.documentElement.clientWidth - 32; 
-    if (display.canvas.width > document.documentElement.clientHeight) {
-
-      display.canvas.width = document.documentElement.clientHeight;
+    if (positionX < 3) {
+        x = 0;
+        positionX = 3;
     }
 
-    canvas.width = window.innerWidth - 30;
-canvas.height = (window.innerWidth - 30) * 0.5;// keeps canvas length to width ratio the same
-    display.imageSmoothingEnabled = false;// keeps the character pixelated
-  };
+    if (positionY >  canvas.height-(canvas.width/100)-3) {
+        y = 0;
+        positionY = canvas.height-(canvas.width/100)-3;
+    }
 
-  buffer.canvas.width = 900;
-  buffer.canvas.height = 600;
+    if (positionY < 3) {
+        y = 0;
+        positionY = 3;
+    }
 
-  window.addEventListener("resize", resize);
-  window.addEventListener("keydown", controller.keyUpDown);
-  window.addEventListener("keyup", controller.keyUpDown);
+    if (positionX1 > canvas.width-(canvas.width/100)-3) {
+        x1 = 0;
+        positionX1 = canvas.width-(canvas.width/100)-3;
+    }
 
-  resize();
+    if (positionX1 < 3) {
+        x1 = 0;
+        positionX1 = 3;
+    }
 
-  sprite_sheet.image.addEventListener("load", function(event) {// calling function after pae has loaded
-      
-    window.requestAnimationFrame(loop);
-  });
+    if (positionY1 >  canvas.height-(canvas.width/100)-3) {
+        y1 = 0;
+        positionY1 = canvas.height-(canvas.width/100)-3;
+    }
 
-  sprite_sheet.image.src = "../media/sprites/Final Sprite.png";
+    if (positionY1 < 3) {
+        y1 = 0;
+        positionY1 = 3;
+    }
+    ctx.fillStyle = "red";
+ctx.fillRect(positionX, positionY, (canvas.width/100), (canvas.width/100));
+ctx.fillStyle = "blue";
+ctx.fillRect(positionX1, positionY1, (canvas.width/100), (canvas.width/100));
+}, 1)
+//EventListener is called everytime a key is pressed on the Keyboard.
+window.addEventListener("keydown",keyPressed , true);
+
+/*keyPressed function checks and compares the key we have pressed and increments or decrements
+  x or y in order to change the position of our character which moves it*/
+function keyPressed(event) {
+    switch (event.keyCode) {
+        case 65:
+            if (chkL == false){
+            x = -1;
+            y = 0;
+            }
+            chkL = false;
+            break;
+
+        case 87:
+            if (chkU == false) {
+            x = 0;
+            y = -1;
+            }
+            chkU = false;
+            break;
+
+        case 68:
+            if (chkR == false) {
+            x = 1;
+            y = 0;
+            }
+            chkR = false;
+            break;
+
+        case 83:
+            if (chkD == false) {
+            x = 0;
+            y = 1;
+            }
+            chkD = false;
+            break;
+
+        case 74:
+            if (chkR == false) {
+            x1 = -1;
+            y1 = 0;
+            }
+            chkR == false;
+            break;
+
+        case 73:
+            if (chkD == false) {
+            x1 = 0;
+            y1 = -1;
+            }
+            chkD = false;
+            break;
+
+        case 76:
+            if (chkL == false) {
+            x1 = 1;
+            y1 = 0;
+            }
+            chkL = false;
+            break;
+
+        case 75:
+            if (chkU == false) {
+            x1 = 0;
+            y1 = 1;
+            }
+            chkU = false;
+            break;
+    }
 }
-)();
+
+
 document.getElementById("canvas").style.display="none";
 function myFunction()
 {
