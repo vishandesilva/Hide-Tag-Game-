@@ -1,4 +1,10 @@
 const sprSize = 32;
+var rect2x = 300;
+var rect2y = 300;
+var rect2Width = 50;
+var rect2Height = 50;
+
+
 
   var Animation = function(frame_set, delay) {
 
