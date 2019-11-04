@@ -102,8 +102,8 @@
     width:64,
     x:0,
     y:0,
-    x_velocity:0,
-    y_velocity:0
+    //x_velocity:0,
+    //y_velocity:0
   };
 
   sprite_sheet = {// defining the number of frames in the srite
@@ -118,25 +118,25 @@
     if (controller.up.active) {// move character up
 
       player.animation.change(sprite_sheet.frame_sets[0], 15);
-      player.y_velocity -= 0.2;
+      player.y -= 3;
     }
 
     if (controller.left.active) {// move character left
 
       player.animation.change(sprite_sheet.frame_sets[1], 15);
-      player.x_velocity -= 0.2;
+      player.x -= 3;
     }
 
     if (controller.right.active) {// move character right
 
       player.animation.change(sprite_sheet.frame_sets[3], 15);
-      player.x_velocity += 0.2;
+      player.x += 3;
     }
 
     if (controller.down.active) {// move character down
 
         player.animation.change(sprite_sheet.frame_sets[2], 15);
-        player.y_velocity += 0.2;
+        player.y += 3;
       }
 
     if (!controller.left.active && !controller.right.active && !controller.up.active && !controller.down.active) {// when the character is still
@@ -145,10 +145,10 @@
     }
 
     // changing the coordinates according to movement speed
-    player.x += player.x_velocity;
-    player.y += player.y_velocity;
-    player.x_velocity *= 0.91;
-    player.y_velocity *= 0.91;
+    //player.x += player.x_velocity;
+    //player.y += player.y_velocity;
+    //player.x_velocity *= 0.91;
+    //player.y_velocity *= 0.91;
 
     // restricting movement to canvas to avoid overflow
     if (player.x <= 30) {
