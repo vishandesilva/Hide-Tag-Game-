@@ -80,6 +80,16 @@
   </footer>
   </div>
   <script src="./js/index.js"></script>
+  <script src = "/socket.io/socket.io.js"></script>
+  <script>
+      var socket=io(); 
+      socket.emit('clientEvent', 'Sent an event from the client!');
+      socket.on('broadcast',function(data) {
+        console.log(data);
+      //document.body.innerHTML = '';
+      //document.write(data.description);
+      }); 
+  </script>
 </body>
 
 </html>

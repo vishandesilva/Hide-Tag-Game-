@@ -1,6 +1,4 @@
-(function() { "use strict";
-
-  const sprSize = 32;
+const sprSize = 32;
 
   var Animation = function(frame_set, delay) {
 
@@ -46,6 +44,9 @@
   display = document.querySelector("canvas").getContext("2d");
   var bgImage = new Image();
   bgImage.src = '../media/testmap.png';
+  var obstacle = new Image();
+  obstacle.src = '../media/obstacle.png';
+  //bgImage.src = '../media/map_test.png';
 
   controller = {
 
@@ -98,8 +99,8 @@
   player = {// defining dimensions and required variables for movement
 
     animation:new Animation(),
-    height:64,
-    width:64,
+    height:60,
+    width:58,
     x:0,
     y:0,
     x_velocity:0,
@@ -151,15 +152,15 @@
     player.y_velocity *= 0.91;
 
     // restricting movement to canvas to avoid overflow
-    if (player.x <= 30) {
-      player.x = 30;
+    if (player.x <= 28) {
+      player.x = 28;
     }
     else if (player.x + player.width >= buffer.canvas.width) {
       player.x = buffer.canvas.width - player.width;
     }
 
-    if (player.y <= 30) {
-        player.y = 30;
+    if (player.y <= 28) {
+        player.y = 28;
       }
       else if (player.y + player.height >= buffer.canvas.height) {
         player.y = buffer.canvas.height - player.height;
@@ -206,8 +207,8 @@ canvas.height = (window.innerWidth - 30) * 0.5;// keeps canvas length to width r
   });
 
   sprite_sheet.image.src = "../media/sprites/Final Sprite.png";
-}
-)();
+
+
 document.getElementById("canvas").style.display="none";
 function myFunction()
 {
