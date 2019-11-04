@@ -9,10 +9,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
   <title>Template</title>
 </head>
 
 <body>
+  <div id="header">
   <header>
     <div class="logo-div">
       <h4 class="logo">Lights & <span>Shadows</span></h4>
@@ -20,15 +22,20 @@
     <nav class="nav-links">
       <li><a class="nav-link" href="/main/html/about.html">About Us</a></li>
       <li><a class="nav-link" href="#">The Game</a></li>
-      <li><a class="nav-link" href="#">Leaderboards</a></li>
+      <li><a class="nav-link" href="/main/html/leaderboards.html">Leaderboards</a></li>
+      <li><a class="nav-link" href="/main/html/login.html"><i class="fa fa-sign-in" aria-hidden="true"></i>
+      </a></li>
     </nav>
   </header>
+  </div>
   <div id= "container">
     <div id="main">
+        <button id="gamebutton" type="button" onclick=myFunction()><span>Play Game!</span></button>
      <canvas id="canvas" width="400" height="300">No HTML5 canvas support</canvas>
 
     </div>
   </div>
+  <div id="footer">
   <footer>
     <div class="footer">
       <div class="footer-content">
@@ -41,10 +48,10 @@
           <h1>Quick Links</h1>
           <br>
           <ul>
-            <a href="#">
+            <a href="/main/html/about.html">
               <li>About Us</li>
             </a>
-            <a href="#">
+            <a href="/main/html/leaderboards.html">
               <li>Leader Boards</li>
             </a>
             <a href="#">
@@ -71,6 +78,7 @@
       </div>
     </div>
   </footer>
+  </div>
   <script src="../js/index.js"></script>
 </body>
 
