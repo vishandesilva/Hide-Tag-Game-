@@ -4,6 +4,7 @@ const http = require("http").createServer(app);
 const bparser = require('body-parser');
 const path = require('path');
 const io = require("socket.io")(http);
+var mysql = require('mysql');
 
 require('./routes/main')(app);
 app.use(express.static(path.join(__dirname, '/public')));
