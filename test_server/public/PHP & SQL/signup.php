@@ -1,3 +1,18 @@
+<?php
+include "config.php";
+
+// Check user login or not
+if(!isset($_SESSION['user'])){
+    header('Location: index.php');
+}
+
+// logout
+if(isset($_POST['but_logout'])){
+    session_destroy();
+    header('Location: index.php');
+}
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -82,16 +97,6 @@
   </footer>
   </div>
   <script src="./js/index.js"></script>
-  <script src = "/socket.io/socket.io.js"></script>
-  <script>
-      var socket=io(); 
-      socket.emit('clientEvent', 'Sent an event from the client!');
-      socket.on('broadcast',function(data) {
-        console.log(data);
-      //document.body.innerHTML = '';
-      //document.write(data.description);
-      }); 
-  </script>
 </body>
 
 </html>
