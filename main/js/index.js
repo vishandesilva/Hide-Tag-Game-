@@ -4,9 +4,7 @@ var rect2y = 300;
 var rect2Width = 50;
 var rect2Height = 50;
 
-
-
-  var Animation = function(frame_set, delay) {
+var Animation = function(frame_set, delay) {
 
     this.count = 0;
     this.delay = delay;// number of game cycles to wait until the next frame change
