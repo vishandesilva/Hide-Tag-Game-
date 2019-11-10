@@ -34,7 +34,9 @@
             if(data[i].x<=0){
                 data[i].x = 0;
               //  socket.emit('collision',{x:0,y = data[i].y, id = i});
-              ctx.fillRect(data[i].x,data[i].y,20,20)     ;
+             socket.emit('collision',{x:data[i].x,y:data[i].y,id:data[i].id})
+
+              ctx.fillRect(-10,data[i].y,20,20)     ;
               collision = true;
              // break;
             }
