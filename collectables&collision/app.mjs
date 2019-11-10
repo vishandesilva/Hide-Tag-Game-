@@ -6,16 +6,14 @@ import path from "path";
 const app = express(),
   server = http.createServer(app),
   io = SocketIO(server),
-  __dirname = path.resolve(
-    path.dirname(decodeURI(new URL(import.meta.url).pathname))
-  );
+  __dirname = "c:/Users/fahim/Documents/GitHub/Hide-Tag-Game-/collectables&collision";
 
 server.listen(3000, () => console.log("Server listening on port 3000"));
 app.use(express.static(__dirname + "/"));
 
 app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
 
-import Coin from "./js/coin.mjs";
+import Coin from "./js/coin.mjs"; 
  
 let players = []; 
 let coins = []; 
