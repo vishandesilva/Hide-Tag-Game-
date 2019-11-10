@@ -68,9 +68,16 @@ io.sockets.on('connection', function(socket){
     });
     // socket.on('collision',function(x,y,id){
     //     Player[id].x = x;
-    //     Player[id].y = y;
+    //     Player[id].y = y;  
     // });  
-   
+    socket.on('collision',function(data){
+        PLAYER_LIST[data.id].x = data.x;
+        PLAYER_LIST[data.id].y = data.y;
+       socket.emit('newPosition',PLAYER_LIST);
+    });     
+         
+      
+      
     socket.on('keyPress',function(data){
         if(data.inputId === 'left')
             player.pressingLeft = data.state;
@@ -81,7 +88,7 @@ io.sockets.on('connection', function(socket){
         else if(data.inputId === 'down')
             player.pressingDown = data.state;
     });
-       
+
 });
  
 setInterval(function(){
@@ -101,7 +108,7 @@ setInterval(function(){
     for(var i in SOCKET_LIST){
         var socket = SOCKET_LIST[i];
         socket.emit('newPositions',pack);
-    }
+    }  
    
-   
+     
 },1000/25);
