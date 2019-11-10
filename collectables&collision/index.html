@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body,
+      html {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #222;
+        margin: 0;
+        height: 100%;
+      }
+      canvas { 
+        background: black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="game" width="800" height="600"></canvas>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/main.mjs" type="module"></script>
+  </body>
+</html>
+
+<!--Use this to start serer: nodemon --experimental-modules app.mjs -->
