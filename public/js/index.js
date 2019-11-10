@@ -235,3 +235,60 @@ function myFunction()
    document.getElementById("header").style.display="none";
    document.getElementById("footer").style.display="none";
 }
+
+//Timer
+
+var minutes = 6;
+var seconds = mins * 60;
+var milliseconds = seconds * 1000;
+
+//Function for stopwatch to call the tick function with ms as its second parameters, hence 1000 ms.
+function stopwatch(){
+  setTimeout('clocktick()',1000)
+}
+
+//tick function
+function clockTick (){
+  if(document.getElementById){
+    minutesTxt = document.getElementById("minutes");
+    secondsTxt = document.getElementById("seconds");
+    millisecondsTxt = document.getElementById("milliseconds");
+  }
+    if(milliseconds < 5900){
+      millisecondsTxt.value = milliseconds;
+    }
+      if(seconds < 59){
+        secondsTxt.value = seconds;
+      }
+        else {
+          minutesTxt.value = minutesFunc();
+          secondsTxt.value = secondsFunc();
+          millisecondsTxt.value = millisecondsFunc();
+        }
+  
+  milliseconds--;
+  seconds--;
+  while (minutes >= 0){
+    seconds--;
+    if (seconds == 0){
+      minutes--;
+    }
+  minutes--;
+  
+  }
+  setTimeout('stopwatch()',1000);
+}
+
+  function minutesFunc(){
+    minutes = Math.floor(seconds / 60);
+    return minutes;
+  }
+
+function secondsFunc(){
+  seconds = seconds - Math.round(minutes * 60);
+  return seconds;
+}
+function millisecondsFunc(){
+  milliseconds = seconds - Math.round(seconds / 1000)
+  return milliseconds;
+}
