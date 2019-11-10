@@ -18,8 +18,11 @@ class Player {
     if (this.isMoving.up) this.y -= this.speed;
     if (this.isMoving.down) this.y += this.speed;
     ctx.beginPath();
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.w, this.h);
+    //ctx.fillStyle = this.color;
+    var img = new Image();
+    img.src = '../Character Sprite.png'
+    ctx.drawImage(img,0, 0, img.width, img.width, this.x, this.y, 50, 50);
+    //ctx.fillRect(this.x, this.y, this.w, this.h);
 
     if (this.isMain) {
       ctx.font = "25px ariel";
