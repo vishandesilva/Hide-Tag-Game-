@@ -1,0 +1,10 @@
+DROP TABLE account;
+
+CREATE TABLE [IF NOT EXISTS] users (
+`userid` int(11) AUTO_INCREMENT,
+`user` VARCHAR(12) DEFAULT NULL,
+`password` VARCHAR(12) DEFAULT NULL
+) ENGINE=InnoDB 
+
+
+
