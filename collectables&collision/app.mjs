@@ -15,14 +15,14 @@ app.use(express.static(__dirname + "/"));
 
 app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
 
-import Coin from "./js/coin.mjs";
+import Coin from "./js/coin.mjs"; 
  
 let players = []; 
 let coins = []; 
 
 for (let i = 0; i < 50; i++)
   coins.push(
-    new Coin({ id: i, x: Math.random() * 800, y: Math.random() * 600 })
+    new Coin({ id: i, x: Math.random() * 1500, y: Math.random() * 700 })
   );
 
 io.on("connection", socket => { 
@@ -52,12 +52,12 @@ io.on("connection", socket => {
       socket.broadcast.emit("destroy-item", coinId);
 
       sock.emit("update-player", player);
-      if (player.xp === 100) {
+      if (player.xp === 200) {
         sock.emit("end-game", "win");
         sock.broadcast.emit("end-game", "lose"); 
       }
-    }
-  });
+    } 
+  }); 
 
   socket.on("disconnect", () => {
     socket.broadcast.emit("remove-player", socket.id);

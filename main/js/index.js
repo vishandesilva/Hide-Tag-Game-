@@ -50,6 +50,8 @@ var Animation = function(frame_set, delay) {
   bgImage.src = '../media/testmap.png';
   var obstacle = new Image();
   obstacle.src = '../media/obstacle.png';
+  //buffer.font = '20px Arial'
+  //buffer.fillText("Leaderboard", canvas.width-25, canvas.height-10);
   //bgImage.src = '../media/map_test.png';
 
   controller = {
