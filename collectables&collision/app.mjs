@@ -20,7 +20,7 @@ import Coin from "./js/coin.mjs";
 let players = []; 
 let coins = []; 
 
-for (let i = 0; i < 40; i++)
+for (let i = 0; i < 50; i++)
   coins.push(
     new Coin({ id: i, x: Math.random() * 800, y: Math.random() * 600 })
   );
@@ -52,7 +52,7 @@ io.on("connection", socket => {
       socket.broadcast.emit("destroy-item", coinId);
 
       sock.emit("update-player", player);
-      if (player.xp === 200) {
+      if (player.xp === 100) {
         sock.emit("end-game", "win");
         sock.broadcast.emit("end-game", "lose"); 
       }
