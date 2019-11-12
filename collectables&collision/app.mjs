@@ -35,7 +35,7 @@ io.on("connection", socket => {
   });
 
   socket.on("move-player", dir =>
-    socket.broadcast.emit("move-player", { id: socket.id, dir })
+    socket.broadcast.emit("move-player", { id: socket.id, dir }) 
   );
   socket.on("stop-player", dir =>
     socket.broadcast.emit("stop-player", { id: socket.id, dir })
