@@ -6,7 +6,9 @@ import path from "path";
 const app = express(),
   server = http.createServer(app),
   io = SocketIO(server),
-  __dirname = "c:/Users/fahim/Documents/GitHub/Hide-Tag-Game-/collectables&collision";
+  __dirname = path.resolve(
+    path.dirname(decodeURI(new URL(import.meta.url).pathname))
+  );
 
 server.listen(3000, () => console.log("Server listening on port 3000"));
 app.use(express.static(__dirname + "/"));
@@ -20,7 +22,7 @@ let coins = [];
 
 for (let i = 0; i < 50; i++)
   coins.push(
-    new Coin({ id: i, x: Math.random() * 800, y: Math.random() * 600 })
+    new Coin({ id: i, x: Math.random() * 1500, y: Math.random() * 700 })
   );
 
 io.on("connection", socket => { 
@@ -50,12 +52,12 @@ io.on("connection", socket => {
       socket.broadcast.emit("destroy-item", coinId);
 
       sock.emit("update-player", player);
-      if (player.xp === 100) {
+      if (player.xp === 200) {
         sock.emit("end-game", "win");
         sock.broadcast.emit("end-game", "lose"); 
       }
-    }
-  });
+    } 
+  }); 
 
   socket.on("disconnect", () => {
     socket.broadcast.emit("remove-player", socket.id);
