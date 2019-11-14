@@ -23,14 +23,17 @@ socket.on("init", ({ id, plyrs, coins }) => {
   socket.on("move-player", ({ id, dir }) =>
     players.find(v => v.id === id).move(dir)
   );
+
   socket.on("stop-player", ({ id, dir }) =>
     players.find(v => v.id === id).stop(dir)
   );
+
   socket.on("destroy-item", id => (items = items.filter(v => v.id !== id)));
   socket.on(
     "remove-player",
     id => (players = players.filter(v => v.id !== id))
   );
+  
   socket.on("end-game", result => (endGame = result));
   socket.on("update-player", obj => (player.xp = obj.xp));
 
