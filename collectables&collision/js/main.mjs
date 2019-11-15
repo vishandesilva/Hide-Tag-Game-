@@ -6,11 +6,9 @@ const socket = io(),
   canvas = document.getElementById("game"),
   ctx = canvas.getContext("2d");
   document.getElementById("game").width = window.innerWidth - 20;
-  document.getElementById("game").height = window.innerWidth*0.5;
-  //canvas.width = window.innerWidth;
-  //canvas.height = canvas.innerHeight;
+  document.getElementById("game").height = window.innerWidth * 0.5;
 
-let players = [],
+  let players = [],
   items = [],
   endGame;
 

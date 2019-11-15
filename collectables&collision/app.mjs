@@ -1,7 +1,6 @@
 import express from "express";
 import http from "http";
 import SocketIO from "socket.io";
-import path from "path";
  
 const app = express(),
   server = http.createServer(app),
@@ -18,11 +17,14 @@ import Coin from "./js/coin.mjs";
 let players = []; 
 let coins = []; 
 
-for (let i = 0; i < 50; i++)
-  coins.push(
-    new Coin({ id: i, x: Math.random() * 1500, y: Math.random() * 700 })
-  );
-
+for (let i = 0; i < 50; i++) {
+  if(i%2 == 0) {
+    coins.push(new Coin({ id: i, x: Math.random() * 1500, y: Math.random() * 700, imgDir: '../LightUpTrap.png' }));
+  }
+  else {
+    coins.push(new Coin({ id: i, x: Math.random() * 1500, y: Math.random() * 700, imgDir: '../FreezeTrap.png' }));
+  }
+}
 io.on("connection", socket => { 
   console.log(socket.id); 
 
