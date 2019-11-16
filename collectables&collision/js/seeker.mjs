@@ -23,28 +23,26 @@ class Seeker {
 
   draw(ctx) {
     var img = new Image();
-    img.src = '../Final Sprite.png';
+    img.src = '../Red Sprite.png';
     if (this.isMoving.right) {
       this.x += this.speed;
       ctx.drawImage(img, (img.height * 6), 0, img.height, img.height, this.x, this.y, 50, 50);
     } 
+
     else if (this.isMoving.left) {
       this.x -= this.speed;
-
       ctx.drawImage(img, (img.height * 2), 0, img.height, img.height, this.x, this.y, 50, 50);
     } 
+
     else if (this.isMoving.up) {
       this.y -= this.speed;
-;
       ctx.drawImage(img, 0, 0, img.height, img.height, this.x, this.y, 50, 50);
     }
+
      else if (this.isMoving.down) {
       this.y += this.speed;
-
       ctx.drawImage(img, (img.height * 4), 0, img.height, img.height, this.x, this.y, 50, 50);
     }
-
-
     else {
       ctx.beginPath();
       ctx.drawImage(img, (img.height * 8), 0, img.height, img.height, this.x, this.y, 50, 50);

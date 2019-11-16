@@ -7,7 +7,7 @@ const app = express(),
   io = SocketIO(server),
   __dirname = "C:/Users/visha/Documents/GitHub/Hide-Tag-Game-/collectables&collision/";
 
-server.listen(5000, () => console.log("Server listening on port 3000"));
+server.listen(5000, () => console.log("Server listening on port 5000"));
 app.use(express.static(__dirname + "/"));
 
 app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
@@ -21,6 +21,7 @@ for (let i = 0; i < 50; i++) {
   if(i%2 == 0) {
     coins.push(new Coin({ id: i, x: Math.random() * 1500, y: Math.random() * 700, imgDir: '../LightUpTrap.png' }));
   }
+  
   else {
     coins.push(new Coin({ id: i, x: Math.random() * 1500, y: Math.random() * 700, imgDir: '../FreezeTrap.png' }));
   }
