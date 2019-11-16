@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <link rel="icon" href="./media/tab-logo.jpeg">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie-edge">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./stylesheet/style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
-  <title>Template</title>
-</head>
-<body>
-    <style>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="icon" href="./media/tab-logo.jpeg">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie-edge">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="./stylesheet/style.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+		<title>Template</title>
+	  </head>
+	  <style>
         h1{
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
@@ -74,28 +71,31 @@
         }
     
         </style>
-    <body>
-       <form action="signup.html" class="signup">
+	<body>
+	
+		<br>
+		<br>
+		<br>
+		<div class="container" >
+			<div class="row">
+			
+				
+				<div>
+					<form action="/signup" method="post" class="signup">
+					
+						<h1> Signup form </h1>
+						<div class="signupform">	
+						<input  type="text" name="name" id="name" placeholder="Enter your Name"  required /><br>
+						</div>
+						<div class="signupform">
 
-    <h1>Sign Up</h1>
-        <div class="signupform">
-            <input type="text" placeholder="Username">
-     </div>
-     <div class="signupform">
-        <input type="password" placeholder="Password">
-    </div>
-    <div class="signupform">
-            <input type="password" placeholder="Retype Password">
-    
-        </div>
-    
-        <label>
-        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"> Remember me
-        </label>
-        
-    <button type="submit"class="login-btn" value="Login" >Login</button>
-        
-    </body>
-    
-    <script src="./js/signup.js"></script>
+						<input  type="password" name="password" id="password"  placeholder="Enter your Password " required/><br>
+							</div>
+					<br>
+						<input type="submit" class ="login-btn" id="signin"  name="submitDetails" value="Signup" /><br>					
+					</form>					
+				</div>		
+			</div>
+		</div>
+	</body>
 </html>
