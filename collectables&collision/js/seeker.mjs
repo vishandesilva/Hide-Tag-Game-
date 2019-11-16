@@ -1,3 +1,5 @@
+import Coin from "./coin.mjs";
+
 class Seeker {
   constructor({
     id,
@@ -13,7 +15,7 @@ class Seeker {
     this.y = y;
     this.w = w;
     this.h = h;
-    this.speed = 13;
+    this.speed = 10;
     this.xp = 0;
     this.id = id;
     this.color = color;
@@ -21,28 +23,31 @@ class Seeker {
     this.isMain = main;
   }
 
-  draw(ctx) {
+  draw(ctx, coins) {
     var img = new Image();
     img.src = '../Red Sprite.png';
     if (this.isMoving.right) {
       this.x += this.speed;
       ctx.drawImage(img, (img.height * 6), 0, img.height, img.height, this.x, this.y, 50, 50);
     } 
-
     else if (this.isMoving.left) {
       this.x -= this.speed;
+      //ctx.beginPath();
       ctx.drawImage(img, (img.height * 2), 0, img.height, img.height, this.x, this.y, 50, 50);
     } 
-
     else if (this.isMoving.up) {
       this.y -= this.speed;
+      //ctx.beginPath();
       ctx.drawImage(img, 0, 0, img.height, img.height, this.x, this.y, 50, 50);
     }
-
      else if (this.isMoving.down) {
       this.y += this.speed;
+      //ctx.beginPath();
       ctx.drawImage(img, (img.height * 4), 0, img.height, img.height, this.x, this.y, 50, 50);
     }
+
+    //ctx.fillStyle = this.color;
+    //ctx.fillRect(this.x, this.y, this.w, this.h);
     else {
       ctx.beginPath();
       ctx.drawImage(img, (img.height * 8), 0, img.height, img.height, this.x, this.y, 50, 50);
@@ -70,7 +75,26 @@ class Seeker {
       ctx.fillText("XP: " + this.xp, window.innerWidth - 110, 30);
     }
 
+    coins.forEach(v => {
+      if (this.collide(v)) {
+        this.xp += v.xpAdded;
+        if(v.imgDir == '../LightUpTrap.png'){
+          this.speed = 15;
+          setTimeout(() => {
+            this.speed = 10;
+          }, 1000);
+        }
+        else {
+          this.speed = 0;
+          setTimeout(() => {
+            this.speed = 10;
+          }, 1000)
+        }
+        v.destroyed = this.id;
+      }
+    });
   }
+
   move(dir) {
     this.isMoving[dir] = true;
   }
@@ -78,6 +102,43 @@ class Seeker {
     this.isMoving[dir] = false;
   }
 
+  collide(p) {
+    if (
+      (this.x >= p.x &&
+        this.x <= p.x + p.w &&
+        this.y >= p.y &&
+        this.y <= p.y + p.h) ||
+      (this.x + this.w >= p.x &&
+        this.x + this.w <= p.x + p.w &&
+        this.y >= p.y &&
+        this.y <= p.y + p.h) ||
+      (this.x >= p.x &&
+        this.x <= p.x + p.w &&
+        this.y + this.h >= p.y &&
+        this.y + this.h <= p.y + p.h) ||
+      (this.x + this.w >= p.x &&
+        this.x + this.w <= p.x + p.w &&
+        this.y + this.h >= p.y &&
+        this.y + this.h <= p.y + p.h) ||
+      (p.x >= this.x &&
+        p.x <= this.x + this.w &&
+        p.y >= this.y &&
+        p.y <= this.y + this.h) ||
+      (p.x + p.w >= this.x &&
+        p.x + p.w <= this.x + this.w &&
+        p.y >= this.y &&
+        p.y <= this.y + this.h) ||
+      (p.x >= this.x &&
+        p.x <= this.x + this.w &&
+        p.y + p.h >= this.y &&
+        p.y + p.h <= this.y + this.h) ||
+      (p.x + p.w >= this.x &&
+        p.x + p.w <= this.x + this.w &&
+        p.y + p.h >= this.y &&
+        p.y + p.h <= this.y + this.h)
+    )
+      return false;
+  }
 }
 
 export default Seeker;

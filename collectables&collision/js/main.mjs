@@ -12,14 +12,30 @@ const socket = io(),
   let players = [],
   items = [],
   endGame;
+  var img = new Image();
+  img.src = '../Final Sprite.png';
+  let state = true;
 
 socket.on("init", ({ id, plyrs, coins }) => {
-  const player = new Player({ id, main: true });
-  controls(player, socket);
+  let x = "";
+  if(state) {
+    state = false;
+    const seeker = new Seeker({ id, main: true });
+    controls(seeker, socket);
+    socket.emit("new-player", seeker);
+    socket.on("new-player", obj => players.push(new Seeker(obj)));
+    x = seeker;
+  }
+  
+  else {
+    const player = new Player({ id, main: true });
+    controls(player, socket);
+    socket.emit("new-player", player);
+    socket.on("new-player", obj => players.push(new Player(obj)));
+    x = player;
+  }
 
-  socket.emit("new-player", player);
-  socket.on("new-player", obj => players.push(new Player(obj)));
-  socket.on("move-player", ({ id, dir }) =>
+   socket.on("move-player", ({ id, dir }) =>
     players.find(v => v.id === id).move(dir)
   );
 
@@ -36,11 +52,12 @@ socket.on("init", ({ id, plyrs, coins }) => {
   socket.on("end-game", result => (endGame = result));
   socket.on("update-player", obj => (player.xp = obj.xp));
 
-  players = plyrs.map(v => new Player(v)).concat(player);
+  players = plyrs.map(v => new Player(v)).concat(x);
   items = coins.map(v => new Coin(v));
 
   const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0,img.width,img.height,0,0,canvas.width,canvas.height);
 
     players.forEach(v => v.draw(ctx, items));
 
