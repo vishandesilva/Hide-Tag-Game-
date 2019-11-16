@@ -61,15 +61,32 @@ class Player {
   draw(ctx, coins) {
     var img = new Image();
     img.src = '../Final Sprite.png';
+    var d = new Date();
+    var n1 = d.getMilliseconds();
+    var n2 = d.getMilliseconds();
     if (this.isMoving.right) {
+      n2 += d.getMilliseconds()
       this.x += this.speed;
-      
+      //setInterval(function() {
+        if ((n2 - n1) <= 100) {
+          ctx.drawImage(img, (img.height*6), 0, img.height, img.height, this.x, this.y, 50, 50);
+        }
+    //setInterval(() => {
+    //ctx.beginPath();ddddd
+        if ((n2 - n1) >= 100) {
+          ctx.drawImage(img, (img.height*7), 0, img.height, img.height, this.x, this.y, 50, 50);
+        }
+      //}, 500);
       //ctx.clearRect(this.x, this.y, 50, 50);
-      
-      ctx.drawImage(img,(img.height*6), 0, img.height, img.height, this.x, this.y, 50, 50);
-  }   
-
-    
+ 
+        
+        if ((n2 - n1) >= 150) {
+          n1 = d.getMilliseconds();
+          n2 = d.getMilliseconds();
+        }
+      //}, 500);
+      //ctx.drawImage(img, (img.height*7), 0, img.height, img.height, this.x, this.y, 50, 50);
+    }
 
     else if (this.isMoving.left) { 
       this.x -= this.speed;

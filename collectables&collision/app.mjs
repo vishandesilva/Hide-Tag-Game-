@@ -6,9 +6,11 @@ import path from "path";
 const app = express(),
   server = http.createServer(app),
   io = SocketIO(server),
-  __dirname = path.resolve(
-    path.dirname(decodeURI(new URL(import.meta.url).pathname))
-  );
+  __dirname = "C:/Users/fahim/Documents/GitHub/Hide-Tag-Game-/collectables&collision";
+  //path.resolve(
+  //   path.dirname(decodeURI(new URL(import.meta.url).pathname))
+  //)
+  
 
 server.listen(3000, () => console.log("Server listening on port 3000"));
 app.use(express.static(__dirname + "/"));
@@ -25,8 +27,8 @@ for (let i = 0; i < 50; i++)
     new Coin({ id: i, x: Math.random() * 1500, y: Math.random() * 700 })
   );
 
-io.on("connection", socket => { 
-  console.log(socket.id); 
+io.on("connection", socket => {
+  console.log(socket.id);
 
   socket.emit("init", { id: socket.id, plyrs: players, coins });
 
