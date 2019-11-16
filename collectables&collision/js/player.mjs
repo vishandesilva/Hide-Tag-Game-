@@ -51,7 +51,7 @@ class Player {
     this.y = y;
     this.w = w;
     this.h = h;
-    this.speed = 10;
+    this.speed = 4;
     this.xp = 0;
     this.id = id;
     this.color = color;
@@ -60,30 +60,28 @@ class Player {
 }
   draw(ctx, coins) {
     var img = new Image();
-    img.src = '../Final Sprite.png';
+    img.src = '../Sprites/Final Sprite.png';
     var d = new Date();
     var n1 = d.getMilliseconds();
     var n2 = d.getMilliseconds();
     if (this.isMoving.right) {
-      n2 += d.getMilliseconds()
+      n2 += d.getMilliseconds();
       this.x += this.speed;
       //setInterval(function() {
-        if ((n2 - n1) <= 100) {
+        if ((n2 - n1) <= 500) {
           ctx.drawImage(img, (img.height*6), 0, img.height, img.height, this.x, this.y, 50, 50);
         }
     //setInterval(() => {
-    //ctx.beginPath();ddddd
-        if ((n2 - n1) >= 100) {
+        //ctx.beginPath();
+        if ((n2 - n1) >= 500) {
           ctx.drawImage(img, (img.height*7), 0, img.height, img.height, this.x, this.y, 50, 50);
         }
       //}, 500);
       //ctx.clearRect(this.x, this.y, 50, 50);
- 
-        
-        if ((n2 - n1) >= 150) {
-          n1 = d.getMilliseconds();
-          n2 = d.getMilliseconds();
-        }
+        // if ((n2 - n1) > 105) {
+        //   n1 = d.getMilliseconds();
+        //   n2 = d.getMilliseconds();
+        // }
       //}, 500);
       //ctx.drawImage(img, (img.height*7), 0, img.height, img.height, this.x, this.y, 50, 50);
     }
@@ -91,24 +89,52 @@ class Player {
     else if (this.isMoving.left) { 
       this.x -= this.speed;
       //ctx.beginPath();
-      ctx.drawImage(img,(img.height*2), 0, img.height, img.height, this.x, this.y, 50, 50);
+      //ctx.drawImage(img,(img.height*2), 0, img.height, img.height, this.x, this.y, 50, 50);
+      n2 += d.getMilliseconds();
+      if ((n2 - n1) <= 500) {
+          ctx.drawImage(img, (img.height*2), 0, img.height, img.height, this.x, this.y, 50, 50);
+        }
+      if ((n2 - n1) >= 500) {
+          ctx.drawImage(img, (img.height*3), 0, img.height, img.height, this.x, this.y, 50, 50);
+        }
     }
 
     else if (this.isMoving.up) {
       this.y -= this.speed;
       //ctx.beginPath();
-      ctx.drawImage(img,0, 0, img.height, img.height, this.x, this.y, 50, 50);
+      //ctx.drawImage(img,0, 0, img.height, img.height, this.x, this.y, 50, 50);\
+      n2 += d.getMilliseconds();
+      if ((n2 - n1) <= 500) {
+          ctx.drawImage(img, (img.height*0), 0, img.height, img.height, this.x, this.y, 50, 50);
+        }
+        if ((n2 - n1) >= 500) {
+          ctx.drawImage(img, (img.height*1), 0, img.height, img.height, this.x, this.y, 50, 50);
+        }
     }
     else if (this.isMoving.down) {
       this.y += this.speed;
       //ctx.beginPath();
-      ctx.drawImage(img,(img.height*4), 0, img.height, img.height, this.x, this.y, 50, 50);
+      //ctx.drawImage(img,(img.height*4), 0, img.height, img.height, this.x, this.y, 50, 50);
+      n2 += d.getMilliseconds();
+      if ((n2 - n1) <= 500) {
+          ctx.drawImage(img, (img.height*4), 0, img.height, img.height, this.x, this.y, 50, 50);
+        }
+        if ((n2 - n1) >= 500) {
+          ctx.drawImage(img, (img.height*5), 0, img.height, img.height, this.x, this.y, 50, 50);
+        }
     }
     //ctx.fillStyle = this.color;
     //ctx.fillRect(this.x, this.y, this.w, this.h);
     else{
-    ctx.beginPath();
-    ctx.drawImage(img,(img.height*8), 0, img.height, img.height, this.x, this.y, 50, 50);
+      ctx.beginPath();
+      n2 += d.getMilliseconds();
+      if ((n2 - n1) <= 500) {
+        ctx.drawImage(img, (img.height*8), 0, img.height, img.height, this.x, this.y, 50, 50);
+      }
+      if ((n2 - n1) >= 500) {
+        ctx.drawImage(img, (img.height*9), 0, img.height, img.height, this.x, this.y, 50, 50);
+      }
+    //ctx.drawImage(img,(img.height*8), 0, img.height, img.height, this.x, this.y, 50, 50);
     }
     if(this.x < 0){
       this.x = 0;
