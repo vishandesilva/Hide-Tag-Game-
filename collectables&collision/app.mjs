@@ -7,7 +7,7 @@ const app = express(),
   io = SocketIO(server),
   __dirname = "C:/Users/visha/Documents/GitHub/Hide-Tag-Game-/collectables&collision/";
 
-server.listen(3000, () => console.log("Server listening on port 3000"));
+server.listen(5000, () => console.log("Server listening on port 3000"));
 app.use(express.static(__dirname + "/"));
 
 app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));

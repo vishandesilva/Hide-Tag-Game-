@@ -1,4 +1,5 @@
 import Player from "./player.mjs";
+import Seeker from "./seeker.mjs";
 import controls from "./controls.mjs";
 import Coin from "./coin.mjs";
 
