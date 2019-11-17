@@ -1,11 +1,16 @@
 import express from "express";
 import http from "http";
 import SocketIO from "socket.io";
+import path from "path";
  
 const app = express(),
   server = http.createServer(app),
   io = SocketIO(server),
-  __dirname = "C:/Users/visha/Documents/GitHub/Hide-Tag-Game-/collectables&collision/";
+  __dirname = //"C:/Users/fahim/Documents/GitHub/Hide-Tag-Game-/collectables&collision";
+  path.resolve(
+     path.dirname(decodeURI(new URL(import.meta.url).pathname))
+  )
+  
 
 server.listen(9000, () => console.log("Server listening on port 9000"));
 app.use(express.static(__dirname + "/"));

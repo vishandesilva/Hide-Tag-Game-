@@ -1,0 +1,12 @@
+{
+    "scripts": {
+        "start": "nodemon --experimental-modules app.mjs"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "http": "0.0.0",
+        "nodemon": "^1.19.4",
+        "path": "^0.12.7",
+        "socket.io": "^2.3.0"
+    }
+}
