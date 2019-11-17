@@ -6,7 +6,7 @@ import path from "path";
 const app = express(),
   server = http.createServer(app),
   io = SocketIO(server),
-  __dirname = //"C:/Users/fahim/Documents/GitHub/Hide-Tag-Game-/collectables&collision";
+  __dirname = 
   path.resolve(
      path.dirname(decodeURI(new URL(import.meta.url).pathname))
   )

@@ -13,7 +13,7 @@ const socket = io(),
   items = [],
   endGame;
   var img = new Image();
-  img.src = '../Final Sprite.png';
+  img.src = "https://i.ibb.co/HtZLGRJ/testmap.png";
   let state = true;
 
 socket.on("init", ({ id, plyrs, coins }) => {
