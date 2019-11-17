@@ -51,7 +51,7 @@ class Player {
     this.y = y;
     this.w = w;
     this.h = h;
-    this.speed = 4;
+    this.speed = 6;
     this.xp = 0;
     this.id = id;
     this.color = color;
@@ -65,15 +65,15 @@ class Player {
     var n1 = d.getMilliseconds();
     var n2 = d.getMilliseconds();
     if (this.isMoving.right) {
-      n2 += d.getMilliseconds();
+      //n2 += d.getMilliseconds();
       this.x += this.speed;
       //setInterval(function() {
-        if ((n2 - n1) <= 500) {
+        if (( n2 <= 166) || (n2 <= 499 && n2 >= 333) || (n2 <= 832 && n2 >= 666)) {
           ctx.drawImage(img, (img.height*6), 0, img.height, img.height, this.x, this.y, 50, 50);
         }
     //setInterval(() => {
         //ctx.beginPath();
-        if ((n2 - n1) >= 500) {
+        if ((n2 < 333 && n2 > 166) || (n2 < 666 && n2 > 499)|| (n2 < 999 && n2 > 832)) {
           ctx.drawImage(img, (img.height*7), 0, img.height, img.height, this.x, this.y, 50, 50);
         }
       //}, 500);
@@ -90,11 +90,11 @@ class Player {
       this.x -= this.speed;
       //ctx.beginPath();
       //ctx.drawImage(img,(img.height*2), 0, img.height, img.height, this.x, this.y, 50, 50);
-      n2 += d.getMilliseconds();
-      if ((n2 - n1) <= 500) {
+      // n2 += d.getMilliseconds();
+      if (( n2 <= 166) || (n2 <= 499 && n2 >= 333) || (n2 <= 832 && n2 >= 666)) {
           ctx.drawImage(img, (img.height*2), 0, img.height, img.height, this.x, this.y, 50, 50);
         }
-      if ((n2 - n1) >= 500) {
+      if ((n2 < 333 && n2 > 166) || (n2 < 666 && n2 > 499)|| (n2 < 999 && n2 > 832)) {
           ctx.drawImage(img, (img.height*3), 0, img.height, img.height, this.x, this.y, 50, 50);
         }
     }
@@ -103,11 +103,11 @@ class Player {
       this.y -= this.speed;
       //ctx.beginPath();
       //ctx.drawImage(img,0, 0, img.height, img.height, this.x, this.y, 50, 50);\
-      n2 += d.getMilliseconds();
-      if ((n2 - n1) <= 500) {
+      // n2 += d.getMilliseconds();
+      if (( n2 <= 166) || (n2 <= 499 && n2 >= 333) || (n2 <= 832 && n2 >= 666)) {
           ctx.drawImage(img, (img.height*0), 0, img.height, img.height, this.x, this.y, 50, 50);
         }
-        if ((n2 - n1) >= 500) {
+        if ((n2 < 333 && n2 > 166) || (n2 < 666 && n2 > 499)|| (n2 < 999 && n2 > 832)) {
           ctx.drawImage(img, (img.height*1), 0, img.height, img.height, this.x, this.y, 50, 50);
         }
     }
@@ -115,11 +115,11 @@ class Player {
       this.y += this.speed;
       //ctx.beginPath();
       //ctx.drawImage(img,(img.height*4), 0, img.height, img.height, this.x, this.y, 50, 50);
-      n2 += d.getMilliseconds();
-      if ((n2 - n1) <= 500) {
+      // n2 += d.getMilliseconds();
+      if (( n2 <= 166) || (n2 <= 499 && n2 >= 333) || (n2 <= 832 && n2 >= 666)) {
           ctx.drawImage(img, (img.height*4), 0, img.height, img.height, this.x, this.y, 50, 50);
         }
-        if ((n2 - n1) >= 500) {
+        if ((n2 < 333 && n2 > 166) || (n2 < 666 && n2 > 499)|| (n2 < 999 && n2 > 832)) {
           ctx.drawImage(img, (img.height*5), 0, img.height, img.height, this.x, this.y, 50, 50);
         }
     }
@@ -127,11 +127,11 @@ class Player {
     //ctx.fillRect(this.x, this.y, this.w, this.h);
     else{
       ctx.beginPath();
-      n2 += d.getMilliseconds();
-      if ((n2 - n1) <= 500) {
+      // n2 += d.getMilliseconds();
+      if (( n2 <= 166) || (n2 <= 499 && n2 >= 333) || (n2 <= 832 && n2 >= 666)) {
         ctx.drawImage(img, (img.height*8), 0, img.height, img.height, this.x, this.y, 50, 50);
       }
-      if ((n2 - n1) >= 500) {
+      if ((n2 < 333 && n2 > 166) || (n2 < 666 && n2 > 499)|| (n2 < 999 && n2 > 832)) {
         ctx.drawImage(img, (img.height*9), 0, img.height, img.height, this.x, this.y, 50, 50);
       }
     //ctx.drawImage(img,(img.height*8), 0, img.height, img.height, this.x, this.y, 50, 50);
