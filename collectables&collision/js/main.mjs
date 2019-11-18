@@ -3,7 +3,6 @@ import Seeker from "./seeker.mjs";
 import controls from "./controls.mjs";
 import Coin from "./coin.mjs";
 
-
 const socket = io(), 
   canvas = document.getElementById("game"),
   ctx = canvas.getContext("2d");
@@ -36,20 +35,22 @@ socket.on("init", ({ id, plyrs, coins }) => {
     //x = player;
   //}
 
+   socket.on("move-player", ({ id, dir }) =>
+    players.find(v => v.id === id).move(dir)
+  );
 
-    socket.on("move-player", ({id, dir}) =>
-        players.find(v => v.id === id).move(dir)
-    );
+  socket.on("stop-player", ({ id, dir }) =>
+    players.find(v => v.id === id).stop(dir)
+  );
 
-    socket.on("stop-player", ({id, dir}) =>
-        players.find(v => v.id === id).stop(dir)
-    );
-
-    socket.on("destroy-item", id => (items = items.filter(v => v.id !== id)));
-    socket.on(
-        "remove-player",
-        id => (players = players.filter(v => v.id !== id))
-    );
+  socket.on("destroy-item", id => (items = items.filter(v => v.id !== id)));
+  socket.on(
+    "remove-player",
+    id => (players = players.filter(v => v.id !== id))
+  );
+  
+  socket.on("end-game", result => (endGame = result));
+  socket.on("update-player", obj => (player.xp = obj.xp));
 
   players = plyrs.map(v => new Player(v)).concat(player);
   items = coins.map(v => new Coin(v));
@@ -57,8 +58,8 @@ socket.on("init", ({ id, plyrs, coins }) => {
   const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     //ctx.drawImage(img, 0, 0,img.width,img.height,0,0,canvas.width,canvas.height);
-    //const img = new Image();
-    //img.src = "../Sprites/Brick Wall.png"
+    const img = new Image();
+    img.src = "../Sprites/Brick Wall.png"
    // img.src = "https://res.cloudinary.com/bedrosians/image/upload/t_product_detail,f_auto/v1/cdn-bedrosian/assets/products/hiresimages/SLTBLKPRL2424G.jpg";
     //const img1 = new Image();
     //img1.src = "https://st.hzcdn.com/simgs/2f716b6a0628d625_4-8929/home-design.jpg";
@@ -93,50 +94,38 @@ socket.on("init", ({ id, plyrs, coins }) => {
 			switch(gameMap[((y*mapW)+x)])
 			{
 				case 0:
-            ctx.fillStyle = "	white";
-            //ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH+1);
-            //ctx.drawImage( img, 0, 0,img.width,img.height,x*tileW, y*tileH, tileW, tileH);
+            ctx.drawImage( img, 0, 0,img.width,img.height,x*tileW, y*tileH, tileW, tileH);
             //var img = new Image();
             //img.src = "https://res.cloudinary.com/bedrosians/image/upload/t_product_detail,f_auto/v1/cdn-bedrosian/assets/products/hiresimages/SLTBLKPRL2424G.jpg";
 					break;
 				default:
-          ctx.fillStyle = "	black";
-            //ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH+1);
+          ctx.fillStyle = "	#A0522D";
+            ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH+1);
             //var img = new Image();
             //img.src = "https://st.hzcdn.com/simgs/2f716b6a0628d625_4-8929/home-design.jpg";
             //https://st.hzcdn.com/simgs/2f716b6a0628d625_4-8929/home-design.jpg
-      }
-      ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH +1);
+			}
 		}
 	}
 
-    socket.on("end-game", result => (endGame = result));
-    socket.on("update-player", obj => (player.xp = obj.xp));
+    players.forEach(v => v.draw(ctx, items));
 
+    items.forEach(v => {
+      v.draw(ctx);
+      if (v.destroyed) {
+        socket.emit("destroy-item", { playerId: v.destroyed, coinId: v.id });
+      }
+    });
 
+    if (endGame) {
+      ctx.fillStyle = endGame === "lose" ? "red" : "green";
+      ctx.font = "100px ariel";
+      ctx.fillText(`You ${endGame}!`, 100, 100);
+    }
 
-    const draw = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
+    items = items.filter(v => !v.destroyed);
 
-        players.forEach(v => v.draw(ctx, items));
-
-        items.forEach(v => {
-            v.draw(ctx);
-            if (v.destroyed) {
-                socket.emit("destroy-item", {playerId: v.destroyed, coinId: v.id});
-            }
-        });
-
-        if (endGame) {
-            ctx.fillStyle = endGame === "lose" ? "red" : "green";
-            ctx.font = "100px ariel";
-            ctx.fillText(`You ${endGame}!`, 100, 100);
-        }
-
-        items = items.filter(v => !v.destroyed);
-
-        !endGame && requestAnimationFrame(draw);
-    };
-    draw();
+    !endGame && requestAnimationFrame(draw);
+  };
+  draw(); 
 });
