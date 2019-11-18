@@ -37,12 +37,12 @@ class Player {
       this.x += this.speed;
       //setInterval(function() {
         if ((n2 - n1) <= 500) {
-          ctx.drawImage(img, (img.height*6), 0, img.height, img.height, this.x, this.y,  (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+          ctx.drawImage(img, (img.height*6), 0, img.height, img.height, this.x, this.y,  (window.innerWidth-20)/40-8, (window.innerWidth-20)/40-8);
         }
     //setInterval(() => {
         //ctx.beginPath();
         if ((n2 - n1) >= 500) {
-          ctx.drawImage(img, (img.height*7), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+          ctx.drawImage(img, (img.height*7), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40-8, (window.innerWidth-20)/40-8);
         }
       //}, 500);
       //ctx.clearRect(this.x, this.y, 50, 50);
@@ -60,10 +60,10 @@ class Player {
       //ctx.drawImage(img,(img.height*2), 0, img.height, img.height, this.x, this.y, 50, 50);
       n2 += d.getMilliseconds();
       if ((n2 - n1) <= 500) {
-          ctx.drawImage(img, (img.height*2), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
-        }
+          ctx.drawImage(img, (img.height*2), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40-8, (window.innerWidth-20)/40-8);
+        } 
       if ((n2 - n1) >= 500) {
-          ctx.drawImage(img, (img.height*3), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+          ctx.drawImage(img, (img.height*3), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40-8, (window.innerWidth-20)/40-8);
         }
     }
 
@@ -73,10 +73,10 @@ class Player {
       //ctx.drawImage(img,0, 0, img.height, img.height, this.x, this.y, 50, 50);\
       n2 += d.getMilliseconds();
       if ((n2 - n1) <= 500) {
-          ctx.drawImage(img, (img.height*0), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+          ctx.drawImage(img, (img.height*0), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40-8, (window.innerWidth-20)/40-8);
         }
         if ((n2 - n1) >= 500) {
-          ctx.drawImage(img, (img.height*1), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+          ctx.drawImage(img, (img.height*1), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40-8, (window.innerWidth-20)/40-8);
         }
     }
      else if (this.isMoving.down) {
@@ -85,10 +85,10 @@ class Player {
       //ctx.drawImage(img,(img.height*4), 0, img.height, img.height, this.x, this.y, 50, 50);
       n2 += d.getMilliseconds();
       if ((n2 - n1) <= 500) {
-          ctx.drawImage(img, (img.height*4), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+          ctx.drawImage(img, (img.height*4), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40-8, (window.innerWidth-20)/40-8);
         }
         if ((n2 - n1) >= 500) {
-          ctx.drawImage(img, (img.height*5), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+          ctx.drawImage(img, (img.height*5), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40-8, (window.innerWidth-20)/40-8);
         }
     }
 
@@ -98,32 +98,44 @@ class Player {
       ctx.beginPath();
       n2 += d.getMilliseconds();
       if ((n2 - n1) <= 500) {
-        ctx.drawImage(img, (img.height*8), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+        ctx.drawImage(img, (img.height*8), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40-8, (window.innerWidth-20)/40-8);
       }
       if ((n2 - n1) >= 500) {
-        ctx.drawImage(img, (img.height*9), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+        ctx.drawImage(img, (img.height*9), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40-8, (window.innerWidth-20)/40-8);
       }
     //ctx.drawImage(img,(img.height*8), 0, img.height, img.height, this.x, this.y, 50, 50);
     }
 
-    if ((r == ctx.getImageData(this.x+1, this.y, 1, 1).data[0]) && (g == ctx.getImageData(this.x+1, this.y, 1, 1).data[1]) && (b == ctx.getImageData(this.x+1, this.y, 1, 1).data[2])){
-      this.x -= 1;
+    if ((r == ctx.getImageData(this.x+(window.innerWidth-20)/40-11, this.y, 1, 1).data[0]) && (g == ctx.getImageData(this.x+(window.innerWidth-20)/40-11, this.y, 1, 1).data[1]) && (b == ctx.getImageData(this.x+(window.innerWidth-20)/40-11, this.y, 1, 1).data[2])){
+      this.x -= this.speed;
+    }
+
+    if ((r == ctx.getImageData(this.x-1, this.y, 1, 1).data[0]) && (g == ctx.getImageData(this.x-1, this.y, 1, 1).data[1]) && (b == ctx.getImageData(this.x-1, this.y, 1, 1).data[2])){
+      this.x += this.speed;
+    }
+
+    if ((r == ctx.getImageData(this.x, this.y+(window.innerWidth-20)/40-11, 1, 1).data[0]) && (g == ctx.getImageData(this.x, this.y+(window.innerWidth-20)/40-11, 1, 1).data[1]) && (b == ctx.getImageData(this.x, this.y+(window.innerWidth-20)/40-11, 1, 1).data[2])){
+      this.y -= this.speed;
+    }
+
+    if ((r == ctx.getImageData(this.x, this.y-1, 1, 1).data[0]) && (g == ctx.getImageData(this.x, this.y-1, 1, 1).data[1]) && (b == ctx.getImageData(this.x, this.y-1, 1, 1).data[2])){
+      this.y += this.speed;
     }
 
     if (this.x < 0) {
       this.x = 0;
     }
 
-    if (this.x + (window.innerWidth-20)/40 > ctx.canvas.width) {
-      this.x = ctx.canvas.width - (window.innerWidth-20)/40;
+    if (this.x + (window.innerWidth-20)/40-8 > ctx.canvas.width) {
+      this.x = ctx.canvas.width - (window.innerWidth-20)/40-8;
     }
 
     if (this.y < 0) {
       this.y = 0;
     }
 
-    if (this.y + (window.innerWidth-20)/40 > ctx.canvas.height) {
-      this.y = ctx.canvas.height - (window.innerWidth-20)/40;
+    if (this.y + (window.innerWidth-20)/40-8 > ctx.canvas.height) {
+      this.y = ctx.canvas.height - (window.innerWidth-20)/40-8;
     }
 
     if (this.isMain) {
