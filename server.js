@@ -5,11 +5,6 @@ const path = require('path');
 const mysql = require('mysql');
 const session = require('express-session');
 
-
-
-
-//enter the name of the database in the end 
-
 app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
 	extended: true
