@@ -4,6 +4,8 @@
 
 <script type="text/javascript">
 var ctx = null;
+//ctx.canvas.width = window.innerWidth;
+//ctx.canvas.height = window.innerHeight;
 var gameMap = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0, 1, 1, 1, 0, 1, 1, 1, 1, 0,
@@ -16,7 +18,7 @@ var gameMap = [
 	0, 1, 1, 1, 0, 1, 1, 1, 1, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ];
-var tileW = 40, tileH = 40;
+var tileW = window.innerWidth/10, tileH = window.innerWidth/20;
 var mapW = 10, mapH = 10;
 var currentSecond = 0, frameCount = 0, framesLastSecond = 0;
 
@@ -25,10 +27,13 @@ window.onload = function()
 	ctx = document.getElementById('game').getContext("2d");
 	requestAnimationFrame(drawGame);
 	ctx.font = "bold 10pt sans-serif";
+	ctx.canvas.width  = window.innerWidth;
+  ctx.canvas.height = window.innerWidth/2;
 };
 
 function drawGame()
 {
+	
 	if(ctx==null) { return; }
 
 	var sec = Math.floor(Date.now()/1000);
@@ -67,7 +72,7 @@ function drawGame()
 </head>
 <body>
 
-<canvas id="game" width="400" height="400"></canvas>
+<canvas id="game"></canvas>
 
 </body>
 </html>
