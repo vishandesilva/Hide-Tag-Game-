@@ -3,10 +3,10 @@ import Coin from "./coin.mjs";
 class Player {
   constructor({
     id,
-    x = 10,
-    y = 10,
-    w = 50,
-    h = 50,
+    x = (window.innerWidth-20)/40,
+    y = (window.innerWidth-20)/40,
+    w = (window.innerWidth-20)/40,
+    h = (window.innerWidth-20)/40,
     color = "white",
     main
   }) {
@@ -15,7 +15,7 @@ class Player {
     this.y = y;
     this.w = w;
     this.h = h;
-    this.speed = 10;
+    this.speed = 5;
     this.xp = 0;
     this.id = id;
     this.color = color;
@@ -25,48 +25,105 @@ class Player {
 
   draw(ctx, coins) {
     var img = new Image();
-    img.src = '../Final Sprite.png';
+    img.src = '../Sprites/Final Sprite.png';
+    var r = 255;
+    var g = 255;
+    var b = 255;
+    var d = new Date();
+    var n1 = d.getMilliseconds();
+    var n2 = d.getMilliseconds();
     if (this.isMoving.right) {
+      n2 += d.getMilliseconds();
       this.x += this.speed;
-      ctx.drawImage(img, (img.height * 6), 0, img.height, img.height, this.x, this.y, 50, 50);
-    } 
-    else if (this.isMoving.left) {
+      //setInterval(function() {
+        if ((n2 - n1) <= 500) {
+          ctx.drawImage(img, (img.height*6), 0, img.height, img.height, this.x, this.y,  (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+        }
+    //setInterval(() => {
+        //ctx.beginPath();
+        if ((n2 - n1) >= 500) {
+          ctx.drawImage(img, (img.height*7), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+        }
+      //}, 500);
+      //ctx.clearRect(this.x, this.y, 50, 50);
+        // if ((n2 - n1) > 105) {
+        //   n1 = d.getMilliseconds();
+        //   n2 = d.getMilliseconds();
+        // }
+      //}, 500);
+      //ctx.drawImage(img, (img.height*7), 0, img.height, img.height, this.x, this.y, 50, 50);
+    }
+
+    else if (this.isMoving.left) { 
       this.x -= this.speed;
       //ctx.beginPath();
-      ctx.drawImage(img, (img.height * 2), 0, img.height, img.height, this.x, this.y, 50, 50);
-    } 
+      //ctx.drawImage(img,(img.height*2), 0, img.height, img.height, this.x, this.y, 50, 50);
+      n2 += d.getMilliseconds();
+      if ((n2 - n1) <= 500) {
+          ctx.drawImage(img, (img.height*2), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+        }
+      if ((n2 - n1) >= 500) {
+          ctx.drawImage(img, (img.height*3), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+        }
+    }
+
     else if (this.isMoving.up) {
       this.y -= this.speed;
       //ctx.beginPath();
-      ctx.drawImage(img, 0, 0, img.height, img.height, this.x, this.y, 50, 50);
+      //ctx.drawImage(img,0, 0, img.height, img.height, this.x, this.y, 50, 50);\
+      n2 += d.getMilliseconds();
+      if ((n2 - n1) <= 500) {
+          ctx.drawImage(img, (img.height*0), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+        }
+        if ((n2 - n1) >= 500) {
+          ctx.drawImage(img, (img.height*1), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+        }
     }
      else if (this.isMoving.down) {
       this.y += this.speed;
       //ctx.beginPath();
-      ctx.drawImage(img, (img.height * 4), 0, img.height, img.height, this.x, this.y, 50, 50);
+      //ctx.drawImage(img,(img.height*4), 0, img.height, img.height, this.x, this.y, 50, 50);
+      n2 += d.getMilliseconds();
+      if ((n2 - n1) <= 500) {
+          ctx.drawImage(img, (img.height*4), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+        }
+        if ((n2 - n1) >= 500) {
+          ctx.drawImage(img, (img.height*5), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+        }
     }
 
     //ctx.fillStyle = this.color;
     //ctx.fillRect(this.x, this.y, this.w, this.h);
-    else {
+    else{
       ctx.beginPath();
-      ctx.drawImage(img, (img.height * 8), 0, img.height, img.height, this.x, this.y, 50, 50);
+      n2 += d.getMilliseconds();
+      if ((n2 - n1) <= 500) {
+        ctx.drawImage(img, (img.height*8), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+      }
+      if ((n2 - n1) >= 500) {
+        ctx.drawImage(img, (img.height*9), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+      }
+    //ctx.drawImage(img,(img.height*8), 0, img.height, img.height, this.x, this.y, 50, 50);
+    }
+
+    if ((r == ctx.getImageData(this.x+1, this.y, 1, 1).data[0]) && (g == ctx.getImageData(this.x+1, this.y, 1, 1).data[1]) && (b == ctx.getImageData(this.x+1, this.y, 1, 1).data[2])){
+      this.x -= 1;
     }
 
     if (this.x < 0) {
       this.x = 0;
     }
 
-    if (this.x + 50 > ctx.canvas.width) {
-      this.x = ctx.canvas.width - 50;
+    if (this.x + (window.innerWidth-20)/40 > ctx.canvas.width) {
+      this.x = ctx.canvas.width - (window.innerWidth-20)/40;
     }
 
     if (this.y < 0) {
       this.y = 0;
     }
 
-    if (this.y + 50 > ctx.canvas.height) {
-      this.y = ctx.canvas.height - 50;
+    if (this.y + (window.innerWidth-20)/40 > ctx.canvas.height) {
+      this.y = ctx.canvas.height - (window.innerWidth-20)/40;
     }
 
     if (this.isMain) {
@@ -79,15 +136,15 @@ class Player {
       if (this.collide(v)) {
         this.xp += v.xpAdded;
         if(v.imgDir == '../LightUpTrap.png'){
-          this.speed = 15;
+          this.speed = 7;
           setTimeout(() => {
-            this.speed = 10;
+            this.speed = 5;
           }, 1000);
         }
         else {
-          this.speed = 0;
+          this.speed = 1;
           setTimeout(() => {
-            this.speed = 10;
+            this.speed = 5;
           }, 1000)
         }
         v.destroyed = this.id;
