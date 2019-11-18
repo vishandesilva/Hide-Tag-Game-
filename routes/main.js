@@ -28,22 +28,34 @@ module.exports = function(app)
          var crypto = require('crypto');
          var new_db = "mongodb://localhost/database_name";
 
-         var getHash = ( pass , phone ) => {
+         var getHash = ( pass , name ) => {
 				
-            var hmac = crypto.createHmac('sha512', phone);
-            
-            //passing the data to be hashed
+            var hmac = crypto.createHmac('sha512', name);
+   
             data = hmac.update(pass);
-            //Creating the hmac in the required format
             gen_hmac= data.digest('hex');
-            //Printing the output on the console
             console.log("hmac : " + gen_hmac);
             return gen_hmac;
          }
 
           var name = req.body.name;
           var pass = req.body.password;
-      
+
+      //     var fs = require('fs')
+
+      //     fs.readFile(index-login.html, 'utf8', function (err,data) {
+      //       if (err) {
+      //         return console.log(err);
+      //       }
+
+      //     var username = data.replace(/<li><a class="User"><li>/, '<div>' + name +'</div>');
+
+      //     fs.writeFile(index-login.html, username, 'utf8' , function (err) {
+      //       if (err) return console.log(err);
+      //    });
+      //  });
+
+
           var password = getHash( pass , name); 				
       
          
@@ -58,7 +70,6 @@ module.exports = function(app)
                throw error;
             }
             console.log("connected to database successfully");
-            //CREATING A COLLECTION IN MONGODB USING NODE.JS
             db.collection("details").insertOne(data, (err , collection) => {
                if(err) throw err;
                console.log("Record inserted successfully");
@@ -70,9 +81,8 @@ module.exports = function(app)
          res.set({
             'Access-Control-Allow-Origin' : '*'
          });
-         return res.render('index.html');  
+         return res.render('index-login.html');  
       
       });
-    
     
 }
