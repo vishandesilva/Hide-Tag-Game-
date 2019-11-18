@@ -26,6 +26,9 @@ class Player {
   draw(ctx, coins) {
     var img = new Image();
     img.src = '../Sprites/Final Sprite.png';
+    var r = 255;
+    var g = 255;
+    var b = 255;
     var d = new Date();
     var n1 = d.getMilliseconds();
     var n2 = d.getMilliseconds();
@@ -103,6 +106,10 @@ class Player {
     //ctx.drawImage(img,(img.height*8), 0, img.height, img.height, this.x, this.y, 50, 50);
     }
 
+    if ((r == ctx.getImageData(this.x+1, this.y, 1, 1).data[0]) && (g == ctx.getImageData(this.x+1, this.y, 1, 1).data[1]) && (b == ctx.getImageData(this.x+1, this.y, 1, 1).data[2])){
+      this.x -= 1;
+    }
+
     if (this.x < 0) {
       this.x = 0;
     }
@@ -129,7 +136,7 @@ class Player {
       if (this.collide(v)) {
         this.xp += v.xpAdded;
         if(v.imgDir == '../LightUpTrap.png'){
-          this.speed = 10;
+          this.speed = 7;
           setTimeout(() => {
             this.speed = 5;
           }, 1000);
