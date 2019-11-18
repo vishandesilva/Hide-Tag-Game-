@@ -2,6 +2,10 @@ const express    =    require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
+const mysql = require('mysql');
+const session = require('express-session');
+
+
 
 
 //enter the name of the database in the end 
