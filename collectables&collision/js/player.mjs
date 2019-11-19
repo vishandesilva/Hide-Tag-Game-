@@ -8,8 +8,6 @@ class Player {
     w = (window.innerWidth-20)/40,
     h = (window.innerWidth-20)/40,
     color = "white",
-    windowWidth = window.innerWidth-20,
-    windowHeight = (window.innerWidth-20)/2,
     main
   }) {
     //animation:new Animation();
