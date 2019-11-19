@@ -4,21 +4,26 @@ module.exports = function(app)
       res.set({
          'Access-Control-Allow-Origin' : '*'
       });
-      return res.render('index.html');
+      return res.render('index.php');
      });
 
-     app.get('/about',function(req,res){
+     /* app.get('/about',function(req,res){
         res.render('about.html');
     });
      app.get('/leaderboards',function(req,res){
         res.render('leaderboards.html');
-    });
+    }); */
 
      app.get('/login',function(req,res){
-        res.render('login.html');
+        res.render('login.php');
     });
-
-     app.route('/signup')
+     
+    app.get('/registration',function(req,res){
+      res.render('register.php');
+    });
+     
+ }
+   /*   app.route('/signup')
        .get((req,res) => {
        res.render('signup.html');
     })
@@ -80,4 +85,4 @@ module.exports = function(app)
    });
  
  
-}
+} */
