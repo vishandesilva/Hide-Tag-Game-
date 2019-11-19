@@ -8,6 +8,8 @@ class Player {
     w = (window.innerWidth-20)/40,
     h = (window.innerWidth-20)/40,
     color = "white",
+    windowWidth = window.innerWidth-20,
+    windowHeight = (window.innerWidth-20)/2,
     main
   }) {
     //animation:new Animation();
@@ -15,7 +17,7 @@ class Player {
     this.y = y;
     this.w = w;
     this.h = h;
-    this.speed = 5;
+    this.speed = (window.innerWidth-20)/400;
     this.xp = 0;
     this.id = id;
     this.color = color;
@@ -26,12 +28,13 @@ class Player {
   draw(ctx, coins) {
     var img = new Image();
     img.src = '../Sprites/Final Sprite.png';
-    var r = 255;
-    var g = 255;
-    var b = 255;
+    var r = 160;
+    var g = 82;
+    var b = 45;
     var d = new Date();
     var n1 = d.getMilliseconds();
     var n2 = d.getMilliseconds();
+    
     if (this.isMoving.right) {
       n2 += d.getMilliseconds();
       this.x += this.speed;
@@ -106,7 +109,7 @@ class Player {
     //ctx.drawImage(img,(img.height*8), 0, img.height, img.height, this.x, this.y, 50, 50);
     }
 
-    if ((r == ctx.getImageData(this.x+(window.innerWidth-20)/40-11, this.y, 1, 1).data[0]) && (g == ctx.getImageData(this.x+(window.innerWidth-20)/40-11, this.y, 1, 1).data[1]) && (b == ctx.getImageData(this.x+(window.innerWidth-20)/40-11, this.y, 1, 1).data[2])){
+    if ((r == ctx.getImageData(this.x+this.w , this.y, 1, 1).data[0]) && (g == ctx.getImageData(this.x+this.w-9 , this.y, 1, 1).data[1]) && (b == ctx.getImageData(this.x+this.w-9 , this.y, 1, 1).data[2])){
       this.x -= this.speed;
     }
 
@@ -114,7 +117,7 @@ class Player {
       this.x += this.speed;
     }
 
-    if ((r == ctx.getImageData(this.x, this.y+(window.innerWidth-20)/40-11, 1, 1).data[0]) && (g == ctx.getImageData(this.x, this.y+(window.innerWidth-20)/40-11, 1, 1).data[1]) && (b == ctx.getImageData(this.x, this.y+(window.innerWidth-20)/40-11, 1, 1).data[2])){
+    if ((r == ctx.getImageData(this.x, this.y+this.w-9 , 1, 1).data[0]) && (g == ctx.getImageData(this.x, this.y+this.w-9 , 1, 1).data[1]) && (b == ctx.getImageData(this.x, this.y+this.w-9 , 1, 1).data[2])){
       this.y -= this.speed;
     }
 
@@ -136,6 +139,7 @@ class Player {
 
     if (this.y + (window.innerWidth-20)/40-8 > ctx.canvas.height) {
       this.y = ctx.canvas.height - (window.innerWidth-20)/40-8;
+      
     }
 
     if (this.isMain) {
@@ -148,15 +152,15 @@ class Player {
       if (this.collide(v)) {
         this.xp += v.xpAdded;
         if(v.imgDir == '../LightUpTrap.png'){
-          this.speed = 7;
+          this.speed = (window.innerWidth-20)/300;
           setTimeout(() => {
-            this.speed = 5;
+            this.speed = (window.innerWidth-20)/400 ;
           }, 1000);
         }
         else {
-          this.speed = 1;
+          this.speed = (window.innerWidth-20)/4000;
           setTimeout(() => {
-            this.speed = 5;
+            this.speed = (window.innerWidth-20)/400;
           }, 1000)
         }
         v.destroyed = this.id;
