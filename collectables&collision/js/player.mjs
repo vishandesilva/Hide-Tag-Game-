@@ -5,7 +5,7 @@ class Player {
     id,
     x = Math.random() * 39 * ((window.innerWidth - 20) / 40),
     y = Math.random() * 19 * ((window.innerWidth - 20) / 40),
-    w = (window.innerWidth-20)/45,
+    w = (window.innerWidth-20) / 45,
     h = (window.innerWidth - 20) / 45,
     color = "white",
     main
@@ -118,22 +118,22 @@ class Player {
       this.y += this.speed;
     }
 
-    if (this.x < 0) {
-      this.x = 0;
-    }
+    // if (this.x < 0) {
+    //   this.x = 0;
+    // }
 
-    if (this.x + (window.innerWidth - 20) / 40 - 8 > ctx.canvas.width) {
-      this.x = ctx.canvas.width - (window.innerWidth - 20) / 40 - 8;
-    }
+    // if (this.x + (window.innerWidth - 20) / 40 - 8 > ctx.canvas.width) {
+    //   this.x = ctx.canvas.width - (window.innerWidth - 20) / 40 - 8;
+    // }
 
-    if (this.y < 0) {
-      this.y = 0;
-    }
+    // if (this.y < 0) {
+    //   this.y = 0;
+    // }
 
-    if (this.y + (window.innerWidth - 20) / 40 - 8 > ctx.canvas.height) {
-      this.y = ctx.canvas.height - (window.innerWidth - 20) / 40 - 8;
+    // if (this.y + (window.innerWidth - 20) / 40 - 8 > ctx.canvas.height) {
+    //   this.y = ctx.canvas.height - (window.innerWidth - 20) / 40 - 8;
 
-    }
+    // }
 
     if (this.isMain) {
       ctx.font = "25px ariel";
@@ -193,7 +193,7 @@ class Player {
       if (this.id != players[i].id) {
         if (this.collide(players[i])) {
           //alert("COLLISION IS WORKINGGGGGG!!!!");
-          socket.broadcast.emit("stop-player", players[i].dir);
+          socket.broadcast.emit("remove-player",  ({id : players[i].id}));
         }
       }
     }
