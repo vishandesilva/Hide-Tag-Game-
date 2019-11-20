@@ -85,7 +85,7 @@ socket.on("init", ({ id, plyrs, coins }) => {
 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0,
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ];
-      var tileW = (window.innerWidth)/40, tileH = (window.innerWidth)/40;
+      var tileW = (window.innerWidth-20)/40, tileH = (window.innerWidth-20)/40;
       var mapW = 40, mapH = 20;
       	for(var y = 0; y < mapH; ++y)
 	{
@@ -111,7 +111,7 @@ socket.on("init", ({ id, plyrs, coins }) => {
 		}
 	}
 
-    players.forEach(v => v.draw(ctx, items));
+    players.forEach(v => v.draw(ctx, items, players));
 
     items.forEach(v => {
       v.draw(ctx);
@@ -119,6 +119,8 @@ socket.on("init", ({ id, plyrs, coins }) => {
         socket.emit("destroy-item", { playerId: v.destroyed, coinId: v.id });
       }
     });
+
+    //players.forEach(v => v.draw(ctx, items, players));
 
     if (endGame) {
       ctx.fillStyle = endGame === "lose" ? "red" : "green";
