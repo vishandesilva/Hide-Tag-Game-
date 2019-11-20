@@ -5,8 +5,8 @@ class Player {
     id,
     x = Math.random() * 39 * ((window.innerWidth - 20) / 40),
     y = Math.random() * 19 * ((window.innerWidth - 20) / 40),
-    w = (window.innerWidth - 20) / 40,
-    h = (window.innerWidth - 20) / 40,
+    w = (window.innerWidth-20)/45,
+    h = (window.innerWidth - 20) / 45,
     color = "white",
     main
   }) {

@@ -2,7 +2,14 @@ import express from "express";
 import http from "http";
 import SocketIO from "socket.io";
 import path from "path";
- 
+import Coin from "./js/coin.mjs";
+//setInterval(() => {
+//   var date = new Date();
+// var timer1 = date.getSeconds();
+// var timer2 = 30+date.getSeconds();
+
+// while (timer2 - timer1 == 30){
+
 const app = express(),
   server = http.createServer(app),
   io = SocketIO(server),
@@ -17,7 +24,7 @@ app.use(express.static(__dirname + "/"));
 
 app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
 
-import Coin from "./js/coin.mjs"; 
+
  
 let players = []; 
 let coins = []; 
@@ -70,3 +77,7 @@ io.on("connection", socket => {
     players = players.filter(v => v.id !== socket.id);
   });
 });
+// timer2 = date.getSeconds();
+// }
+
+//},8000);

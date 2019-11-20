@@ -2,7 +2,11 @@ import Player from "./player.mjs";
 import Seeker from "./seeker.mjs";
 import controls from "./controls.mjs";
 import Coin from "./coin.mjs";
+// var date = new Date();
+// var t1 = date.getSeconds();
+// var t2 = date.getSeconds();
 
+// do{
 const socket = io(), 
   canvas = document.getElementById("game"),
   ctx = canvas.getContext("2d");
@@ -134,3 +138,5 @@ socket.on("init", ({ id, plyrs, coins }) => {
   };
   draw(); 
 });
+// t2 = date.getSeconds();
+// } while (t2 - t1 <= 30) 
