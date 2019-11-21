@@ -25,12 +25,32 @@ class Player {
 
   draw(ctx, coins, players) {
     var img = new Image();
-    img.src = '../Sprites/Final Sprite.png';
+    for (var i = 0; i < players.length; i++) {
+      //if (this.id == players[i].id){
+        if (i == 0){
+          img.src = '../Sprites/Final Sprite.png';
+        }
+        else if (i == 1){
+          img.src = '../Sprites/Red Sprite.png';
+        }
+        else if (i == 2){
+          img.src = '../Sprites/Black Sprite.png';
+        }
+        else if (i == 3){
+          img.src = '../Sprites/Green Sprite.png';
+        }
+        else if (i == 4) {
+          img.src = '../Sprites/Purple Sprite.png';
+        //}
+      }
+      
+    }
+    //img.src = '../Sprites/Final Sprite.png';
     var r = 160;
     var g = 82;
     var b = 45;
     var d = new Date();
-    var n1 = d.getMilliseconds();
+    //var n1 = d.getMilliseconds();
     var n2 = d.getMilliseconds();
 
     if (this.isMoving.right) {
