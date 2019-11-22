@@ -15,7 +15,7 @@ class Player {
     this.y = y;
     this.w = w;
     this.h = h;
-    this.speed = 5;
+    this.speed = (window.innerWidth-20)/400;
     this.xp = 0;
     this.id = id;
     this.color = color;
@@ -26,23 +26,24 @@ class Player {
   draw(ctx, coins) {
     var img = new Image();
     img.src = '../Sprites/Final Sprite.png';
-    var r = 255;
-    var g = 255;
-    var b = 255;
+    var r = 160;
+    var g = 82;
+    var b = 45;
     var d = new Date();
     var n1 = d.getMilliseconds();
     var n2 = d.getMilliseconds();
+
     if (this.isMoving.right) {
       n2 += d.getMilliseconds();
       this.x += this.speed;
       //setInterval(function() {
         if ((n2 - n1) <= 500) {
-          ctx.drawImage(img, (img.height*6), 0, img.height, img.height, this.x, this.y,  (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+          ctx.drawImage(img, (img.height*6), 0, img.height, img.height, this.x, this.y,  (window.innerWidth-20)/40-8, (window.innerWidth-20)/40-8);
         }
     //setInterval(() => {
         //ctx.beginPath();
         if ((n2 - n1) >= 500) {
-          ctx.drawImage(img, (img.height*7), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+          ctx.drawImage(img, (img.height*7), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40-8, (window.innerWidth-20)/40-8);
         }
       //}, 500);
       //ctx.clearRect(this.x, this.y, 50, 50);
@@ -60,10 +61,10 @@ class Player {
       //ctx.drawImage(img,(img.height*2), 0, img.height, img.height, this.x, this.y, 50, 50);
       n2 += d.getMilliseconds();
       if ((n2 - n1) <= 500) {
-          ctx.drawImage(img, (img.height*2), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
-        }
+          ctx.drawImage(img, (img.height*2), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40-8, (window.innerWidth-20)/40-8);
+        } 
       if ((n2 - n1) >= 500) {
-          ctx.drawImage(img, (img.height*3), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+          ctx.drawImage(img, (img.height*3), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40-8, (window.innerWidth-20)/40-8);
         }
     }
 
@@ -73,10 +74,10 @@ class Player {
       //ctx.drawImage(img,0, 0, img.height, img.height, this.x, this.y, 50, 50);\
       n2 += d.getMilliseconds();
       if ((n2 - n1) <= 500) {
-          ctx.drawImage(img, (img.height*0), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+          ctx.drawImage(img, (img.height*0), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40-8, (window.innerWidth-20)/40-8);
         }
         if ((n2 - n1) >= 500) {
-          ctx.drawImage(img, (img.height*1), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+          ctx.drawImage(img, (img.height*1), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40-8, (window.innerWidth-20)/40-8);
         }
     }
      else if (this.isMoving.down) {
@@ -85,10 +86,10 @@ class Player {
       //ctx.drawImage(img,(img.height*4), 0, img.height, img.height, this.x, this.y, 50, 50);
       n2 += d.getMilliseconds();
       if ((n2 - n1) <= 500) {
-          ctx.drawImage(img, (img.height*4), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+          ctx.drawImage(img, (img.height*4), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40-8, (window.innerWidth-20)/40-8);
         }
         if ((n2 - n1) >= 500) {
-          ctx.drawImage(img, (img.height*5), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+          ctx.drawImage(img, (img.height*5), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40-8, (window.innerWidth-20)/40-8);
         }
     }
 
@@ -98,32 +99,45 @@ class Player {
       ctx.beginPath();
       n2 += d.getMilliseconds();
       if ((n2 - n1) <= 500) {
-        ctx.drawImage(img, (img.height*8), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+        ctx.drawImage(img, (img.height*8), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40-8, (window.innerWidth-20)/40-8);
       }
       if ((n2 - n1) >= 500) {
-        ctx.drawImage(img, (img.height*9), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40, (window.innerWidth-20)/40);
+        ctx.drawImage(img, (img.height*9), 0, img.height, img.height, this.x, this.y, (window.innerWidth-20)/40-8, (window.innerWidth-20)/40-8);
       }
     //ctx.drawImage(img,(img.height*8), 0, img.height, img.height, this.x, this.y, 50, 50);
     }
 
-    if ((r == ctx.getImageData(this.x+1, this.y, 1, 1).data[0]) && (g == ctx.getImageData(this.x+1, this.y, 1, 1).data[1]) && (b == ctx.getImageData(this.x+1, this.y, 1, 1).data[2])){
-      this.x -= 1;
+    if ((r == ctx.getImageData(this.x+this.w , this.y, 1, 1).data[0]) && (g == ctx.getImageData(this.x+this.w-9 , this.y, 1, 1).data[1]) && (b == ctx.getImageData(this.x+this.w-9 , this.y, 1, 1).data[2])){
+      this.x -= this.speed;
+    }
+
+    if ((r == ctx.getImageData(this.x-1, this.y, 1, 1).data[0]) && (g == ctx.getImageData(this.x-1, this.y, 1, 1).data[1]) && (b == ctx.getImageData(this.x-1, this.y, 1, 1).data[2])){
+      this.x += this.speed;
+    }
+
+    if ((r == ctx.getImageData(this.x, this.y+this.w-9 , 1, 1).data[0]) && (g == ctx.getImageData(this.x, this.y+this.w-9 , 1, 1).data[1]) && (b == ctx.getImageData(this.x, this.y+this.w-9 , 1, 1).data[2])){
+      this.y -= this.speed;
+    }
+
+    if ((r == ctx.getImageData(this.x, this.y-1, 1, 1).data[0]) && (g == ctx.getImageData(this.x, this.y-1, 1, 1).data[1]) && (b == ctx.getImageData(this.x, this.y-1, 1, 1).data[2])){
+      this.y += this.speed;
     }
 
     if (this.x < 0) {
       this.x = 0;
     }
 
-    if (this.x + (window.innerWidth-20)/40 > ctx.canvas.width) {
-      this.x = ctx.canvas.width - (window.innerWidth-20)/40;
+    if (this.x + (window.innerWidth-20)/40-8 > ctx.canvas.width) {
+      this.x = ctx.canvas.width - (window.innerWidth-20)/40-8;
     }
 
     if (this.y < 0) {
       this.y = 0;
     }
 
-    if (this.y + (window.innerWidth-20)/40 > ctx.canvas.height) {
-      this.y = ctx.canvas.height - (window.innerWidth-20)/40;
+    if (this.y + (window.innerWidth-20)/40-8 > ctx.canvas.height) {
+      this.y = ctx.canvas.height - (window.innerWidth-20)/40-8;
+      
     }
 
     if (this.isMain) {
@@ -131,20 +145,68 @@ class Player {
       ctx.fillStyle = "green";
       ctx.fillText("XP: " + this.xp, window.innerWidth - 110, 30);
     }
-
+    const img1 = new Image();
+    img1.src = "../Sprites/Brick Wall.png"
+    var gameMap = [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+      0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0,
+      0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0,
+      0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0,
+      0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0,
+      0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0,
+      0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0,
+      0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0,
+      0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0,
+      0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0,
+      0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0,
+      0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0,
+      0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0,
+      0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0,
+      0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0,
+      0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0,
+      0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0,
+      0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      ];
+            var tileW = (window.innerWidth-20)/40, tileH = (window.innerWidth-20)/40;
+            var mapW = 40, mapH = 20;
+              for(var y = 0; y < mapH; ++y)
+        {
+          for(var x = 0; x < mapW; ++x)
+          {
+            switch(gameMap[((y*mapW)+x)])
+            {
+              case 0:
+                  //ctx.fillStyle = "#A0522D";
+                  //ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH+1);
+                  ctx.drawImage( img1, 0, 0,img1.width,img1.height,x*tileW, y*tileH, tileW, tileH);
+                  //var img = new Image();
+                  //img.src = "https://res.cloudinary.com/bedrosians/image/upload/t_product_detail,f_auto/v1/cdn-bedrosian/assets/products/hiresimages/SLTBLKPRL2424G.jpg";
+                break;
+              default:
+                //ctx.fillStyle = "	black";
+                  //ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH+1);
+                  //var img = new Image();
+                  //img.src = "https://st.hzcdn.com/simgs/2f716b6a0628d625_4-8929/home-design.jpg";
+                  //https://st.hzcdn.com/simgs/2f716b6a0628d625_4-8929/home-design.jpg
+            }
+           // ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH +1);
+          }
+        }
     coins.forEach(v => {
       if (this.collide(v)) {
         this.xp += v.xpAdded;
         if(v.imgDir == '../LightUpTrap.png'){
-          this.speed = 7;
+          this.speed = (window.innerWidth-20)/300;
           setTimeout(() => {
-            this.speed = 5;
+            this.speed = (window.innerWidth-20)/400 ;
           }, 1000);
         }
         else {
-          this.speed = 1;
+          this.speed = (window.innerWidth-20)/4000;
           setTimeout(() => {
-            this.speed = 5;
+            this.speed = (window.innerWidth-20)/400;
           }, 1000)
         }
         v.destroyed = this.id;

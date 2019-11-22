@@ -2,15 +2,14 @@ import express from "express";
 import http from "http";
 import SocketIO from "socket.io";
 import path from "path";
- 
+
 const app = express(),
-  server = http.createServer(app),
-  io = SocketIO(server),
-  __dirname = "C:/Users/visha/Documents/GitHub/Hide-Tag-Game-/collectables&collision";
-  
+    server = http.createServer(app),
+    io = SocketIO(server),
+    __dirname = "C:/Users/visha/Documents/GitHub/Hide-Tag-Game-/collectables&collision";
 
 
-server.listen(9000, () => console.log("Server listening on port 9000"));
+server.listen(3000, () => console.log("Server listening on port 3000"));
 app.use(express.static(__dirname + "/"));
 
 app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
@@ -34,7 +33,6 @@ io.on("connection", socket => {
     socket.emit("init", {id: socket.id, plyrs: players, coins});
 
     socket.on("new-player", obj => {
-      if (players.indexOf())
         obj.id = socket.id;
         players.push(obj);
         socket.broadcast.emit("new-player", obj);
@@ -43,14 +41,9 @@ io.on("connection", socket => {
     socket.on("move-player", dir =>
         socket.broadcast.emit("move-player", {id: socket.id, dir})
     );
-
-
-  socket.on("move-player", dir =>
-    socket.broadcast.emit("move-player", { id: socket.id, dir }) 
-  );
-  socket.on("stop-player", dir =>
-    socket.broadcast.emit("stop-player", { id: socket.id, dir })
-  );
+    socket.on("stop-player", dir =>
+        socket.broadcast.emit("stop-player", {id: socket.id, dir})
+    );
 
     socket.on("destroy-item", ({playerId, coinId}) => {
         if (coins.find(v => v.id === coinId)) {
