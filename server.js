@@ -1,9 +1,22 @@
 const express    =    require('express');
 const bodyParser = require('body-parser');
-const app = express();
 const path = require('path');
 const mysql = require('mysql');
 const session = require('express-session');
+
+var connection = mysql.createConnection({
+	host     : 'localhost',
+	user     : 'root',
+	password : '',
+	database : 'login.sql'
+});
+
+var app = express();
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
 
 app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
