@@ -1,49 +1,22 @@
-var mysql = require('mysql');
-var express = require('express');
-var session = require('express-session');
-var bodyParser = require('body-parser');
-var path = require('path');
-
-var connection = mysql.createConnection({
-	host     : 'localhost:5050',
-	user     : 'root',
-	password : '',
-	database : 'login'
-})
-
-var app = express();
-
-app.use(session({
-	saveUninitialized: true
-}));
-app.use(bodyParser.urlencoded({extended : true}));
-app.use(bodyParser.json());
-
-app.get('/', function(request, response) {
-	response.sendFile(path.join(__dirname + '/login.html'));
-});
-
-
-//auth - login username and password
-
-
-app.post('/auth', function(request, response) {
-	var Username = request.body.Username;
-	var Password = request.body.Password;
-	if (Username && Password) {
-		connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
-			if (results.length > 0) {
-				request.session.loggedin = true;
-				request.session.Username = Username;
-				response.redirect('/index.html');
-			} else {
-				response.send('Wrong Username or Password');
-			}			
-			response.end();
-		});
-	} else {
-		response.send('Incorrect Username and Password');
-		response.end();
-	}
-}); 
-
+var attempt = 3; // Variable to count number of attempts.
+// Below function Executes on click of login button.
+function validate(){
+var username = document.getElementById("username").value;
+var password = document.getElementById("password").value;
+if ( username == "Formget" && password == "formget#123"){
+alert ("Login successfully");
+window.location = "index.html"; // Redirecting to other page.
+return false;
+}
+else{
+attempt --;// Decrementing by one.
+alert("You have left "+attempt+" attempt;");
+// Disabling fields after 3 attempts.
+if( attempt == 0){
+document.getElementById("username").disabled = true;
+document.getElementById("password").disabled = true;
+document.getElementById("submit").disabled = true;
+return false;
+}
+}
+}

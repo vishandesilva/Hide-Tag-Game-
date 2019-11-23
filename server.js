@@ -1,9 +1,11 @@
+
 const express    =    require('express');
 const bodyParser = require('body-parser');
+const app = express();
 const path = require('path');
-const mysql = require('mysql');
-const session = require('express-session');
-var app = express();
+
+
+//enter the name of the database in the end 
 
 app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
@@ -19,6 +21,3 @@ app.engine('html', require('ejs').renderFile);
 var port_number = app.listen(process.env.PORT || 3000);
 app.listen(port_number);
 console.log("Express is running");
-
-
- 

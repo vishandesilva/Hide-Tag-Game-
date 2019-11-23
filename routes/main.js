@@ -1,41 +1,88 @@
 module.exports = function(app)
 {
      app.get('/',function(req,res){
-       res.render('index.html');
+      res.set({
+         'Access-Control-Allow-Origin' : '*'
+      });
+      return res.render('index.html');
      });
+
+     app.get('/about',function(req,res){
+        res.render('about.html');
+    });
+     app.get('/leaderboards',function(req,res){
+        res.render('leaderboards.html');
+    });
 
      app.get('/login',function(req,res){
         res.render('login.html');
     });
      
-    app.get('/leaderboards',function(req,res){
-      res.render('leaderboards.html');
-  });
-
     app.route('/register')
        .get((req,res) => {
-       res.render('register.html')
-    })
-       .post((req,res) => {
-         var username = request.body.username;
-         var password = request.body.password;
-         if (username && password) {
-            connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
-               if (results.length > 0) {
-                  request.session.loggedin = true;
-                  request.session.username = username;
-                  response.redirect('/home');
-               } else {
-                  response.send('Incorrect Username and/or Password!');
-               }			
-               response.end();
-            });
-         } else {
-            response.send('Please enter Username and Password!');
-            response.end();
+          res.render('register.html');
+       })
+
+       .post((req, res) => {
+         var mongo = require('mongodb');
+         var crypto = require('crypto');
+         var new_db = "mongodb://localhost/database_name";
+
+         var getHash = ( pass , name ) => {
+				
+            var hmac = crypto.createHmac('sha512', name);
+   
+            data = hmac.update(pass);
+            gen_hmac= data.digest('hex');
+            console.log("hmac : " + gen_hmac);
+            return gen_hmac;
          }
-      });
+
+          var name = req.body.name;
+          var pass = req.body.password;
+
+      //     var fs = require('fs')
+
+      //     fs.readFile(index-login.html, 'utf8', function (err,data) {
+      //       if (err) {
+      //         return console.log(err);
+      //       }
+
+      //     var username = data.replace(/<li><a class="User"><li>/, '<div>' + name +'</div>');
+
+      //     fs.writeFile(index-login.html, username, 'utf8' , function (err) {
+      //       if (err) return console.log(err);
+      //    });
+      //  });
+
+
+          var password = getHash( pass , name); 				
       
-       
- } 
- 
+         
+          var data = {
+            "name":name,	
+            "password": password
+            
+         }
+         
+         mongo.connect(new_db , function(error , db){
+            if (error){
+               throw error;
+            }
+            console.log("connected to database successfully");
+            db.collection("details").insertOne(data, (err , collection) => {
+               if(err) throw err;
+               console.log("Record inserted successfully");
+               console.log(collection);
+            });
+         });
+         
+         console.log("DATA is " + JSON.stringify(data) );
+         res.set({
+            'Access-Control-Allow-Origin' : '*'
+         });
+         return res.render('index.html');  
+      
+      });
+    
+}
