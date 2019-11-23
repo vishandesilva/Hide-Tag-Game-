@@ -36,13 +36,14 @@ getRandomColor() {
   //draw(ctx) {
     draw(ctx,players) {
       players[0].color = "red";
-      players[0].speed = (window.innerWidth)/390;
+     // players[0].speed = (window.innerWidth)/390;
       console.log(players);
       var img = new Image();
     img.src = '../Sprites/Final Sprite.png';
     var r = 160;
     var g = 82;
     var b = 45;
+    let coins = [];
   //  var r = 0;
   //  var g = 0;
   //  var b = 0;
@@ -203,92 +204,138 @@ getRandomColor() {
     // }
     // const img1 = new Image();
     // img1.src = "../Sprites/Brick Wall.png"
-    // var gameMap = [
-    //   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    //   0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
-    //   0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0,
-    //   0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 2, 1, 1, 1, 1, 1, 1, 0, 1, 0,
-    //   0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0,
-    //   0, 1, 1, 1, 1, 2, 1, 2, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 2, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0,
-    //   0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0,
-    //   0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0,
-    //   0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0,
-    //   0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 2, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0,
-    //   0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0,
-    //   0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0,
-    //   0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0,
-    //   0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 2, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0,
-    //   0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0,
-    //   0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0,
-    //   0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0,
-    //   0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0,
-    //   0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0,
-    //   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-    //   ];
-    //         var tileW = (window.innerWidth)/40, tileH = (window.innerWidth)/40;
-    //         var mapW = 40, mapH = 20;
-    //           for(var y = 0; y < mapH; ++y)
-    //     {
-    //       for(var x = 0; x < mapW; ++x)
-    //       {
-    //         switch(gameMap[((y*mapW)+x)])
-    //         {
-    //           case 2:
-    //               //ctx.fillStyle = "#A0522D";
-    //               //ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH+1);
-    //               ctx.drawImage( img1, 0, 0,img1.width,img1.height,x*tileW, y*tileH, tileW, tileH);
-    //               //var img = new Image();
-    //               //img.src = "https://res.cloudinary.com/bedrosians/image/upload/t_product_detail,f_auto/v1/cdn-bedrosian/assets/products/hiresimages/SLTBLKPRL2424G.jpg";
-    //             break;
-    //           default:
-    //             //ctx.fillStyle = "	black";
-    //               //ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH+1);
-    //               //var img = new Image();
-    //               //img.src = "https://st.hzcdn.com/simgs/2f716b6a0628d625_4-8929/home-design.jpg";
-    //               //https://st.hzcdn.com/simgs/2f716b6a0628d625_4-8929/home-design.jpg
-    //         }
-    //        // ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH +1);
-    //       }
-    //     }
+    var gameMap = [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+      0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0,
+      0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 2, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0,
+      0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0,
+      0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0,
+      0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0,
+      0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0,
+      0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0,
+      0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 2, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0,
+      0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 2, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0,
+      0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0,
+      0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0,
+      0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0,
+      0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0,
+      0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0,
+      0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0,
+      0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0,
+      0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      ];
+      var coinsID =0;
+            var tileW = (window.innerWidth)/40, tileH = (window.innerWidth)/40;
+            var mapW = 40, mapH = 20;
+              for(var y = 0; y < mapH; ++y)
+        {
+          for(var x = 0; x < mapW; ++x)
+          {
+            switch(gameMap[((y*mapW)+x)])
+            {
+              // case 0:
+              //     ctx.fillStyle = "#A0522D";
+              //     ctx.beginPath();
+              //     ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH+1);
+              //     //ctx.drawImage( img, 0, 0,img.width,img.height,x*tileW, y*tileH, tileW, tileH);
+              //     //var img = new Image();
+              //     //img.src = "https://res.cloudinary.com/bedrosians/image/upload/t_product_detail,f_auto/v1/cdn-bedrosian/assets/products/hiresimages/SLTBLKPRL2424G.jpg";
+              //   break;
+              case 2:
+                  coins.push(new Coin({ id: coinsID, x: x*tileW +tileW/4 , y: y*tileH +tileW/4,w: tileW/2, h:tileH/2, imgDir: '../LightUpTrap.png' }));
+                 
+                  coinsID++;
+                  //ctx.beginPath();
+                  //ctx.fillStyle = "#010101";
+                  //ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH +1);
+                  //ctx.imageSmoothingEnabled = false;
+                  //ctx.drawImage( img, 0, 0,img.width,img.height,x*tileW +tileW/4, y*tileH +tileW/4, tileW/2 , tileH/2);
+                 // ctx.drawImage( img, 0, 0,img.width,img.height,x*tileW, y*tileH, tileW , tileH);
+                break;
+              // case 1:
+              //     ctx.fillStyle = "black";
+              //     ctx.beginPath();
+              //   ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH +1);
+              //   break;
+                  //var img = new Image();
+                  //img.src = "https://st.hzcdn.com/simgs/2f716b6a0628d625_4-8929/home-design.jpg";
+                  //https://st.hzcdn.com/simgs/2f716b6a0628d625_4-8929/home-design.jpg
+            }
+            //ctx.beginPath();
+            //ctx.fillRect(x*tileW, y*tileH, tileW + 1, tileH + 1);
+          }
+        }
     for (let i = 0; i < players.length; i++) {
-      if (this.id != players[i].id) {
-        if (this.collide(players[i])) {
+      if (this.id != players[0].id) {
+        if (this.collide(players[0])) {
           //alert("COLLISION IS WORKINGGGGGG!!!!");
           //socket.broadcast.emit("destroy-item",  ({playerID: this.id,playertwoID: players[i].id}));
           //this.w = 0;
           //this.h = 0;
         //socket.emit("test"); 
         //io.to(`${players[i].id}`).emit('hey', 'I just met you');
-        var g = players.indexOf(players[i]);
+        var g = players.indexOf(this);
         players.splice(g, 1);
        // this.xp+=200
         //this.isMain = false;
         //alert("YOU DIED!!!!");
         if(players.length == 1){
-          alert("Only 1 Player Left!!")
+          //alert("Only 1 Player Left!!")
+          //players[0].speed = 0;
+
         }
         }
       }
    }
-    // coins.forEach(v => {
-    //   if (this.collide(v)) {
-    //     this.xp += v.xpAdded;
-    //     if(v.imgDir == '../LightUpTrap.png'){
-    //       this.speed = (window.innerWidth)/300;
-    //       setTimeout(() => {
-    //         this.speed = (window.innerWidth)/400 ;
-    //       }, 1000);
-    //     }
-    //     else {
-    //       this.speed = (window.innerWidth)/4000;
-    //       setTimeout(() => {
-    //         this.speed = (window.innerWidth)/400;
-    //       }, 1000)
-    //     }
-    //     v.destroyed = this.id;
-    //   }
-    // });
+
+      coins.forEach(v => {
+     v.draw(ctx);
+      // if (v.destroyed) {
+      //   socket.emit("destroy-item", { playerId: v.destroyed, coinId: v.id });
+      // }
+   });
+  //  for (let i = 0; i < coins.length; i++) {
+  //   //if (this.id != players[0].id) {
+  //     if (this.collide(coins[i])) {
+  //       //alert("COLLISION IS WORKINGGGGGG!!!!");
+  //       //socket.broadcast.emit("destroy-item",  ({playerID: this.id,playertwoID: players[i].id}));
+  //       //this.w = 0;
+  //       //this.h = 0;
+  //     //socket.emit("test"); 
+  //     //io.to(`${players[i].id}`).emit('hey', 'I just met you');
+  //    // alert("coin collision");
+  //     //var g = coins.indexOf(coins[i].id);
+  //     //coins.splice(g, 1);
+  //     //players.forEach(v => v.draw(ctx, items));
+  //     coins = coins.filter(v => v.id != coins[i].id);
+      
+  //    }
     
+ //}
+ coins.forEach(v => {
+   if(this!=players[0]){
+      if (this.collide(v)) {
+        this.xp += v.xpAdded;
+        if(v.imgDir == '../LightUpTrap.png'){
+          this.speed = (window.innerWidth)/4000;
+          setTimeout(() => {
+            this.speed = (window.innerWidth)/400 ;
+          }, 1000);
+        }
+        else {
+          this.speed = (window.innerWidth)/4000;
+          setTimeout(() => {
+            this.speed = (window.innerWidth)/400;
+          }, 1000)
+        }
+       // v.destroyed = this.id;
+       var g = coins.indexOf(v);
+       coins.splice(g, 1);
+      }
+    }
+    });
   }
   move(dir) {
     this.isMoving[dir] = true;

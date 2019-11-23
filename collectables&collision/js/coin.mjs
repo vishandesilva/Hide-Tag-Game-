@@ -13,7 +13,7 @@ class Coin {
     ctx.beginPath();
     var img = new Image();
     img.src = this.imgDir
-    ctx.drawImage(img,0, 0, img.width, img.width, this.x, this.y, 22, 22);
+    ctx.drawImage(img,0, 0, img.width, img.width, this.x, this.y, this.w, this.h);
   }
 } 
 

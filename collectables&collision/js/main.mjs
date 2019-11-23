@@ -10,7 +10,7 @@ const socket = io(),
   document.getElementById("game").height = (window.innerWidth )* 0.5;
 
   let players = [],
-  //items = [],
+  items = [],
   endGame;
   //var img = new Image();
   //img.src = "https://i.ibb.co/HtZLGRJ/testmap.png";
@@ -103,11 +103,13 @@ const socket = io(),
           break;
         case 2:
             ctx.beginPath();
-            ctx.fillStyle = "#010101";
+            ctx.fillStyle = "black";
+           // ctx.fillStyle = "#010101";
             ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH +1);
-            ctx.imageSmoothingEnabled = false;
-            ctx.drawImage( img, 0, 0,img.width,img.height,x*tileW +tileW/4, y*tileH +tileW/4, tileW/2 , tileH/2);
+            //ctx.imageSmoothingEnabled = false;
+            //ctx.drawImage( img, 0, 0,img.width,img.height,x*tileW +tileW/4, y*tileH +tileW/4, tileW/2 , tileH/2);
            // ctx.drawImage( img, 0, 0,img.width,img.height,x*tileW, y*tileH, tileW , tileH);
+           //items.push(new Coin({ id: i,x: x*tileW +tileW/4, y: y*tileH +tileW/4, imgDir: '../LightUpTrap.png' }));
           break;
 				case 1:
             ctx.fillStyle = "black";
@@ -126,12 +128,12 @@ const socket = io(),
   players.forEach(v => v.draw(ctx,players));
   //players.forEach(v => v.draw(ctx, items));
 
-    // items.forEach(v => {
-    //   v.draw(ctx);
-    //   if (v.destroyed) {
-    //     socket.emit("destroy-item", { playerId: v.destroyed, coinId: v.id });
-    //   }
-    // });
+    items.forEach(v => {
+      v.draw(ctx);
+      // if (v.destroyed) {
+      //   socket.emit("destroy-item", { playerId: v.destroyed, coinId: v.id });
+      // }
+    });
 
     if (endGame) {
       ctx.fillStyle = endGame === "lose" ? "red" : "green";
