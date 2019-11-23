@@ -3,7 +3,7 @@ import Coin from "./coin.mjs";
 class Player {
   constructor({
     id,
-    x = (window.innerWidth)/40 * 38 ,
+    x = (window.innerWidth)/40 *2 ,
     y = (window.innerWidth)/40 *1 ,
     w = (window.innerWidth)/40 +2 ,
     h = (window.innerWidth)/40 +2 ,
