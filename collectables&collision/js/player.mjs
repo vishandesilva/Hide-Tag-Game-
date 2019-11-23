@@ -1,4 +1,5 @@
 import Coin from "./coin.mjs";
+//const socket = io(), 
 
 class Player {
   constructor({
@@ -19,13 +20,23 @@ class Player {
     this.speed = (window.innerWidth)/400;
     this.xp = 0;
     this.id = id;
-    //this.color = color;
+    this.color = "yellow";
     this.isMoving = {};
     this.isMain = main;
   }
-
+getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+  
   //draw(ctx) {
     draw(ctx,players) {
+      players[0].color = "red";
+      players[0].speed = (window.innerWidth)/390;
       console.log(players);
       var img = new Image();
     img.src = '../Sprites/Final Sprite.png';
@@ -44,7 +55,7 @@ class Player {
 
       n2 += d.getMilliseconds();
       this.x += this.speed;
-      ctx.strokeStyle = "yellow";
+      ctx.strokeStyle = this.color;
       ctx.rect(this.x, this.y, (window.innerWidth)/40-8, (window.innerWidth)/40-8);
       //ctx.arc(this.x+((window.innerWidth)/40-8)/2, this.y+((window.innerWidth)/40-8)/2, (this.w-8)/2, 0, 2 * Math.PI);
       ctx.stroke();
@@ -71,7 +82,7 @@ class Player {
       ctx.beginPath();
 
       this.x -= this.speed;
-      ctx.strokeStyle = "yellow";
+      ctx.strokeStyle = this.color;
       ctx.rect(this.x, this.y, (window.innerWidth)/40-8, (window.innerWidth)/40-8);
       //ctx.arc(this.x+((window.innerWidth)/40-8)/2, this.y+((window.innerWidth)/40-8)/2, (this.w-8)/2, 0, 2 * Math.PI);
       ctx.stroke();
@@ -90,7 +101,7 @@ class Player {
       ctx.beginPath();
 
       this.y -= this.speed;
-      ctx.strokeStyle = "yellow";
+      ctx.strokeStyle = this.color;
       ctx.rect(this.x, this.y, (window.innerWidth)/40-8, (window.innerWidth)/40-8);
       //ctx.arc(this.x+((window.innerWidth)/40-8)/2, this.y+((window.innerWidth)/40-8)/2, (this.w-8)/2, 0, 2 * Math.PI);
       ctx.stroke();
@@ -108,7 +119,7 @@ class Player {
       ctx.beginPath();
 
       this.y += this.speed;
-      ctx.strokeStyle = "yellow";
+      ctx.strokeStyle = this.color;
       ctx.rect(this.x, this.y, (window.innerWidth)/40-8, (window.innerWidth)/40-8);
       //ctx.arc(this.x+((window.innerWidth)/40-8)/2, this.y+((window.innerWidth)/40-8)/2,(this.w-8)/2, 0, 2 * Math.PI);
       ctx.stroke();
@@ -127,7 +138,7 @@ class Player {
     //ctx.fillRect(this.x, this.y, this.w, this.h);
     else{
       ctx.beginPath();
-      ctx.strokeStyle = "yellow";
+      ctx.strokeStyle = this.color;
       ctx.rect(this.x, this.y, (window.innerWidth)/40-8, (window.innerWidth)/40-8);
       //ctx.arc(this.x+((window.innerWidth)/40-8)/2, this.y+((window.innerWidth)/40-8)/2, (this.w-8)/2, 0, 2 * Math.PI);
       ctx.stroke();
@@ -182,7 +193,14 @@ class Player {
       ctx.font = "25px ariel";
       ctx.fillStyle = "green";
       ctx.fillText("XP: " + this.xp, window.innerWidth - 110, 30);
+      //ctx.fillText("ALIVE", window.innerWidth - 110, 30);
     }
+    // else{
+    //   ctx.font = "25px ariel";
+    //   ctx.fillStyle = "green";
+    //   //ctx.fillText("XP: " + this.xp, window.innerWidth - 110, 30);
+    //   ctx.fillText("DEAD", window.innerWidth - 110, 30);
+    // }
     // const img1 = new Image();
     // img1.src = "../Sprites/Brick Wall.png"
     // var gameMap = [
@@ -239,10 +257,16 @@ class Player {
           //socket.broadcast.emit("destroy-item",  ({playerID: this.id,playertwoID: players[i].id}));
           //this.w = 0;
           //this.h = 0;
-          
+        //socket.emit("test"); 
+        //io.to(`${players[i].id}`).emit('hey', 'I just met you');
         var g = players.indexOf(players[i]);
         players.splice(g, 1);
+       // this.xp+=200
+        //this.isMain = false;
         //alert("YOU DIED!!!!");
+        if(players.length == 1){
+          alert("Only 1 Player Left!!")
+        }
         }
       }
    }
@@ -264,7 +288,7 @@ class Player {
     //     v.destroyed = this.id;
     //   }
     // });
-
+    
   }
   move(dir) {
     this.isMoving[dir] = true;

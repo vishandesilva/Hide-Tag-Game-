@@ -15,7 +15,6 @@ const socket = io(),
   //var img = new Image();
   //img.src = "https://i.ibb.co/HtZLGRJ/testmap.png";
   //let state = true;
-
   socket.on("init", ({ id, plyrs}) => {
    // socket.on("init", ({ id, plyrs, coins }) => {
       //let x = "";

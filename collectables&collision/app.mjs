@@ -60,11 +60,11 @@ io.on("connection", socket => {
   //     //player.xp += 200;
   //     //socket.broadcast.emit("destroy-item", playerId);
 
-  //     sock.emit("update-player", player);
-  //     // if (player.xp === 200) {
-  //     //   sock.emit("end-game", "win");
-  //     //   sock.broadcast.emit("end-game", "lose"); 
-  //     // }
+     // sock.emit("update-player", player);
+      // if (player.xp === 200) {
+      //   sock.emit("end-game", "win");
+      //   sock.broadcast.emit("end-game", "lose"); 
+      // }
   //   } 
   // }); 
 
