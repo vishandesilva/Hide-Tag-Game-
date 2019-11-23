@@ -14,9 +14,30 @@ module.exports = function(app)
         res.render('leaderboards.html');
     });
 
-     app.get('/login',function(req,res){
-        res.render('login.html');
-    });
+    app.route('/login')
+    .get((req,res) => {
+       res.render('login.html');
+    })
+
+    .post((req, res) => {
+      var mongo = require('mongodb');
+      var url = "mongodb://localhost/database_name";
+      mongo.connect(url, function(err, db) {
+         db.collection('_id').findOne({ name: req.body.name}, function(err, user) {
+                   if(user === null){
+                     res.end("Login invalid");
+                  }else if (name === req.body.name && password === req.body.pass ){
+                  res.render('completeprofile',{profileData:user});
+                } else {
+                  console.log("Credentials wrong");
+                  res.end("Login invalid");
+
+                  return res.render('index.html');  
+                }
+         });
+       });
+      });
+      
      
     app.route('/signup')
     .get((req,res) => {
@@ -81,7 +102,7 @@ module.exports = function(app)
       res.set({
          'Access-Control-Allow-Origin' : '*'
       });
-      return res.render('index-login.html');  
+      return res.render('index.html');  
    
    });
 }
