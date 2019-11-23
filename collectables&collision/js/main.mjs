@@ -10,8 +10,8 @@ import Coin from "./coin.mjs";
 const socket = io(), 
   canvas = document.getElementById("game"),
   ctx = canvas.getContext("2d");
-  document.getElementById("game").width = window.innerWidth - 20;
-  document.getElementById("game").height = (window.innerWidth -20)* 0.5;
+  document.getElementById("game").width = window.innerWidth ;
+  document.getElementById("game").height = (window.innerWidth )* 0.5;
 
   let players = [],
   items = [],
@@ -19,9 +19,9 @@ const socket = io(),
   //var img = new Image();
   //img.src = "https://i.ibb.co/HtZLGRJ/testmap.png";
   //let state = true;
-
-socket.on("init", ({ id, plyrs, coins }) => {
-  //let x = "";
+  socket.on("init", ({ id, plyrs}) => {
+   // socket.on("init", ({ id, plyrs, coins }) => {
+      //let x = "";
   //if(state) {
    // state = false;
    // const seeker = new Seeker({ id, main: true });
@@ -47,20 +47,23 @@ socket.on("init", ({ id, plyrs, coins }) => {
     players.find(v => v.id === id).stop(dir)
   );
 
-  socket.on("destroy-item", id => (items = items.filter(v => v.id !== id)));
-  socket.on("remove-player", id => (players = players.filter(v => v.id !== id)));
+  //socket.on("destroy-item", id => (items = items.filter(v => v.id !== id)));
+  socket.on(
+    "remove-player",
+    id => (players = players.filter(v => v.id !== id))
+  );
   
   socket.on("end-game", result => (endGame = result));
   socket.on("update-player", obj => (player.xp = obj.xp));
 
   players = plyrs.map(v => new Player(v)).concat(player);
-  items = coins.map(v => new Coin(v));
+  //items = coins.map(v => new Coin(v));
 
   const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     //ctx.drawImage(img, 0, 0,img.width,img.height,0,0,canvas.width,canvas.height);
-    //const img = new Image();
-    //img.src = "../Sprites/Brick Wall.png"
+    const img = new Image();
+    img.src = "../redgofast.png"
    // img.src = "https://res.cloudinary.com/bedrosians/image/upload/t_product_detail,f_auto/v1/cdn-bedrosian/assets/products/hiresimages/SLTBLKPRL2424G.jpg";
     //const img1 = new Image();
     //img1.src = "https://st.hzcdn.com/simgs/2f716b6a0628d625_4-8929/home-design.jpg";
@@ -68,14 +71,14 @@ socket.on("init", ({ id, plyrs, coins }) => {
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0,
-0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0,
+0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 2, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0,
 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0,
 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0,
 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0,
 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0,
-0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0,
-0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0,
-0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0,
+0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0,
+0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 2, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0,
+0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 2, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0,
 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0,
 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0,
 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0,
@@ -86,7 +89,7 @@ socket.on("init", ({ id, plyrs, coins }) => {
 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0,
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ];
-      var tileW = (window.innerWidth-20)/40, tileH = (window.innerWidth-20)/40;
+      var tileW = (window.innerWidth)/40, tileH = (window.innerWidth)/40;
       var mapW = 40, mapH = 20;
       	for(var y = 0; y < mapH; ++y)
 	{
@@ -96,29 +99,44 @@ socket.on("init", ({ id, plyrs, coins }) => {
 			{
 				case 0:
             ctx.fillStyle = "#A0522D";
-            //ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH+1);
+            ctx.beginPath();
+            ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH+1);
             //ctx.drawImage( img, 0, 0,img.width,img.height,x*tileW, y*tileH, tileW, tileH);
             //var img = new Image();
             //img.src = "https://res.cloudinary.com/bedrosians/image/upload/t_product_detail,f_auto/v1/cdn-bedrosian/assets/products/hiresimages/SLTBLKPRL2424G.jpg";
-					break;
-				default:
-          ctx.fillStyle = "	black";
-            //ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH+1);
+          break;
+        case 2:
+            ctx.beginPath();
+            ctx.fillStyle = "black";
+           // ctx.fillStyle = "#010101";
+            ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH +1);
+            //ctx.imageSmoothingEnabled = false;
+            //ctx.drawImage( img, 0, 0,img.width,img.height,x*tileW +tileW/4, y*tileH +tileW/4, tileW/2 , tileH/2);
+           // ctx.drawImage( img, 0, 0,img.width,img.height,x*tileW, y*tileH, tileW , tileH);
+           //items.push(new Coin({ id: i,x: x*tileW +tileW/4, y: y*tileH +tileW/4, imgDir: '../LightUpTrap.png' }));
+          break;
+				case 1:
+            ctx.fillStyle = "black";
+            ctx.beginPath();
+          ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH +1);
+          break;
             //var img = new Image();
             //img.src = "https://st.hzcdn.com/simgs/2f716b6a0628d625_4-8929/home-design.jpg";
             //https://st.hzcdn.com/simgs/2f716b6a0628d625_4-8929/home-design.jpg
       }
-      ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH +1);
+      //ctx.beginPath();
+      //ctx.fillRect(x*tileW, y*tileH, tileW + 1, tileH + 1);
 		}
 	}
 
-    players.forEach(v => v.draw(ctx, items, players));
+  players.forEach(v => v.draw(ctx,players));
+  //players.forEach(v => v.draw(ctx, items));
 
     items.forEach(v => {
       v.draw(ctx);
-      if (v.destroyed) {
-        socket.emit("destroy-item", { playerId: v.destroyed, coinId: v.id });
-      }
+      // if (v.destroyed) {
+      //   socket.emit("destroy-item", { playerId: v.destroyed, coinId: v.id });
+      // }
     });
 
     //players.forEach(v => v.draw(ctx, items, players));
@@ -129,7 +147,7 @@ socket.on("init", ({ id, plyrs, coins }) => {
       ctx.fillText(`You ${endGame}!`, 100, 100);
     }
 
-    items = items.filter(v => !v.destroyed);
+    //items = items.filter(v => !v.destroyed);
 
     !endGame && requestAnimationFrame(draw);
   };
