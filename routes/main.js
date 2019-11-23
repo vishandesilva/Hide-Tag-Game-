@@ -4,16 +4,24 @@ module.exports = function(app)
       res.set({
          'Access-Control-Allow-Origin' : '*'
       });
-      return res.render('index.php');
+      return res.render('index.html');
      });
 
      app.get('/login',function(req,res){
-        res.render('login.php');
+        res.render('login.html');
     });
      
+    app.get('/leaderboards',function(req,res){
+      res.render('leaderboards.html');
+  });
+   
+  app.get('/register',function(req,res){
+   res.render('register.html');
+});
+
     app.route('/registration')
        .get((req,res) => {
-       res.render('register.php')
+       res.render('register.html')
     })
  }
  

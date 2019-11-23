@@ -1,8 +1,8 @@
-<?php include('server.php') ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Registration system PHP and MySQL</title>
+
 </head>
 <style>
  body {
@@ -62,46 +62,37 @@
 	  background-position: right; 
   }
 
-  .hasAccount{
+  .noAccount{
 	  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 	  margin-top: 20px;
 	  text-align: center;
 	  font-size: 15px;
   }
 </style>
-
 <body>
+
 	
-	
-	<form method="post" action="register.php" class="login">
-	  
+	<form method="post"  class="login" action="login.php">
+
 		<div>
-		<h2 style="text-align: center;">Register</h2>
-		</div>
-
-		<?php include('errors.php'); ?>
-
-		<div class="LoginCredentials">
-		
-			<input type="text" name="username" placeholder="Username">
-		</div>
-		<div class="LoginCredentials">
-			<input type="email" name="email" placeholder="E-mail">
+		<h2 style="text-align: center;">Login</h2>
 		</div>
 		<div class="LoginCredentials">
 			
-			<input type="password" placeholder="Password"  name="password_1">
+			<input type="text" name="username" placeholder="Username">
 		</div>
 		<div class="LoginCredentials">
-		
-			<input type="password" placeholder="Re-Type Password"  name="password_2">
+			
+			<input type="password" name="password" placeholder="Password">
 		</div>
 		<div class="LoginCredentials">
-			<button type="submit" class="login-btn" name="reg_user">Register</button>
+			<button type="submit" class="login-btn" name="login_user">Login</button>
 		</div>
-		<p class="hasAccount">
-			Already a member? <a href="/login">Sign in</a>
+		<p class="noAccount">
+			Not yet a member? <a href="/register">Sign up</a>
 		</p>
 	</form>
+
+
 </body>
 </html>
