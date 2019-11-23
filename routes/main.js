@@ -15,7 +15,7 @@ module.exports = function(app)
       res.render('leaderboards.html');
   });
 
-    app.route('/register')
+    app.route('/registration')
        .get((req,res) => {
        res.render('register.html')
     })
@@ -27,7 +27,7 @@ module.exports = function(app)
                if (results.length > 0) {
                   request.session.loggedin = true;
                   request.session.username = username;
-                  response.redirect('/home');
+                  response.redirect('/index');
                } else {
                   response.send('Incorrect Username and/or Password!');
                }			
