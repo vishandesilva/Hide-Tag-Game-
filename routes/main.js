@@ -23,10 +23,10 @@ module.exports = function(app)
       var mongo = require('mongodb');
       var url = "mongodb://localhost/database_name";
       mongo.connect(url, function(err, db) {
-         db.collection('userprofile').findOne({ name: req.body.name}, function(err, user) {
-                   if(user.name === req.body.name && user.pass === req.body.pass){
+         db.collection('_id').findOne({ name: req.body.name}, function(err, user) {
+                   if(user === null){
                      res.end("Login invalid");
-                  }else if ( user === null){
+                  }else if (name === req.body.name && password === req.body.pass ){
                   res.render('completeprofile',{profileData:user});
                 } else {
                   console.log("Credentials wrong");
