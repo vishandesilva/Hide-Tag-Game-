@@ -3,21 +3,39 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const mysql = require('mysql');
 const session = require('express-session');
+var app = express();
 
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'login.sql'
+    host     : 'localhost',
+    user     : 'root',
+    password : 'password',
+    database : 'wpdb'
 });
 
+connection.connect(function(err) {
+    // in case of error
+    if(err){
+        console.log(err.code);
+        console.log(err.fatal);
+    }
+});
 
-var app = express();
-app.use(session({
-	secret: 'secret',
-	resave: true,
-	saveUninitialized: true
-}));
+// Perform a query
+$query = 'SELECT * from MyTable LIMIT 10';
+
+connection.query($query, function(err, rows, fields) {
+    if(err){
+        console.log("An error ocurred performing the query.");
+        return;
+    }
+
+    console.log("Query succesfully executed: ", rows);
+});
+
+// Close the connection
+connection.end(function(){
+    // The connection has been closed
+});
 
 app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({ // to support URL-encoded bodies

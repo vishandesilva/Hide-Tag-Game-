@@ -6,7 +6,7 @@ import path from "path";
 const app = express(),
   server = http.createServer(app),
   io = SocketIO(server),
-  __dirname = 
+  __dirname = "C:\Users\hkapa\OneDrive\Documents\GitHub\Hide-Tag-Game-\collectables&collision"
   path.resolve(
      path.dirname(decodeURI(new URL(import.meta.url).pathname))
   )
@@ -60,11 +60,11 @@ io.on("connection", socket => {
   //     //player.xp += 200;
   //     //socket.broadcast.emit("destroy-item", playerId);
 
-  //     sock.emit("update-player", player);
-  //     // if (player.xp === 200) {
-  //     //   sock.emit("end-game", "win");
-  //     //   sock.broadcast.emit("end-game", "lose"); 
-  //     // }
+     // sock.emit("update-player", player);
+      // if (player.xp === 200) {
+      //   sock.emit("end-game", "win");
+      //   sock.broadcast.emit("end-game", "lose"); 
+      // }
   //   } 
   // }); 
 
