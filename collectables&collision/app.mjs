@@ -38,6 +38,20 @@ io.on("connection", socket => {
   socket.emit("init", { id: socket.id, plyrs: players });
 //  socket.emit("init", { id: socket.id, plyrs: players, coins });
 
+var countdown = 1000;
+setInterval(function() {
+  countdown--;
+  console.log(countdown);
+  io.sockets.emit('timer', { countdown: countdown });
+
+}, 1000);
+
+io.sockets.on('connection', function (socket) {
+    countdown = 1000;
+    io.sockets.emit('timer', { countdown: countdown });
+    
+  });
+
   socket.on("new-player", obj => {
     obj.id = socket.id; 
     players.push(obj);
@@ -62,7 +76,7 @@ io.on("connection", socket => {
   //     //socket.broadcast.emit("destroy-item", playerId);
 
      // sock.emit("update-player", player);
-      // if (player.xp === 200) {
+      // if (player.xp === 2000) {
       //   sock.emit("end-game", "win");
       //   sock.broadcast.emit("end-game", "lose"); 
       // }

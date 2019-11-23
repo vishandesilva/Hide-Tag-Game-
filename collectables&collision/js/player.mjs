@@ -44,6 +44,7 @@ getRandomColor() {
     var g = 82;
     var b = 45;
     let coins = [];
+    
   //  var r = 0;
   //  var g = 0;
   //  var b = 0;
@@ -54,7 +55,7 @@ getRandomColor() {
     if (this.isMoving.right) {
       ctx.beginPath();
 
-      n2 += d.getMilliseconds();
+      //n2 += d.getMilliseconds();
       this.x += this.speed;
       ctx.strokeStyle = this.color;
       //ctx.rect(this.x, this.y, (window.innerWidth)/40-8, (window.innerWidth)/40-8);
@@ -193,6 +194,7 @@ getRandomColor() {
       ctx.fillStyle = "green";
       ctx.fillText("XP: " + this.xp, window.innerWidth - 110, 30);
       //ctx.fillText("ALIVE", window.innerWidth - 110, 30);
+      //ctx.fillText("Timer: " +countdown, window.innerWidth - 100, 30);
     }
     // else{
     //   ctx.font = "25px ariel";
@@ -200,8 +202,8 @@ getRandomColor() {
     //   //ctx.fillText("XP: " + this.xp, window.innerWidth - 110, 30);
     //   ctx.fillText("DEAD", window.innerWidth - 110, 30);
     // }
-    // const img1 = new Image();
-    // img1.src = "../Sprites/Brick Wall.png"
+     const img1 = new Image();
+     img1.src = "../Sprites/Walls.png";
     var gameMap = [
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
@@ -241,6 +243,12 @@ getRandomColor() {
               //     //var img = new Image();
               //     //img.src = "https://res.cloudinary.com/bedrosians/image/upload/t_product_detail,f_auto/v1/cdn-bedrosian/assets/products/hiresimages/SLTBLKPRL2424G.jpg";
               //   break;
+
+              case 0 :
+                ctx.beginPath();
+                ctx.drawImage(img1, 0, 0, 32, 32, (x*tileW)+1, (y*tileH)+1, tileW-2, tileH-2);
+              break;
+
               case 2:
                   coins.push(new Coin({ id: coinsID, x: x*tileW +tileW/4 , y: y*tileH +tileW/4,w: tileW/2, h:tileH/2, imgDir: '../redgofast.png' }));
                  
@@ -267,17 +275,17 @@ getRandomColor() {
             //ctx.fillRect(x*tileW, y*tileH, tileW + 1, tileH + 1);
           }
         }
-    for (let i = 0; i < players.length; i++) {
-      if (this.id != players[0].id) {
-        if (this.collide(players[0])) {
+    for (let i = 1; i < players.length; i++) {
+      //if (players[i].id != players[0].id) {
+        if (players[i].collide(players[0])) {
           //alert("COLLISION IS WORKINGGGGGG!!!!");
           //socket.broadcast.emit("destroy-item",  ({playerID: this.id,playertwoID: players[i].id}));
           //this.w = 0;
           //this.h = 0;
         //socket.emit("test"); 
         //io.to(`${players[i].id}`).emit('hey', 'I just met you');
-        var g = players.indexOf(this);
-        players.splice(g, 1);
+        //var g = players.indexOf(this);
+        players.splice(i, 1);
        // this.xp+=200
         //this.isMain = false;
         //alert("YOU DIED!!!!");
@@ -287,7 +295,7 @@ getRandomColor() {
 
         }
         }
-      }
+      //}
    }
 
       coins.forEach(v => {
