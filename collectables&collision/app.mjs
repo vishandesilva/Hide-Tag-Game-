@@ -32,8 +32,17 @@ let players = [];
 //     coins.push(new Coin({ id: i, x: Math.random() * 1500, y: Math.random() * 700, imgDir: '../FreezeTrap.png' }));
 //   }
 // }
+var countdown = 1000;
+setInterval(function() {
+  countdown--;
+  io.sockets.emit('timer', { countdown: countdown });
+  console.log(countdown);
+}, 1000);
+
 io.on("connection", socket => { 
   console.log(socket.id); 
+  countdown = 1000;
+    io.sockets.emit('timer', { countdown: countdown });
 
   socket.emit("init", { id: socket.id, plyrs: players });
 //  socket.emit("init", { id: socket.id, plyrs: players, coins });

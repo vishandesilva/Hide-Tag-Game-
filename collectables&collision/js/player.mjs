@@ -196,6 +196,7 @@ getRandomColor() {
       ctx.fillText("XP: " + this.xp, window.innerWidth - 110, 30);
       //ctx.fillText("ALIVE", window.innerWidth - 110, 30);
     }
+    
     // else{
     //   ctx.font = "25px ariel";
     //   ctx.fillStyle = "green";
