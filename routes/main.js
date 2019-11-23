@@ -15,7 +15,7 @@ module.exports = function(app)
       res.render('leaderboards.html');
   });
 
-    app.route('/registration')
+    app.route('/register')
        .get((req,res) => {
        res.render('register.html')
     })
