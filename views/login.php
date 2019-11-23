@@ -1,4 +1,12 @@
-body {
+<?php include('server.php') ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration system PHP and MySQL</title>
+
+</head>
+<style>
+ body {
 	background-image: linear-gradient(110deg,#f39c12, #c0392b);
 	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
@@ -61,3 +69,32 @@ body {
 	  text-align: center;
 	  font-size: 15px;
   }
+</style>
+<body>
+
+	
+	<form method="post"  class="login" action="login.php">
+
+		<div>
+		<h2 style="text-align: center;">Login</h2>
+		</div>
+		<?php include('errors.php'); ?>
+		<div class="LoginCredentials">
+			
+			<input type="text" name="username" placeholder="Username">
+		</div>
+		<div class="LoginCredentials">
+			
+			<input type="password" name="password" placeholder="Password">
+		</div>
+		<div class="LoginCredentials">
+			<button type="submit" class="login-btn" name="login_user">Login</button>
+		</div>
+		<p class="noAccount">
+			Not yet a member? <a href="/registration">Sign up</a>
+		</p>
+	</form>
+
+
+</body>
+</html>
