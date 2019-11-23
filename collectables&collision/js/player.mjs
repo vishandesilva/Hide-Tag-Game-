@@ -3,13 +3,14 @@ import Coin from "./coin.mjs";
 class Player {
   constructor({
     id,
-    x = (window.innerWidth)/40 *2 ,
-    y = (window.innerWidth)/40 *1 ,
+    x = (window.innerWidth)/40 * Math.random() * (39 - 1) + 1 ,
+    y = (window.innerWidth)/40 * Math.random() * (19 - 1) + 1,
     w = (window.innerWidth)/40 +2 ,
     h = (window.innerWidth)/40 +2 ,
-    color = "white",
+    //color = "white",
     main
-  }) {
+  })
+ {
     //animation:new Animation();
     this.x = x;
     this.y = y;
@@ -18,21 +19,22 @@ class Player {
     this.speed = (window.innerWidth)/400;
     this.xp = 0;
     this.id = id;
-    this.color = color;
+    //this.color = color;
     this.isMoving = {};
     this.isMain = main;
   }
 
-  draw(ctx) {
-   // draw(ctx, coins) {
+  //draw(ctx) {
+    draw(ctx,players) {
+      console.log(players);
       var img = new Image();
     img.src = '../Sprites/Final Sprite.png';
-   // var r = 160;
-   // var g = 82;
-   // var b = 45;
-   var r = 0;
-   var g = 0;
-   var b = 0;
+    var r = 160;
+    var g = 82;
+    var b = 45;
+  //  var r = 0;
+  //  var g = 0;
+  //  var b = 0;
     var d = new Date();
     var n1 = d.getMilliseconds();
     var n2 = d.getMilliseconds();
@@ -139,24 +141,24 @@ class Player {
     //ctx.drawImage(img,(img.height*8), 0, img.height, img.height, this.x, this.y, 50, 50);
     }
 
-    if ((r != ctx.getImageData(this.x+this.w-9 , this.y, 2, 2).data[0]) && (g != ctx.getImageData(this.x+this.w-9 , this.y, 2, 2).data[1]) && (b != ctx.getImageData(this.x+this.w-9 , this.y, 2, 2).data[2])){
+    if ((r = ctx.getImageData(this.x+this.w-9 , this.y, 2, 2).data[0]) && (g = ctx.getImageData(this.x+this.w-9 , this.y, 2, 2).data[1]) && (b= ctx.getImageData(this.x+this.w-9 , this.y, 2, 2).data[2])){
       this.x -= this.speed;
-      console.log("right collision")
+      //console.log("right collision")
     }
 
-    if ((r != ctx.getImageData(this.x-2, this.y, 2, 2).data[0]) && (g != ctx.getImageData(this.x-2, this.y, 2, 2).data[1]) && (b != ctx.getImageData(this.x-2, this.y, 2, 2).data[2])){
+    if ((r = ctx.getImageData(this.x-2, this.y, 2, 2).data[0]) && (g = ctx.getImageData(this.x-2, this.y, 2, 2).data[1]) && (b= ctx.getImageData(this.x-2, this.y, 2, 2).data[2])){
       this.x += this.speed;
-      console.log("left collision")
+      //console.log("left collision")
     }
 
-    if ((r != ctx.getImageData(this.x, this.y+this.w-9 , 2, 2).data[0]) && (g != ctx.getImageData(this.x, this.y+this.w-9 , 2, 2).data[1]) && (b != ctx.getImageData(this.x, this.y+this.w-9 , 2, 2).data[2])){
+    if ((r = ctx.getImageData(this.x, this.y+this.w-9 , 2, 2).data[0]) && (g = ctx.getImageData(this.x, this.y+this.w-9 , 2, 2).data[1]) && (b= ctx.getImageData(this.x, this.y+this.w-9 , 2, 2).data[2])){
       this.y -= this.speed;
-      console.log("down collision")
+      //console.log("down collision")
     }
 
-    if ((r != ctx.getImageData(this.x, this.y-2, 2, 2).data[0]) && (g != ctx.getImageData(this.x, this.y-2, 2, 2).data[1]) && (b != ctx.getImageData(this.x, this.y-2, 2, 2).data[2])){
+    if ((r = ctx.getImageData(this.x, this.y-2, 2, 2).data[0]) && (g = ctx.getImageData(this.x, this.y-2, 2, 2).data[1]) && (b= ctx.getImageData(this.x, this.y-2, 2, 2).data[2])){
       this.y += this.speed;
-      console.log("up collision")
+     // console.log("up collision")
     }
 
     if (this.x < 0) {
@@ -230,6 +232,20 @@ class Player {
     //        // ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH +1);
     //       }
     //     }
+    for (let i = 0; i < players.length; i++) {
+      if (this.id != players[i].id) {
+        if (this.collide(players[i])) {
+          //alert("COLLISION IS WORKINGGGGGG!!!!");
+          //socket.broadcast.emit("destroy-item",  ({playerID: this.id,playertwoID: players[i].id}));
+          //this.w = 0;
+          //this.h = 0;
+          
+        var g = players.indexOf(players[i]);
+        players.splice(g, 1);
+        //alert("YOU DIED!!!!");
+        }
+      }
+   }
     // coins.forEach(v => {
     //   if (this.collide(v)) {
     //     this.xp += v.xpAdded;
@@ -248,8 +264,8 @@ class Player {
     //     v.destroyed = this.id;
     //   }
     // });
-  }
 
+  }
   move(dir) {
     this.isMoving[dir] = true;
   }
@@ -257,43 +273,43 @@ class Player {
     this.isMoving[dir] = false;
   }
 
-  // collide(p) {
-  //   if (
-  //     (this.x >= p.x &&
-  //       this.x <= p.x + p.w &&
-  //       this.y >= p.y &&
-  //       this.y <= p.y + p.h) ||
-  //     (this.x + this.w >= p.x &&
-  //       this.x + this.w <= p.x + p.w &&
-  //       this.y >= p.y &&
-  //       this.y <= p.y + p.h) ||
-  //     (this.x >= p.x &&
-  //       this.x <= p.x + p.w &&
-  //       this.y + this.h >= p.y &&
-  //       this.y + this.h <= p.y + p.h) ||
-  //     (this.x + this.w >= p.x &&
-  //       this.x + this.w <= p.x + p.w &&
-  //       this.y + this.h >= p.y &&
-  //       this.y + this.h <= p.y + p.h) ||
-  //     (p.x >= this.x &&
-  //       p.x <= this.x + this.w &&
-  //       p.y >= this.y &&
-  //       p.y <= this.y + this.h) ||
-  //     (p.x + p.w >= this.x &&
-  //       p.x + p.w <= this.x + this.w &&
-  //       p.y >= this.y &&
-  //       p.y <= this.y + this.h) ||
-  //     (p.x >= this.x &&
-  //       p.x <= this.x + this.w &&
-  //       p.y + p.h >= this.y &&
-  //       p.y + p.h <= this.y + this.h) ||
-  //     (p.x + p.w >= this.x &&
-  //       p.x + p.w <= this.x + this.w &&
-  //       p.y + p.h >= this.y &&
-  //       p.y + p.h <= this.y + this.h)
-  //   )
-  //     return true;
-  // }
+  collide(p) {
+    if (
+      (this.x >= p.x &&
+        this.x <= p.x + p.w &&
+        this.y >= p.y &&
+        this.y <= p.y + p.h) ||
+      (this.x + this.w >= p.x &&
+        this.x + this.w <= p.x + p.w &&
+        this.y >= p.y &&
+        this.y <= p.y + p.h) ||
+      (this.x >= p.x &&
+        this.x <= p.x + p.w &&
+        this.y + this.h >= p.y &&
+        this.y + this.h <= p.y + p.h) ||
+      (this.x + this.w >= p.x &&
+        this.x + this.w <= p.x + p.w &&
+        this.y + this.h >= p.y &&
+        this.y + this.h <= p.y + p.h) ||
+      (p.x >= this.x &&
+        p.x <= this.x + this.w &&
+        p.y >= this.y &&
+        p.y <= this.y + this.h) ||
+      (p.x + p.w >= this.x &&
+        p.x + p.w <= this.x + this.w &&
+        p.y >= this.y &&
+        p.y <= this.y + this.h) ||
+      (p.x >= this.x &&
+        p.x <= this.x + this.w &&
+        p.y + p.h >= this.y &&
+        p.y + p.h <= this.y + this.h) ||
+      (p.x + p.w >= this.x &&
+        p.x + p.w <= this.x + this.w &&
+        p.y + p.h >= this.y &&
+        p.y + p.h <= this.y + this.h)
+    )
+      return true;
+  }
 }
 
 export default Player;

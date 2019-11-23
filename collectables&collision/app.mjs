@@ -12,7 +12,7 @@ const app = express(),
   )
   
 
-server.listen(9000, () => console.log("Server listening on port 9000"));
+server.listen(3000, () => console.log("Server listening on port 3000"));
 app.use(express.static(__dirname + "/"));
 
 app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
@@ -50,19 +50,21 @@ io.on("connection", socket => {
     socket.broadcast.emit("stop-player", { id: socket.id, dir })
   );
 
-  // socket.on("destroy-item", ({ playerId, coinId }) => {
-  //   if (coins.find(v => v.id === coinId)) {
+  // socket.on("destroy-item", ({ playerId, playertwoID }) => {
+  //   if (players.find(v => v.id === playertwoID)) {
   //     const player = players.find(v => v.id === playerId);
   //     const sock = io.sockets.connected[player.id];
-  //     coins = coins.filter(v => v.id !== coinId);
-  //     player.xp += 10;
-  //     socket.broadcast.emit("destroy-item", coinId);
+  //     player.x =50;
+  //     player.y =50;
+  //     //players = players.filter(v => v.id !== playertwoID);
+  //     //player.xp += 200;
+  //     //socket.broadcast.emit("destroy-item", playerId);
 
   //     sock.emit("update-player", player);
-  //     if (player.xp === 200) {
-  //       sock.emit("end-game", "win");
-  //       sock.broadcast.emit("end-game", "lose"); 
-  //     }
+  //     // if (player.xp === 200) {
+  //     //   sock.emit("end-game", "win");
+  //     //   sock.broadcast.emit("end-game", "lose"); 
+  //     // }
   //   } 
   // }); 
 
