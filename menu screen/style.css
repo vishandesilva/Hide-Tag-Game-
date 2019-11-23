@@ -1,0 +1,62 @@
+body {
+    background-color: black;
+    font-size: 20px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.container {
+    width:35%;
+    margin: auto;
+}
+
+.menu-container p a {
+    color: white;
+    text-decoration: none;
+}
+
+.menu-container p a:hover {
+    color: orange;
+}
+
+
+#screen {
+    background: url("background.jpg");
+    height: 640px;
+    width: 640px;
+    position: absolute;
+    top: 150px;
+   
+    
+}
+
+#screen h1 {
+    font-size: 70px;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    position: absolute;
+    left: 27px;
+}
+
+#start-button {
+    position: absolute;
+    top: 410px;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 600px;
+    left: 6px;
+    text-align: center;
+    padding: 15px 15px 15px 15px;
+
+}
+
+#queue-button {
+    position: absolute;
+    top: 470px;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 600px;
+    left: 6px;
+    text-align: center;
+    padding: 15px 15px 15px 15px;
+
+}
