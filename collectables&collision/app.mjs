@@ -6,11 +6,12 @@ import path from "path";
 const app = express(),
   server = http.createServer(app),
   io = SocketIO(server),
-  __dirname = 
-  path.resolve(
-     path.dirname(decodeURI(new URL(import.meta.url).pathname))
-  )
-  
+ // __dirname = 
+ // path.resolve(
+ //    path.dirname(decodeURI(new URL(import.meta.url).pathname))
+ // )
+// __dirname = path.resolve();
+__dirname = path.resolve(path.dirname(''))
 
 server.listen(3000, () => console.log("Server listening on port 3000"));
 app.use(express.static(__dirname + "/"));
