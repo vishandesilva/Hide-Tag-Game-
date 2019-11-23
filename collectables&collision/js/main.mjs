@@ -2,7 +2,11 @@ import Player from "./player.mjs";
 import Seeker from "./seeker.mjs";
 import controls from "./controls.mjs";
 import Coin from "./coin.mjs";
+// var date = new Date();
+// var t1 = date.getSeconds();
+// var t2 = date.getSeconds();
 
+// do{
 const socket = io(), 
   canvas = document.getElementById("game"),
   ctx = canvas.getContext("2d");
@@ -44,10 +48,7 @@ socket.on("init", ({ id, plyrs, coins }) => {
   );
 
   socket.on("destroy-item", id => (items = items.filter(v => v.id !== id)));
-  socket.on(
-    "remove-player",
-    id => (players = players.filter(v => v.id !== id))
-  );
+  socket.on("remove-player", id => (players = players.filter(v => v.id !== id)));
   
   socket.on("end-game", result => (endGame = result));
   socket.on("update-player", obj => (player.xp = obj.xp));
@@ -111,7 +112,7 @@ socket.on("init", ({ id, plyrs, coins }) => {
 		}
 	}
 
-    players.forEach(v => v.draw(ctx, items));
+    players.forEach(v => v.draw(ctx, items, players));
 
     items.forEach(v => {
       v.draw(ctx);
@@ -119,6 +120,8 @@ socket.on("init", ({ id, plyrs, coins }) => {
         socket.emit("destroy-item", { playerId: v.destroyed, coinId: v.id });
       }
     });
+
+    //players.forEach(v => v.draw(ctx, items, players));
 
     if (endGame) {
       ctx.fillStyle = endGame === "lose" ? "red" : "green";
@@ -132,3 +135,5 @@ socket.on("init", ({ id, plyrs, coins }) => {
   };
   draw(); 
 });
+// t2 = date.getSeconds();
+// } while (t2 - t1 <= 30) 

@@ -9,15 +9,18 @@ const app = express(),
     __dirname = "C:/Users/visha/Documents/GitHub/Hide-Tag-Game-/collectables&collision";
 
 
+
 server.listen(3000, () => console.log("Server listening on port 3000"));
 app.use(express.static(__dirname + "/"));
 
 app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
 
+
 import Coin from "./js/coin.mjs";
 
 let players = [];
 let coins = [];
+
 
 for (let i = 0; i < 50; i++) {
     if (i % 2 == 0) {
@@ -66,3 +69,7 @@ io.on("connection", socket => {
         players = players.filter(v => v.id !== socket.id);
     });
 });
+// timer2 = date.getSeconds();
+// }
+
+//},8000);
