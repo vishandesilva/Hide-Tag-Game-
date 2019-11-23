@@ -2,22 +2,13 @@ import express from "express";
 import http from "http";
 import SocketIO from "socket.io";
 import path from "path";
-import Coin from "./js/coin.mjs";
-//setInterval(() => {
-//   var date = new Date();
-// var timer1 = date.getSeconds();
-// var timer2 = 30+date.getSeconds();
-
-// while (timer2 - timer1 == 30){
 
 const app = express(),
-  server = http.createServer(app),
-  io = SocketIO(server),
-  __dirname = "C:/Users/fahim/Documents/GitHub/Hide-Tag-Game-/collectables&collision/";
-  //path.resolve(
-  //   path.dirname(decodeURI(new URL(import.meta.url).pathname))
-  //)
-  
+    server = http.createServer(app),
+    io = SocketIO(server),
+    __dirname = "C:/Users/visha/Documents/GitHub/Hide-Tag-Game-/collectables&collision";
+
+
 
 server.listen(3000, () => console.log("Server listening on port 3000"));
 app.use(express.static(__dirname + "/"));
@@ -25,57 +16,58 @@ app.use(express.static(__dirname + "/"));
 app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
 
 
- 
-let players = []; 
-let coins = []; 
+import Coin from "./js/coin.mjs";
+
+let players = [];
+let coins = [];
+
 
 for (let i = 0; i < 50; i++) {
-  if(i%2 == 0) {
-    coins.push(new Coin({ id: i, x: Math.random() * 1500, y: Math.random() * 700, imgDir: '../LightUpTrap.png' }));
-  }
-  
-  else {
-    coins.push(new Coin({ id: i, x: Math.random() * 1500, y: Math.random() * 700, imgDir: '../FreezeTrap.png' }));
-  }
+    if (i % 2 == 0) {
+        coins.push(new Coin({id: i, x: Math.random() * 1500, y: Math.random() * 700, imgDir: '../LightUpTrap.png'}));
+    } else {
+        coins.push(new Coin({id: i, x: Math.random() * 1500, y: Math.random() * 700, imgDir: '../FreezeTrap.png'}));
+    }
 }
-io.on("connection", socket => { 
-  console.log(socket.id); 
 
-  socket.emit("init", { id: socket.id, plyrs: players, coins });
+io.on("connection", socket => {
+    console.log(socket.id);
 
-  socket.on("new-player", obj => {
-    obj.id = socket.id; 
-    players.push(obj);
-    socket.broadcast.emit("new-player", obj);
-  });
+    socket.emit("init", {id: socket.id, plyrs: players, coins});
 
-  socket.on("move-player", dir =>
-    socket.broadcast.emit("move-player", { id: socket.id, dir }) 
-  );
-  socket.on("stop-player", dir =>
-    socket.broadcast.emit("stop-player", { id: socket.id, dir })
-  );
+    socket.on("new-player", obj => {
+        obj.id = socket.id;
+        players.push(obj);
+        socket.broadcast.emit("new-player", obj);
+    });
 
-  socket.on("destroy-item", ({ playerId, coinId }) => {
-    if (coins.find(v => v.id === coinId)) {
-      const player = players.find(v => v.id === playerId);
-      const sock = io.sockets.connected[player.id];
-      coins = coins.filter(v => v.id !== coinId);
-      player.xp += 10;
-      socket.broadcast.emit("destroy-item", coinId);
+    socket.on("move-player", dir =>
+        socket.broadcast.emit("move-player", {id: socket.id, dir})
+    );
+    socket.on("stop-player", dir =>
+        socket.broadcast.emit("stop-player", {id: socket.id, dir})
+    );
 
-      sock.emit("update-player", player);
-      if (player.xp === 200) {
-        sock.emit("end-game", "win");
-        sock.broadcast.emit("end-game", "lose"); 
-      }
-    } 
-  }); 
+    socket.on("destroy-item", ({playerId, coinId}) => {
+        if (coins.find(v => v.id === coinId)) {
+            const player = players.find(v => v.id === playerId);
+            const sock = io.sockets.connected[player.id];
+            coins = coins.filter(v => v.id !== coinId);
+            player.xp += 10;
+            socket.broadcast.emit("destroy-item", coinId);
 
-  socket.on("disconnect", () => {
-    socket.broadcast.emit("remove-player", socket.id);
-    players = players.filter(v => v.id !== socket.id);
-  });
+            sock.emit("update-player", player);
+            if (player.xp === 200) {
+                sock.emit("end-game", "win");
+                sock.broadcast.emit("end-game", "lose");
+            }
+        }
+    });
+
+    socket.on("disconnect", () => {
+        socket.broadcast.emit("remove-player", socket.id);
+        players = players.filter(v => v.id !== socket.id);
+    });
 });
 // timer2 = date.getSeconds();
 // }
