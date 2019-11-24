@@ -266,11 +266,15 @@ body {
     <div id="main">
         <button id="gamebutton" type="button" onclick=myFunction()><span>Play Game!</span></button>
      <canvas id="game">No HTML5 canvas support</canvas>
+     <div id="wait" style = "display:none;">
+      Waiting for players...
+    </div>
      <script>
      document.getElementById("game").style.display="none";
 function myFunction()
 {
-   document.getElementById("game").style.display="block";
+  document.getElementById("wait").style.display="block";
+  // document.getElementById("game").style.display="block";
    document.getElementById("gamebutton").style.display="none";
    document.getElementById("header").style.display="none";
    document.getElementById("footer").style.display="none";
