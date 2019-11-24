@@ -285,7 +285,10 @@ getRandomColor() {
         //socket.emit("test"); 
         //io.to(`${players[i].id}`).emit('hey', 'I just met you');
         //var g = players.indexOf(this);
-        players.splice(i, 1);
+        //........................players.splice(i, 1);
+        players[i] = null;
+        break;
+        }
        // this.xp+=200
         //this.isMain = false;
         //alert("YOU DIED!!!!");
@@ -293,7 +296,6 @@ getRandomColor() {
           //alert("Only 1 Player Left!!")
           //players[0].speed = 0;
 
-        }
         }
       //}
    }
