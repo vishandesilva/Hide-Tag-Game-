@@ -23,14 +23,14 @@ module.exports = function(app)
       var mongo = require('mongodb');
       var url = "mongodb://localhost/userdb";
       mongo.connect(url, function(err, db) {
-         db.collection('_id').findOne({ name: req.body.name}, function(err, user) {
+         db.collection('id').findOne({ name: req.body.name}, function(err, user) {
                    if(user === null){
-                     res.end("Login invalid");
+                     res.end("Wrong Credentials");
                   }else if (name === req.body.name && password === req.body.pass ){
-                  res.render('completeprofile',{profileData:user});
+                  res.render('Profilecomp',{profileData:user});
                 } else {
-                  console.log("Credentials wrong");
-                  res.end("Login invalid");
+                  console.log("Wrong Login/Credentials");
+                  res.end("Wrong Credentials");
 
                   return res.render('index.html');  
                 }
@@ -59,7 +59,7 @@ module.exports = function(app)
          return gen_hmac;
       }
 
-       var name = req.body.name;
+       var NAME = req.body.name;
        var pass = req.body.password;
 
    //     var fs = require('fs')
@@ -77,11 +77,11 @@ module.exports = function(app)
    //  });
 
 
-       var password = getHash( pass , name); 				
+       var password = getHash( pass , NAME); 				
    
       
        var data = {
-         "name":name,	
+         "name":NAME,	
          "password": password
          
       }
@@ -105,4 +105,6 @@ module.exports = function(app)
       return res.render('index-login.html');  
    
    });
+
+   
 }
