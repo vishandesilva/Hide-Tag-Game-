@@ -270,17 +270,17 @@ getRandomColor() {
             //ctx.fillRect(x*tileW, y*tileH, tileW + 1, tileH + 1);
           }
         }
-    for (let i = 0; i < players.length; i++) {
-      if (this.id != players[0].id) {
-        if (this.collide(players[0])) {
+    for (let i = 1; i < players.length; i++) {
+      if (players[i] != players[0].id) {
+        if (players[i].collide(players[0])) {
           //alert("COLLISION IS WORKINGGGGGG!!!!");
           //socket.broadcast.emit("destroy-item",  ({playerID: this.id,playertwoID: players[i].id}));
           //this.w = 0;
           //this.h = 0;
         //socket.emit("test"); 
         //io.to(`${players[i].id}`).emit('hey', 'I just met you');
-        var g = players.indexOf(this);
-        players.splice(g, 1);
+       // var g = players.indexOf(this);
+        players.splice(i, 1);
        // this.xp+=200
         //this.isMain = false;
         //alert("YOU DIED!!!!");
