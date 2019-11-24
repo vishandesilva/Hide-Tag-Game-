@@ -17,7 +17,8 @@ server.listen(process.env.PORT || 3001, () => console.log("Server listening on p
 app.use(express.static(__dirname + "/"));
 
 app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
-
+app.get("/leaderboards", (req, res) => res.sendFile(__dirname + "/leaderboards.html"));
+app.get("/signup", (req, res) => res.sendFile(__dirname + "/signup.html"));
 import Coin from "./js/coin.mjs"; 
  
 let players = []; 
