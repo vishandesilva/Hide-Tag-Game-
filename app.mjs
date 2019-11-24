@@ -18,7 +18,7 @@ app.use(express.static(__dirname + "/"));
 
 app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
 app.get("/leaderboards", (req, res) => res.sendFile(__dirname + "/leaderboards.html"));
-
+app.get("/credits", (req, res) => res.sendFile(__dirname + "/credits.html"));
 app.route('/signup')
 .get((req,res) => {
    res.sendFile(__dirname + "/signup.html");
@@ -134,9 +134,4 @@ io.on("connection", socket => {
     socket.broadcast.emit("remove-player", socket.id);
     players = players.filter(v => v.id !== socket.id);
   });
-
-
-
-
-
 });
