@@ -36,7 +36,7 @@ getRandomColor() {
   //draw(ctx) {
     draw(ctx,players) {
       players[0].color = "red";
-     // players[0].speed = (window.innerWidth)/390;
+      players[0].speed = (window.innerWidth)/350;
       console.log(players);
       var img = new Image();
     img.src = '../Sprites/Final Sprite.png';
@@ -189,13 +189,7 @@ getRandomColor() {
       
     }
 
-    if (this.isMain) {
-      ctx.font = "25px ariel";
-      ctx.fillStyle = "green";
-      ctx.fillText("XP: " + this.xp, window.innerWidth - 110, 30);
-      //ctx.fillText("ALIVE", window.innerWidth - 110, 30);
-      //ctx.fillText("Timer: " +countdown, window.innerWidth - 100, 30);
-    }
+    
     // else{
     //   ctx.font = "25px ariel";
     //   ctx.fillStyle = "green";
@@ -235,11 +229,11 @@ getRandomColor() {
           {
             switch(gameMap[((y*mapW)+x)])
             {
-              // case 0:
+               case 0:
               //     ctx.fillStyle = "#A0522D";
-              //     ctx.beginPath();
+                   ctx.beginPath();
               //     ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH+1);
-              //     //ctx.drawImage( img, 0, 0,img.width,img.height,x*tileW, y*tileH, tileW, tileH);
+                   ctx.drawImage( img1, 0, 0,img1.width,img1.height,x*tileW, y*tileH, tileW, tileH);
               //     //var img = new Image();
               //     //img.src = "https://res.cloudinary.com/bedrosians/image/upload/t_product_detail,f_auto/v1/cdn-bedrosian/assets/products/hiresimages/SLTBLKPRL2424G.jpg";
               //   break;
@@ -276,7 +270,7 @@ getRandomColor() {
           }
         }
     for (let i = 1; i < players.length; i++) {
-      //if (players[i].id != players[0].id) {
+      if (players[i] != players[0].id) {
         if (players[i].collide(players[0])) {
           //alert("COLLISION IS WORKINGGGGGG!!!!");
           //socket.broadcast.emit("destroy-item",  ({playerID: this.id,playertwoID: players[i].id}));
@@ -284,11 +278,8 @@ getRandomColor() {
           //this.h = 0;
         //socket.emit("test"); 
         //io.to(`${players[i].id}`).emit('hey', 'I just met you');
-        //var g = players.indexOf(this);
-        //........................players.splice(i, 1);
-        players[i] = null;
-        break;
-        }
+       // var g = players.indexOf(this);
+        players.splice(i, 1);
        // this.xp+=200
         //this.isMain = false;
         //alert("YOU DIED!!!!");
@@ -346,6 +337,59 @@ getRandomColor() {
       }
     }
     });
+    for (let i = 0; i < players.length; i++) {
+      if(i==0){
+      if(players[i].isMain){
+        ctx.font = "25px ariel";
+        //ctx.textBaseline = 'top';
+
+        /// color for background
+        ctx.fillStyle = 'red';
+    
+        /// get width of text
+        var width = ctx.measureText("SEEKER").width;
+    
+        /// draw background rect assuming height of font
+        ctx.fillRect(0, 10, width, 25);
+    
+        /// text color
+        ctx.fillStyle = '#000';
+    
+        /// draw text on top
+        ctx.fillText("SEEKER", 0, 30);
+    
+        /// restore original state
+        ctx.restore();
+      }
+      }
+      else{
+        if(players[i].isMain){
+          // ctx.font = "25px ariel";
+          // ctx.fillStyle = "green";
+          // ctx.fillText("HIDER", window.innerWidth - 110, 30);
+          ctx.font = "25px ariel";
+          //ctx.textBaseline = 'top';
+
+          /// color for background
+          ctx.fillStyle = 'yellow';
+      
+          /// get width of text
+          var width = ctx.measureText("HIDER").width;
+      
+          /// draw background rect assuming height of font
+          ctx.fillRect(0, 10, width, 25);
+      
+          /// text color
+          ctx.fillStyle = '#000';
+      
+          /// draw text on top
+          ctx.fillText("HIDER", 0, 30);
+      
+          /// restore original state
+          ctx.restore();
+        }
+        }
+  }
   }
   move(dir) {
     this.isMoving[dir] = true;
