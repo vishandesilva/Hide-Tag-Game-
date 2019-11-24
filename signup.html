@@ -99,50 +99,20 @@
 			<div class="row">
 			
 				
-				<div>		
-                        
-                        <div id="signDiv" method="post" class="signup">
-                                <h1> Signup form </h1>
-                                <div class="signupform">
-                            <input id="signDiv-username" type="text" placeholder="Enter your Name"  required ></input><br>
-                            </div>
-                             <div class="signupform">
-                           <input id="signDiv-password" type="password" placeholder="Enter your Password " required></input>
-                            </div>
-                            <button id="signDiv-signIn" class ="login-btn">Sign In</button>
-                            <button id="signDiv-signUp" class ="signup-btn">Sign Up</button>
-                        </div>
-                        <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-                        <script>
-                            var socket = io();
-                           
-                            //sign
-                            var signDiv = document.getElementById('signDiv');
-                            var signDivUsername = document.getElementById('signDiv-username');
-                            var signDivSignIn = document.getElementById('signDiv-signIn');
-                            var signDivSignUp = document.getElementById('signDiv-signUp');
-                            var signDivPassword = document.getElementById('signDiv-password');
-                           
-                            signDivSignIn.onclick = function(){
-                                socket.emit('signIn',{username:signDivUsername.value,password:signDivPassword.value});
-                            }
-                            signDivSignUp.onclick = function(){
-                                socket.emit('signUp',{username:signDivUsername.value,password:signDivPassword.value});
-                            }
-                            socket.on('signInResponse',function(data){
-                                if(data.success){
-                                    signDiv.style.display = 'none';
-                                    gameDiv.style.display = 'inline-block';
-                                } else
-                                    alert("Sign in unsuccessul.");
-                            });
-                            socket.on('signUpResponse',function(data){
-                                if(data.success){
-                                    alert("Sign up successul.");
-                                } else
-                                    alert("Sign up unsuccessul.");
-                            });
-						</script>
+				<div>
+					<form action="/signup" method="post" class="signup">
+					
+						<h1> Signup form </h1>
+						<div class="signupform">	
+						<input  type="text" name="name" id="name" placeholder="Enter your Name"  required /><br>
+						</div>
+						<div class="signupform">
+
+						<input  type="password" name="password" id="password"  placeholder="Enter your Password " required/><br>
+							</div>
+					<br>
+						<input type="submit" class ="login-btn" id="signin"  name="submitDetails" value="Signup" /><br>					
+					</form>					
 				</div>		
 			</div>
 		</div>
