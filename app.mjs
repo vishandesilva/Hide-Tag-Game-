@@ -13,7 +13,7 @@ const app = express(),
 // __dirname = path.resolve();
 __dirname = path.resolve(path.dirname(''))
 
-server.listen(3001, () => console.log("Server listening on port 3001"));
+server.listen(process.env.PORT || 3001, () => console.log("Server listening on port 3001"));
 app.use(express.static(__dirname + "/"));
 
 app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
