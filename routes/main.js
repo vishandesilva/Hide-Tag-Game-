@@ -21,7 +21,7 @@ module.exports = function(app)
 
     .post((req, res) => {
       var mongo = require('mongodb');
-      var url = "mongodb://localhost/database_name";
+      var url = "mongodb://localhost/userdb";
       mongo.connect(url, function(err, db) {
          db.collection('_id').findOne({ name: req.body.name}, function(err, user) {
                    if(user === null){
@@ -47,7 +47,7 @@ module.exports = function(app)
     .post((req, res) => {
       var mongo = require('mongodb');
       var crypto = require('crypto');
-      var new_db = "mongodb://localhost/database_name";
+      var user_db = "mongodb://localhost/userdb";
 
       var getHash = ( pass , name ) => {
          
@@ -86,12 +86,12 @@ module.exports = function(app)
          
       }
       
-      mongo.connect(new_db , function(error , db){
+      mongo.connect(user_db , function(error , db){
          if (error){
             throw error;
          }
          console.log("connected to database successfully");
-         db.collection("details").insertOne(data, (err , collection) => {
+         db.collection("users").insertOne(data, (err , collection) => {
             if(err) throw err;
             console.log("Record inserted successfully");
             console.log(collection);
@@ -102,7 +102,7 @@ module.exports = function(app)
       res.set({
          'Access-Control-Allow-Origin' : '*'
       });
-      return res.render('index.html');  
+      return res.render('index-login.html');  
    
    });
 }
