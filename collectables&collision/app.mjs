@@ -6,11 +6,12 @@ import path from "path";
 const app = express(),
   server = http.createServer(app),
   io = SocketIO(server),
-  __dirname = "C:\Users\hkapa\OneDrive\Documents\GitHub\Hide-Tag-Game-\collectables&collision"
-  path.resolve(
-     path.dirname(decodeURI(new URL(import.meta.url).pathname))
-  )
-  
+ // __dirname = 
+ // path.resolve(
+ //    path.dirname(decodeURI(new URL(import.meta.url).pathname))
+ // )
+// __dirname = path.resolve();
+__dirname = path.resolve(path.dirname(''))
 
 server.listen(3000, () => console.log("Server listening on port 3000"));
 app.use(express.static(__dirname + "/"));
@@ -31,8 +32,17 @@ let players = [];
 //     coins.push(new Coin({ id: i, x: Math.random() * 1500, y: Math.random() * 700, imgDir: '../FreezeTrap.png' }));
 //   }
 // }
+// var countdown = 1000;
+// setInterval(function() {
+//   countdown--;
+//   io.sockets.emit('timer', { countdown: countdown });
+//  // console.log(countdown);
+// }, 1000);
+
 io.on("connection", socket => { 
   console.log(socket.id); 
+  // countdown = 1000;
+  //   io.sockets.emit('timer', { countdown: countdown });
 
   socket.emit("init", { id: socket.id, plyrs: players });
 //  socket.emit("init", { id: socket.id, plyrs: players, coins });
