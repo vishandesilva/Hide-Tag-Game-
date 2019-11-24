@@ -98,7 +98,11 @@ io.on("connection", socket => {
 
   socket.emit("init", { id: socket.id, plyrs: players });
 //  socket.emit("init", { id: socket.id, plyrs: players, coins });
-
+setInterval(function(){
+    if (players.length >= 2){
+      socket.emit('start-game', {success:true});
+    }
+  },500);
   socket.on("new-player", obj => {
     obj.id = socket.id; 
     players.push(obj);

@@ -19,6 +19,12 @@ socket.on('timer', function (data) {
     ctx.fillStyle = "white";
     ctx.fillText("Time: " + data.countdown, 0, 30);
 });
+socket.on("start-game", function(data){
+  if (data.success){
+    document.getElementById("wait").style.display="none";
+    document.getElementById("game").style.display="block";
+  }
+});
 socket.on("init", ({
   id,
   plyrs
