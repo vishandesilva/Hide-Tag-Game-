@@ -3,12 +3,12 @@
     "start": "nodemon --experimental-modules app.mjs"
   },
   "dependencies": {
+    "crypto": "^1.0.1",
     "express": "^4.17.1",
     "http": "0.0.0",
+    "mongodb": "^2.2.33",
     "nodemon": "^1.19.4",
     "path": "^0.12.7",
-    "mongodb": "^2.2.33",
-    "crypto": "^1.0.1",
     "socket.io": "^2.3.0"
   },
   "name": "hide-tag-game",

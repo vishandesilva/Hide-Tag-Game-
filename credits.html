@@ -99,7 +99,7 @@ body {
   }
   
   .nav-links a:hover{
-    background-color: #333333;
+    background-color: grey;
     color:orange;
   }
   
@@ -254,33 +254,38 @@ body {
     </div>
     <nav class="nav-links">
       <li><a class="nav-link" href="/leaderboards">Leaderboards</a></li>
-      <li><a class="nav-link" href="/signup">Login</a></li>
-        <script>
-        getScript('main.js', function(){
-        alert(NAME);
-      });</script></i>
+      <li><a class="nav-link" href="/signup">Login</a></li></i>
       </a></li>
     </nav>
   </header>
   </div>
   <div id= "container">
     <div id="main">
-        <button id="gamebutton" type="button" onclick=myFunction()><span>Play Game!</span></button>
-     <canvas id="game">No HTML5 canvas support</canvas>
-     <script>
-     document.getElementById("game").style.display="none";
-function myFunction()
-{
-   document.getElementById("game").style.display="block";
-   document.getElementById("gamebutton").style.display="none";
-   document.getElementById("header").style.display="none";
-   document.getElementById("footer").style.display="none";
-}
-     </script>
-     <!-- <div id="timer">
-      <input id="minutes" value="6" type="text" style="width: 14px; border: none; background-color:none; font-size: 16px; font-weight: bold;">:<input id="seconds" value="00" type="text" style="width: 26px; border: none; background-color:none; font-size: 16px; font-weight: bold;"> remaining
-    </div> -->
+        <h1>Credits</h1>
+        <p style="font-size:130%;">Our group work was to make a game using Javascript, Nodejs, Socket.io, PHP, SQL and so on. As per guidelines we were able to complete
+            everything asked. We implemented HTML,CSS and Javascript. We completed a game called Lights and Shadows. The game simply put is a maze game, where there are 
+            is a hider, and a seeker. The first player to join the game is the seeker, whilst the remaining are hiders. The hiders are spawned randomly throughout the map
+            and their job is to escape the seeker before the timer runs out. 
 
+            
+        </p>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <ul>
+        <li style="font-size: 120%;">Throughout the weeks we worked on setting goals and accomplishing it at the end of the week</li>
+        <li style="font-size: 110%;">1. We all worked on the game logic </li>
+        <li style="font-size: 110%;">2. Fahim and Gaurav focused on socket.io </li>
+        <li style="font-size: 110%;">3. Brenden and Hasan focused on the Database and Server </li>
+        <li style="font-size: 110%;">4. Fahim,Vishan and Gaurav worked on the final map, while Brenden worked on the prototype map</li>
+        <li style="font-size: 110%;">5. Vishan did the footer of the page, and power-ups and helped with game logic</li>
+        <li style="font-size: 110%;">6. Fahim worked on image sprites, Brenden finished the HTML,CSS of the main html pages</li>
+        <li style="font-size: 110%;">7. Hasan worked on the server side maintenance and completed hosting the <a href="https://lightsandshadows.herokuapp.com/">game</a></li>
+        <li style="font-size: 110%;">8. Gaurav worked on Game physics with help from Fahim and Vishan to complete</li>
+        <li style="font-size: 110%;">9. Gaurav worked on making the game where it is and what it is,thank you Gauva boi</li>
+
+    </ul>
+
+
+        </p>
     </div>
   </div>
   <div id="footer">
@@ -296,13 +301,13 @@ function myFunction()
           <h1>Quick Links</h1>
           <br>
           <ul>
-            <a href="leaderboards.html">
-              <li>Leaderboards</li>
+            <a href="/leaderboards">
+              <li>Leader Boards</li>
             </a>
             <a href="#">
               <li>Terms and Conditions</li>
             </a>
-            <a href="credits.html">
+            <a href="#">
               <li>Credits</li>
             </a>
           </ul>
@@ -324,18 +329,7 @@ function myFunction()
     </div>
   </footer>
   </div>
-  <script src="/socket.io/socket.io.js"></script>
-  <!-- <script src="app.mjs" type="module"></script> -->
-  <script src="./js/main.mjs" type="module"></script>
-  <script>
-      var socket=io(); 
-      socket.emit('clientEvent', 'Sent an event from the client!');
-      socket.on('broadcast',function(data) {
-        console.log(data);
-      //document.body.innerHTML = '';
-      //document.write(data.description);
-      }); 
-  </script>
+ 
 </body>
 
 </html>
