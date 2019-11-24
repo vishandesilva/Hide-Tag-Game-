@@ -1,12 +1,28 @@
 {
-    "scripts": {
-        "start": "nodemon --experimental-modules app.mjs"
-    },
-    "dependencies": {
-        "express": "^4.17.1",
-        "http": "0.0.0",
-        "nodemon": "^1.19.4",
-        "path": "^0.12.7",
-        "socket.io": "^2.3.0"
-    }
+  "scripts": {
+    "start": "nodemon --experimental-modules app.mjs"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "0.0.0",
+    "nodemon": "^1.19.4",
+    "path": "^0.12.7",
+    "socket.io": "^2.3.0"
+  },
+  "name": "hidetaggame",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vishandesilva/Hide-Tag-Game-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vishandesilva/Hide-Tag-Game-/issues"
+  },
+  "homepage": "https://github.com/vishandesilva/Hide-Tag-Game-#readme",
+  "description": ""
 }
