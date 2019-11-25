@@ -26,6 +26,7 @@ app.get("/leaderboards", (req, res) => res.sendFile(__dirname + "/leaderboards.h
 app.get("/credits", (req, res) => res.sendFile(__dirname + "/credits.html"));
 app.get("/controls", (req, res) => res.sendFile(__dirname + "/controls.html"));
 app.get("/indexlogin", (req, res) => res.sendFile(__dirname + "/index-login.html"));
+app.get("/waitingscreen", (req, res) => res.sendFile(__dirname + "/waitingscreen.html"));
 
 app.route('/signup')
   .get((req,res) => {

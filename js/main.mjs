@@ -29,7 +29,7 @@ socket.on("redirect-game", function(data){
   if (data.change){
    // document.getElementById("wait").style.display="none";
    // document.getElementById("game").style.display="block";
-   window.location.replace("http://localhost:3001/leaderboards");
+   window.location.replace(window.location.href + "/waitingscreen");
   }
 });
 socket.on("init", ({
