@@ -24,11 +24,12 @@ app.use(express.static(__dirname + "/"));
 app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
 app.get("/leaderboards", (req, res) => res.sendFile(__dirname + "/leaderboards.html"));
 app.get("/credits", (req, res) => res.sendFile(__dirname + "/credits.html"));
+app.get("/controls", (req, res) => res.sendFile(__dirname + "/controls.html"));
 app.get("/indexlogin", (req, res) => res.sendFile(__dirname + "/index-login.html"));
 
 app.route('/signup')
   .get((req,res) => {
-     res.render('signup.html');
+   res.sendFile(__dirname + "/signup.html");
   })
 
   .post((req, res) => {
