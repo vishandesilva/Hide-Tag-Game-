@@ -35,24 +35,12 @@ app.route('/signup')
   .post((req, res) => {
   
     var user_db = "mongodb://localhost/userdb";
-    var name = req.body.name;
-    var pass = req.body.password;
-    
+    var username = req.body.name;
+    var password = req.body.password;
 
-     /* var getHash = ( pass , name ) => {
-       
-       var hmac = crypto.createHmac('sha512', name);
-
-       data = hmac.update(pass);
-       gen_hmac= data.digest('hex');
-       console.log("hmac : " + gen_hmac);
-       return gen_hmac;
-    }
-    var password = getHash( pass , name);  */
-    
      var data = {
-       "name":name,	
-       "password": pass
+       "name":username,	
+       "password": password
        
     }
     
@@ -60,15 +48,12 @@ app.route('/signup')
        if (error){
           throw error;
        }
-       console.log("connected to database successfully");
        db.collection("users").insertOne(data, (err , collection) => {
           if(err) throw err;
-          console.log("Record inserted successfully");
           console.log(collection);
        });
     });
-    
-    console.log("DATA is " + JSON.stringify(data) );
+
     res.set({
        'Access-Control-Allow-Origin' : '*'
     });
