@@ -73,6 +73,7 @@ app.route('/signup')
 import Coin from "./js/coin.mjs"; 
  
 let players = []; 
+let waitingPLayers = [];
 //let coins = []; 
 
 // for (let i = 0; i < 1; i++) {
@@ -95,19 +96,48 @@ io.on("connection", socket => {
   console.log(socket.id); 
   // countdown = 1000;
   //   io.sockets.emit('timer', { countdown: countdown });
+  // setInterval(function(){
+  //   if (players.length >= 2){
+  //     socket.emit('start-game', {success:true});
+  //   }
+  // },500);
+  socket.on("new-player", obj => {
+    if (players.length < 3){
+    obj.id = socket.id; 
+    players.push(obj); 
+    socket.broadcast.emit("new-player", obj);
+  }
+  else if (players.length < 3 && waitingPLayers.length > 0){
+    var j = players.length - waitingPLayers.length;
+    for (var i = 0; i<=j; i++){
+      if (players.length < 3){ 
+        players.push(waitingPLayers[i]);
+      }
+    }
+    socket.broadcast.emit("new-player", obj);
+  }
+  else {
+    obj.id = socket.id;
+    waitingPLayers.push(obj);
+  }
+  }); 
+
   setInterval(function(){
-    if (players.length >= 2){
-      socket.emit('start-game', {success:true});
+    if (players.length >= 2 && players.length < 4){
+      socket.emit('start-game', {success:1});
+    }
+    if (players.length >= 4){
+      socket.emit('start-game', {success:2});
     }
   },500);
   socket.emit("init", { id: socket.id, plyrs: players });
 //  socket.emit("init", { id: socket.id, plyrs: players, coins });
 
-  socket.on("new-player", obj => {
-    obj.id = socket.id; 
-    players.push(obj);
-    socket.broadcast.emit("new-player", obj);
-  });
+  // socket.on("new-player", obj => {
+  //   obj.id = socket.id; 
+  //   players.push(obj);
+  //   socket.broadcast.emit("new-player", obj);
+  // });
 
   socket.on("move-player", dir =>
     socket.broadcast.emit("move-player", { id: socket.id, dir }) 

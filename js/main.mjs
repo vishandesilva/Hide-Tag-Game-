@@ -19,10 +19,15 @@ socket.on('timer', function (data) {
     ctx.fillStyle = "white";
     ctx.fillText("Time: " + data.countdown, 0, 30);
 });
+
 socket.on("start-game", function(data){
-  if (data.success){
+  if (data.success == 1){
     document.getElementById("wait").style.display="none";
     document.getElementById("game").style.display="block";
+  }
+  if (data.success == 2){
+    document.getElementById("full").style.display="block";
+    document.getElementById("wait").style.display="none";
   }
 });
 socket.on("init", ({
