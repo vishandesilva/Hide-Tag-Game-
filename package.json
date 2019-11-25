@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "nodemon --experimental-modules app.mjs"
+    "start": "nodemon -r mjs-require --experimental-modules app.mjs"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
