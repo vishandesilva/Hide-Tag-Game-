@@ -17,7 +17,7 @@ class Player {
     this.y = y;
     this.w = w;
     this.h = h;
-    this.speed = (1200)/4000;
+    this.speed = (1200)/400;
     this.xp = 0;
     this.id = id;
     this.color = "yellow";
@@ -316,15 +316,15 @@ getRandomColor() {
       if (this.collide(v)) {
         this.xp += v.xpAdded;
         if(v.imgDir == '../redgofast.png'){
-          this.speed = (1200)/2000;
+          this.speed = (1200)/200;
           setTimeout(() => {
-            this.speed = (1200)/4000 ;
+            this.speed = (1200)/400 ;
           }, 1000);
         }
         else {
-          this.speed = (1200)/40000;
+          this.speed = (1200)/4000;
           setTimeout(() => {
-            this.speed = (1200)/4000;
+            this.speed = (1200)/400;
           }, 1000)
         }
        // v.destroyed = this.id;

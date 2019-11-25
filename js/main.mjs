@@ -80,7 +80,9 @@ socket.on("init", ({
 
 
   socket.on("end-game", result => (endGame = result));
+  setInterval(() => {
   socket.on("update-player", obj => (player.xp = obj.xp));
+  }, 1000/25);
 
   players = plyrs.map(v => new Player(v)).concat(player);
   //items = coins.map(v => new Coin(v));
