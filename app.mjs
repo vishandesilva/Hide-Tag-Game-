@@ -6,15 +6,9 @@ import mongo from "mongodb";
 import crypto from "crypto";
 import bodyParser from "body-parser";
 
-//import login from "";
 const app = express(),
   server = http.createServer(app),
   io = SocketIO(server),
- // __dirname = 
- // path.resolve(
- //    path.dirname(decodeURI(new URL(import.meta.url).pathname))
- // )
-// __dirname = path.resolve();
 __dirname = path.resolve(path.dirname(''))
 
 server.listen(process.env.PORT || 3002, () => console.log("Server listening on port 3002"));
@@ -40,16 +34,6 @@ app.route('/signup')
     var pass = req.body.password;
     
 
-     /* var getHash = ( pass , name ) => {
-       
-       var hmac = crypto.createHmac('sha512', name);
-
-       data = hmac.update(pass);
-       gen_hmac= data.digest('hex');
-       console.log("hmac : " + gen_hmac);
-       return gen_hmac;
-    }
-    var password = getHash( pass , name);  */
     
      var data = {
        "name":name,	
@@ -80,35 +64,15 @@ app.route('/signup')
  import Coin from "./js/coin.mjs"; 
  
  let players = []; 
- //let coins = []; 
- 
- // for (let i = 0; i < 1; i++) {
- //   if(i%2 == 0) {
- //     coins.push(new Coin({ id: i, x: Math.random() * 1500, y: Math.random() * 700, imgDir: '../LightUpTrap.png' }));
- //   }
-   
- //   else {
- //     coins.push(new Coin({ id: i, x: Math.random() * 1500, y: Math.random() * 700, imgDir: '../FreezeTrap.png' }));
- //   }
- // }
- // var countdown = 1000;
- // setInterval(function() {
- //   countdown--;
- //   io.sockets.emit('timer', { countdown: countdown });
- //  // console.log(countdown);
- // }, 1000);
- 
+
  io.on("connection", socket => { 
    console.log(socket.id); 
-   // countdown = 1000;
-   //   io.sockets.emit('timer', { countdown: countdown });
    setInterval(function(){
      if (players.length >= 3){
        socket.emit('start-game', {success:true});
      }
    },500);
    socket.emit("init", { id: socket.id, plyrs: players });
- //  socket.emit("init", { id: socket.id, plyrs: players, coins });
  
    socket.on("new-player", obj => {
      if(players.length<3){
@@ -117,7 +81,6 @@ app.route('/signup')
      socket.broadcast.emit("new-player", obj);
      }
      else{
-       //window.location.replace("https://www.w3schools.com");
        socket.emit('redirect-game', {change:true});
      }
    });
@@ -128,25 +91,7 @@ app.route('/signup')
    socket.on("stop-player", dir =>
      socket.broadcast.emit("stop-player", { id: socket.id, dir })
    );
- 
-   // socket.on("destroy-item", ({ playerId, playertwoID }) => {
-   //   if (players.find(v => v.id === playertwoID)) {
-   //     const player = players.find(v => v.id === playerId);
-   //     const sock = io.sockets.connected[player.id];
-   //     player.x =50;
-   //     player.y =50;
-   //     //players = players.filter(v => v.id !== playertwoID);
-   //     //player.xp += 200;
-   //     //socket.broadcast.emit("destroy-item", playerId);
- 
-      // sock.emit("update-player", player);
-       // if (player.xp === 200) {
-       //   sock.emit("end-game", "win");
-       //   sock.broadcast.emit("end-game", "lose"); 
-       // }
-   //   } 
-   // }); 
- 
+
    socket.on("disconnect", () => {
      socket.broadcast.emit("remove-player", socket.id);
      players = players.filter(v => v.id !== socket.id);
