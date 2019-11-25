@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -98,7 +99,7 @@ body {
   }
   
   .nav-links a:hover{
-    background-color: #333333;
+    background-color: grey;
     color:orange;
   }
   
@@ -243,6 +244,14 @@ body {
     opacity: 1;
     right: 0;
   }
+
+  #main p {
+      font-size: 200%;
+      margin-left: 33%;
+      margin-right: 33%;
+      margin-top: 100px;
+  }
+
   
   </style>
 <body>
@@ -252,39 +261,17 @@ body {
       <h4 class="logo">Lights & <span>Shadows</span></h4>
     </div>
     <nav class="nav-links">
+        <li><a class="nav-link" href="index.html">Home</a></li>
       <li><a class="nav-link" href="/leaderboards">Leaderboards</a></li>
-      <li><a class="nav-link" href="/controls">Controls</a></li>
-      <li><a class="nav-link" href="/signup">Login</a></li>
-      <script>
-        getScript('main.js', function(){
-        alert(NAME);
-      });</script></i>
-     </a></li>
+      <li><a class="nav-link" href="/signup">Login</a></li></i>
+      </a></li>
     </nav>
   </header>
   </div>
   <div id= "container">
     <div id="main">
-        <button id="gamebutton" type="button" onclick=myFunction()><span>Play Game!</span></button>
-     <canvas id="game">No HTML5 canvas support</canvas>
-     <div id="wait" style = "display:none;">
-      Waiting for players...
-    </div>
-     <script>
-     document.getElementById("game").style.display="none";
-function myFunction()
-{
-  document.getElementById("wait").style.display="block";
-  // document.getElementById("game").style.display="block";
-   document.getElementById("gamebutton").style.display="none";
-   document.getElementById("header").style.display="none";
-   document.getElementById("footer").style.display="none";
-}
-     </script>
-     <!-- <div id="timer">
-      <input id="minutes" value="6" type="text" style="width: 14px; border: none; background-color:none; font-size: 16px; font-weight: bold;">:<input id="seconds" value="00" type="text" style="width: 26px; border: none; background-color:none; font-size: 16px; font-weight: bold;"> remaining
-    </div> -->
-
+        <p>The game lobby is full, Please return to the<br>
+            home screen and try again in a few minutes </p>
     </div>
   </div>
   <div id="footer">
@@ -301,13 +288,10 @@ function myFunction()
           <br>
           <ul>
             <a href="/leaderboards">
-             <li>Leaderboards</li>
+              <li>Leaderboards</li>
             </a>
             <a href="#">
               <li>Terms and Conditions</li>
-            </a>
-            <a href="/credits">
-              <li>Credits</li>
             </a>
           </ul>
         </div>
@@ -328,18 +312,7 @@ function myFunction()
     </div>
   </footer>
   </div>
-  <script src="/socket.io/socket.io.js"></script>
-  <!-- <script src="app.mjs" type="module"></script> -->
-  <script src="./js/main.mjs" type="module"></script>
-  <script>
-      var socket=io(); 
-      socket.emit('clientEvent', 'Sent an event from the client!');
-      socket.on('broadcast',function(data) {
-        console.log(data);
-      //document.body.innerHTML = '';
-      //document.write(data.description);
-      }); 
-  </script>
+ 
 </body>
 
 </html>

@@ -4,10 +4,10 @@ import Coin from "./coin.mjs";
 class Player {
   constructor({
     id,
-    x = (1200)/40 * Math.random() * (39 - 1) + 1 ,
-    y = (1200)/40 * Math.random() * (19 - 1) + 1,
-    w = (1200)/40 +2 ,
-    h = (1200)/40 +2 ,
+    x = (1200)/40 * Math.random() * 39   ,
+    y = (1200)/40 * Math.random() * 19  ,
+    w = (1200)/40 -8 ,
+    h = (1200)/40 -8 ,
     //color = "white",
     main
   })
@@ -36,7 +36,7 @@ getRandomColor() {
   //draw(ctx) {
     draw(ctx,players) {
       players[0].color = "red";
-      players[0].speed = (1200)/350;
+      //players[0].speed = (1200)/350;
       console.log(players);
       var img = new Image();
     img.src = '../Sprites/Final Sprite.png';
@@ -58,7 +58,7 @@ getRandomColor() {
       this.x += this.speed;
       ctx.strokeStyle = this.color;
       //ctx.rect(this.x, this.y, (1200)/40-8, (1200)/40-8);
-      ctx.arc(this.x+((1200)/40-8)/2, this.y+((1200)/40-8)/2, (this.w-8)/2, 0, 2 * Math.PI);
+      ctx.arc(this.x+((1200)/40-8)/2, this.y+((1200)/40-8)/2, (this.w)/2, 0, 2 * Math.PI);
       ctx.stroke();
       //setInterval(function() {
         if ((n2 - n1) <= 500) {
@@ -85,7 +85,7 @@ getRandomColor() {
       this.x -= this.speed;
       ctx.strokeStyle = this.color;
       //ctx.rect(this.x, this.y, (1200)/40-8, (1200)/40-8);
-      ctx.arc(this.x+((1200)/40-8)/2, this.y+((1200)/40-8)/2, (this.w-8)/2, 0, 2 * Math.PI);
+      ctx.arc(this.x+((1200)/40-8)/2, this.y+((1200)/40-8)/2, (this.w)/2, 0, 2 * Math.PI);
       ctx.stroke();
       //ctx.beginPath();
       //ctx.drawImage(img,(img.height*2), 0, img.height, img.height, this.x, this.y, 50, 50);
@@ -104,7 +104,7 @@ getRandomColor() {
       this.y -= this.speed;
       ctx.strokeStyle = this.color;
       //ctx.rect(this.x, this.y, (1200)/40-8, (1200)/40-8);
-      ctx.arc(this.x+((1200)/40-8)/2, this.y+((1200)/40-8)/2, (this.w-8)/2, 0, 2 * Math.PI);
+      ctx.arc(this.x+((1200)/40-8)/2, this.y+((1200)/40-8)/2, (this.w)/2, 0, 2 * Math.PI);
       ctx.stroke();
       //ctx.beginPath();
       //ctx.drawImage(img,0, 0, img.height, img.height, this.x, this.y, 50, 50);\
@@ -122,7 +122,7 @@ getRandomColor() {
       this.y += this.speed;
       ctx.strokeStyle = this.color;
       //ctx.rect(this.x, this.y, (1200)/40-8, (1200)/40-8);
-      ctx.arc(this.x+((1200)/40-8)/2, this.y+((1200)/40-8)/2,(this.w-8)/2, 0, 2 * Math.PI);
+      ctx.arc(this.x+((1200)/40-8)/2, this.y+((1200)/40-8)/2,(this.w)/2, 0, 2 * Math.PI);
       ctx.stroke();
       //ctx.beginPath();
       //ctx.drawImage(img,(img.height*4), 0, img.height, img.height, this.x, this.y, 50, 50);
@@ -141,7 +141,7 @@ getRandomColor() {
       ctx.beginPath();
       ctx.strokeStyle = this.color;
       //ctx.rect(this.x, this.y, (1200)/40-8, (1200)/40-8);
-      ctx.arc(this.x+((1200)/40-8)/2, this.y+((1200)/40-8)/2, (this.w-8)/2, 0, 2 * Math.PI);
+      ctx.arc(this.x+((1200)/40-8)/2, this.y+((1200)/40-8)/2, (this.w)/2, 0, 2 * Math.PI);
       ctx.stroke();
       n2 += d.getMilliseconds();
       if ((n2 - n1) <= 500) {
@@ -153,22 +153,22 @@ getRandomColor() {
     //ctx.drawImage(img,(img.height*8), 0, img.height, img.height, this.x, this.y, 50, 50);
     }
 
-    if ((r = ctx.getImageData(this.x+this.w-9 , this.y, 2, 2).data[0]) && (g = ctx.getImageData(this.x+this.w-9 , this.y, 2, 2).data[1]) && (b= ctx.getImageData(this.x+this.w-9 , this.y, 2, 2).data[2])){
+    if ((r = ctx.getImageData(this.x+this.w+1 , this.y, 1, 1).data[0]) && (g = ctx.getImageData(this.x+this.w+1 , this.y, 1, 1).data[1]) && (b= ctx.getImageData(this.x+this.w+1 , this.y, 1, 1).data[2])){
       this.x -= this.speed;
       //console.log("right collision")
     }
 
-    if ((r = ctx.getImageData(this.x-2, this.y, 2, 2).data[0]) && (g = ctx.getImageData(this.x-2, this.y, 2, 2).data[1]) && (b= ctx.getImageData(this.x-2, this.y, 2, 2).data[2])){
+    if ((r = ctx.getImageData(this.x-1, this.y, 1, 1).data[0]) && (g = ctx.getImageData(this.x, this.y, 1, 1).data[1]) && (b= ctx.getImageData(this.x, this.y, 1, 1).data[2])){
       this.x += this.speed;
       //console.log("left collision")
     }
 
-    if ((r = ctx.getImageData(this.x, this.y+this.w-9 , 2, 2).data[0]) && (g = ctx.getImageData(this.x, this.y+this.w-9 , 2, 2).data[1]) && (b= ctx.getImageData(this.x, this.y+this.w-9 , 2, 2).data[2])){
+    if ((r = ctx.getImageData(this.x, this.y+this.w , 1, 1).data[0]) && (g = ctx.getImageData(this.x, this.y+this.w , 1, 1).data[1]) && (b= ctx.getImageData(this.x, this.y+this.w , 1, 1).data[2])){
       this.y -= this.speed;
       //console.log("down collision")
     }
 
-    if ((r = ctx.getImageData(this.x, this.y-2, 2, 2).data[0]) && (g = ctx.getImageData(this.x, this.y-2, 2, 2).data[1]) && (b= ctx.getImageData(this.x, this.y-2, 2, 2).data[2])){
+    if ((r = ctx.getImageData(this.x, this.y, 1, 1).data[0]) && (g = ctx.getImageData(this.x, this.y, 1, 1).data[1]) && (b= ctx.getImageData(this.x, this.y, 1, 1).data[2])){
       this.y += this.speed;
      // console.log("up collision")
     }
@@ -232,9 +232,9 @@ getRandomColor() {
             {
                case 0:
               //     ctx.fillStyle = "#A0522D";
-                   ctx.beginPath();
+                 //  ctx.beginPath();
               //     ctx.fillRect(x*tileW, y*tileH, tileW +1, tileH+1);
-                   ctx.drawImage( img1, 0, 0,img1.width,img1.height,x*tileW, y*tileH, tileW, tileH);
+                 //  ctx.drawImage( img1, 0, 0,img1.width,img1.height,x*tileW+1, y*tileH+1, tileW-2, tileH-2);
               //     //var img = new Image();
               //     //img.src = "https://res.cloudinary.com/bedrosians/image/upload/t_product_detail,f_auto/v1/cdn-bedrosian/assets/products/hiresimages/SLTBLKPRL2424G.jpg";
                  break;
@@ -346,13 +346,13 @@ getRandomColor() {
         var width = ctx.measureText("SEEKER").width;
     
         /// draw background rect assuming height of font
-        ctx.fillRect(0, 10, width, 25);
+        ctx.fillRect(0, 0, width, 25);
     
         /// text color
         ctx.fillStyle = '#000';
     
         /// draw text on top
-        ctx.fillText("SEEKER", 0, 30);
+        ctx.fillText("SEEKER", 0, 20);
     
         /// restore original state
         ctx.restore();
@@ -373,13 +373,13 @@ getRandomColor() {
           var width = ctx.measureText("HIDER").width;
       
           /// draw background rect assuming height of font
-          ctx.fillRect(0, 10, width, 25);
+          ctx.fillRect(0, 0, width, 25);
       
           /// text color
           ctx.fillStyle = '#000';
       
           /// draw text on top
-          ctx.fillText("HIDER", 0, 30);
+          ctx.fillText("HIDER", 0, 20);
       
           /// restore original state
           ctx.restore();
