@@ -96,7 +96,7 @@ io.on("connection", socket => {
   // countdown = 1000;
   //   io.sockets.emit('timer', { countdown: countdown });
   setInterval(function(){
-    if (players.length >= 2){
+    if (players.length >= 3){
       socket.emit('start-game', {success:true});
     }
   },500);
@@ -104,9 +104,15 @@ io.on("connection", socket => {
 //  socket.emit("init", { id: socket.id, plyrs: players, coins });
 
   socket.on("new-player", obj => {
+    if(players.length<3){
     obj.id = socket.id; 
     players.push(obj);
     socket.broadcast.emit("new-player", obj);
+    }
+    else{
+      //window.location.replace("https://www.w3schools.com");
+      socket.emit('redirect-game', {change:true});
+    }
   });
 
   socket.on("move-player", dir =>

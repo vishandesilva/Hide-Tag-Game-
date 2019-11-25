@@ -25,6 +25,13 @@ socket.on("start-game", function(data){
     document.getElementById("game").style.display="block";
   }
 });
+socket.on("redirect-game", function(data){
+  if (data.change){
+   // document.getElementById("wait").style.display="none";
+   // document.getElementById("game").style.display="block";
+   window.location.replace("http://localhost:3001/leaderboards");
+  }
+});
 socket.on("init", ({
   id,
   plyrs
