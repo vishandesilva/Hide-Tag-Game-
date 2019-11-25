@@ -36,7 +36,7 @@ getRandomColor() {
   //draw(ctx) {
     draw(ctx,players) {
       players[0].color = "red";
-      players[0].speed = (1200)/350;
+      //players[0].speed = (1200)/350;
       console.log(players);
       var img = new Image();
     img.src = '../Sprites/Final Sprite.png';
