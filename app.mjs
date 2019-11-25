@@ -35,7 +35,7 @@ app.route('/signup')
 
   .post((req, res) => {
   
-    var user_db = "mongodb://localhost/userdb";
+    var user_db = "mongodb://lightsandshadows.herokuapp.com/userdb";
     var name = req.body.name;
     var pass = req.body.password;
     
