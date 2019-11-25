@@ -4,8 +4,8 @@ import Coin from "./coin.mjs";
 const socket = io(),
   canvas = document.getElementById("game"),
   ctx = canvas.getContext("2d");
-document.getElementById("game").width = window.innerWidth;
-document.getElementById("game").height = (window.innerWidth) * 0.5;
+document.getElementById("game").width = 1200;
+document.getElementById("game").height = (1200) * 0.5;
 
 let players = [],
   items = [],
@@ -110,8 +110,8 @@ socket.on("init", ({
     //   0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0,
     //   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     // ];
-    // var tileW = (window.innerWidth) / 40,
-    //   tileH = (window.innerWidth) / 40;
+    // var tileW = (1200) / 40,
+    //   tileH = (1200) / 40;
     // var mapW = 40,
     //   mapH = 20;
     // for (var y = 0; y < mapH; ++y) {

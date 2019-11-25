@@ -4,10 +4,10 @@ import Coin from "./coin.mjs";
 class Player {
   constructor({
     id,
-    x = (window.innerWidth)/40 * Math.random() * 39   ,
-    y = (window.innerWidth)/40 * Math.random() * 19  ,
-    w = (window.innerWidth)/40 -8 ,
-    h = (window.innerWidth)/40 -8 ,
+    x = (1200)/40 * Math.random() * 39   ,
+    y = (1200)/40 * Math.random() * 19  ,
+    w = (1200)/40 -8 ,
+    h = (1200)/40 -8 ,
     //color = "white",
     main
   })
@@ -17,7 +17,7 @@ class Player {
     this.y = y;
     this.w = w;
     this.h = h;
-    this.speed = (window.innerWidth)/400;
+    this.speed = (1200)/400;
     this.xp = 0;
     this.id = id;
     this.color = "yellow";
@@ -36,7 +36,7 @@ getRandomColor() {
   //draw(ctx) {
     draw(ctx,players) {
       players[0].color = "red";
-      players[0].speed = (window.innerWidth)/350;
+      players[0].speed = (1200)/350;
       console.log(players);
       var img = new Image();
     img.src = '../Sprites/Final Sprite.png';
@@ -57,17 +57,17 @@ getRandomColor() {
       n2 += d.getMilliseconds();
       this.x += this.speed;
       ctx.strokeStyle = this.color;
-      //ctx.rect(this.x, this.y, (window.innerWidth)/40-8, (window.innerWidth)/40-8);
-      ctx.arc(this.x+((window.innerWidth)/40-8)/2, this.y+((window.innerWidth)/40-8)/2, (this.w)/2, 0, 2 * Math.PI);
+      //ctx.rect(this.x, this.y, (1200)/40-8, (1200)/40-8);
+      ctx.arc(this.x+((1200)/40-8)/2, this.y+((1200)/40-8)/2, (this.w)/2, 0, 2 * Math.PI);
       ctx.stroke();
       //setInterval(function() {
         if ((n2 - n1) <= 500) {
-          ctx.drawImage(img, (img.height*6), 0, img.height, img.height, this.x, this.y,  (window.innerWidth)/40-8, (window.innerWidth)/40-8);
+          ctx.drawImage(img, (img.height*6), 0, img.height, img.height, this.x, this.y,  (1200)/40-8, (1200)/40-8);
         }
     //setInterval(() => {
         //ctx.beginPath();
         if ((n2 - n1) >= 500) {
-          ctx.drawImage(img, (img.height*7), 0, img.height, img.height, this.x, this.y, (window.innerWidth)/40-8, (window.innerWidth)/40-8);
+          ctx.drawImage(img, (img.height*7), 0, img.height, img.height, this.x, this.y, (1200)/40-8, (1200)/40-8);
         }
       //}, 500);
       //ctx.clearRect(this.x, this.y, 50, 50);
@@ -84,17 +84,17 @@ getRandomColor() {
 
       this.x -= this.speed;
       ctx.strokeStyle = this.color;
-      //ctx.rect(this.x, this.y, (window.innerWidth)/40-8, (window.innerWidth)/40-8);
-      ctx.arc(this.x+((window.innerWidth)/40-8)/2, this.y+((window.innerWidth)/40-8)/2, (this.w)/2, 0, 2 * Math.PI);
+      //ctx.rect(this.x, this.y, (1200)/40-8, (1200)/40-8);
+      ctx.arc(this.x+((1200)/40-8)/2, this.y+((1200)/40-8)/2, (this.w)/2, 0, 2 * Math.PI);
       ctx.stroke();
       //ctx.beginPath();
       //ctx.drawImage(img,(img.height*2), 0, img.height, img.height, this.x, this.y, 50, 50);
       n2 += d.getMilliseconds();
       if ((n2 - n1) <= 500) {
-          ctx.drawImage(img, (img.height*2), 0, img.height, img.height, this.x, this.y, (window.innerWidth)/40-8, (window.innerWidth)/40-8);
+          ctx.drawImage(img, (img.height*2), 0, img.height, img.height, this.x, this.y, (1200)/40-8, (1200)/40-8);
         } 
       if ((n2 - n1) >= 500) {
-          ctx.drawImage(img, (img.height*3), 0, img.height, img.height, this.x, this.y, (window.innerWidth)/40-8, (window.innerWidth)/40-8);
+          ctx.drawImage(img, (img.height*3), 0, img.height, img.height, this.x, this.y, (1200)/40-8, (1200)/40-8);
         }
     }
 
@@ -103,17 +103,17 @@ getRandomColor() {
 
       this.y -= this.speed;
       ctx.strokeStyle = this.color;
-      //ctx.rect(this.x, this.y, (window.innerWidth)/40-8, (window.innerWidth)/40-8);
-      ctx.arc(this.x+((window.innerWidth)/40-8)/2, this.y+((window.innerWidth)/40-8)/2, (this.w)/2, 0, 2 * Math.PI);
+      //ctx.rect(this.x, this.y, (1200)/40-8, (1200)/40-8);
+      ctx.arc(this.x+((1200)/40-8)/2, this.y+((1200)/40-8)/2, (this.w)/2, 0, 2 * Math.PI);
       ctx.stroke();
       //ctx.beginPath();
       //ctx.drawImage(img,0, 0, img.height, img.height, this.x, this.y, 50, 50);\
       n2 += d.getMilliseconds();
       if ((n2 - n1) <= 500) {
-          ctx.drawImage(img, (img.height*0), 0, img.height, img.height, this.x, this.y, (window.innerWidth)/40-8, (window.innerWidth)/40-8);
+          ctx.drawImage(img, (img.height*0), 0, img.height, img.height, this.x, this.y, (1200)/40-8, (1200)/40-8);
         }
         if ((n2 - n1) >= 500) {
-          ctx.drawImage(img, (img.height*1), 0, img.height, img.height, this.x, this.y, (window.innerWidth)/40-8, (window.innerWidth)/40-8);
+          ctx.drawImage(img, (img.height*1), 0, img.height, img.height, this.x, this.y, (1200)/40-8, (1200)/40-8);
         }
     }
      else if (this.isMoving.down) {
@@ -121,17 +121,17 @@ getRandomColor() {
 
       this.y += this.speed;
       ctx.strokeStyle = this.color;
-      //ctx.rect(this.x, this.y, (window.innerWidth)/40-8, (window.innerWidth)/40-8);
-      ctx.arc(this.x+((window.innerWidth)/40-8)/2, this.y+((window.innerWidth)/40-8)/2,(this.w)/2, 0, 2 * Math.PI);
+      //ctx.rect(this.x, this.y, (1200)/40-8, (1200)/40-8);
+      ctx.arc(this.x+((1200)/40-8)/2, this.y+((1200)/40-8)/2,(this.w)/2, 0, 2 * Math.PI);
       ctx.stroke();
       //ctx.beginPath();
       //ctx.drawImage(img,(img.height*4), 0, img.height, img.height, this.x, this.y, 50, 50);
       n2 += d.getMilliseconds();
       if ((n2 - n1) <= 500) {
-          ctx.drawImage(img, (img.height*4), 0, img.height, img.height, this.x, this.y, (window.innerWidth)/40-8, (window.innerWidth)/40-8);
+          ctx.drawImage(img, (img.height*4), 0, img.height, img.height, this.x, this.y, (1200)/40-8, (1200)/40-8);
         }
         if ((n2 - n1) >= 500) {
-          ctx.drawImage(img, (img.height*5), 0, img.height, img.height, this.x, this.y, (window.innerWidth)/40-8, (window.innerWidth)/40-8);
+          ctx.drawImage(img, (img.height*5), 0, img.height, img.height, this.x, this.y, (1200)/40-8, (1200)/40-8);
         }
     }
 
@@ -140,15 +140,15 @@ getRandomColor() {
     else{
       ctx.beginPath();
       ctx.strokeStyle = this.color;
-      //ctx.rect(this.x, this.y, (window.innerWidth)/40-8, (window.innerWidth)/40-8);
-      ctx.arc(this.x+((window.innerWidth)/40-8)/2, this.y+((window.innerWidth)/40-8)/2, (this.w)/2, 0, 2 * Math.PI);
+      //ctx.rect(this.x, this.y, (1200)/40-8, (1200)/40-8);
+      ctx.arc(this.x+((1200)/40-8)/2, this.y+((1200)/40-8)/2, (this.w)/2, 0, 2 * Math.PI);
       ctx.stroke();
       n2 += d.getMilliseconds();
       if ((n2 - n1) <= 500) {
-        ctx.drawImage(img, (img.height*8), 0, img.height, img.height, this.x, this.y, (window.innerWidth)/40-8, (window.innerWidth)/40-8);
+        ctx.drawImage(img, (img.height*8), 0, img.height, img.height, this.x, this.y, (1200)/40-8, (1200)/40-8);
       }
       if ((n2 - n1) >= 500) {
-        ctx.drawImage(img, (img.height*9), 0, img.height, img.height, this.x, this.y, (window.innerWidth)/40-8, (window.innerWidth)/40-8);
+        ctx.drawImage(img, (img.height*9), 0, img.height, img.height, this.x, this.y, (1200)/40-8, (1200)/40-8);
       }
     //ctx.drawImage(img,(img.height*8), 0, img.height, img.height, this.x, this.y, 50, 50);
     }
@@ -177,16 +177,16 @@ getRandomColor() {
       this.x = 0;
     }
 
-    if (this.x + (window.innerWidth)/40-8 > ctx.canvas.width) {
-      this.x = ctx.canvas.width - (window.innerWidth)/40-8;
+    if (this.x + (1200)/40-8 > ctx.canvas.width) {
+      this.x = ctx.canvas.width - (1200)/40-8;
     }
 
     if (this.y < 0) {
       this.y = 0;
     }
 
-    if (this.y + (window.innerWidth)/40-8 > ctx.canvas.height) {
-      this.y = ctx.canvas.height - (window.innerWidth)/40-8;
+    if (this.y + (1200)/40-8 > ctx.canvas.height) {
+      this.y = ctx.canvas.height - (1200)/40-8;
       
     }
 
@@ -194,8 +194,8 @@ getRandomColor() {
     // else{
     //   ctx.font = "25px ariel";
     //   ctx.fillStyle = "green";
-    //   //ctx.fillText("XP: " + this.xp, window.innerWidth - 110, 30);
-    //   ctx.fillText("DEAD", window.innerWidth - 110, 30);
+    //   //ctx.fillText("XP: " + this.xp, 1200 - 110, 30);
+    //   ctx.fillText("DEAD", 1200 - 110, 30);
     // }
      const img1 = new Image();
      img1.src = "../Sprites/Walls.png"
@@ -222,7 +222,7 @@ getRandomColor() {
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
       ];
       var coinsID =0;
-            var tileW = (window.innerWidth)/40, tileH = (window.innerWidth)/40;
+            var tileW = (1200)/40, tileH = (1200)/40;
             var mapW = 40, mapH = 20;
               for(var y = 0; y < mapH; ++y)
         {
@@ -316,15 +316,15 @@ getRandomColor() {
       if (this.collide(v)) {
         this.xp += v.xpAdded;
         if(v.imgDir == '../redgofast.png'){
-          this.speed = (window.innerWidth)/200;
+          this.speed = (1200)/200;
           setTimeout(() => {
-            this.speed = (window.innerWidth)/400 ;
+            this.speed = (1200)/400 ;
           }, 1000);
         }
         else {
-          this.speed = (window.innerWidth)/4000;
+          this.speed = (1200)/4000;
           setTimeout(() => {
-            this.speed = (window.innerWidth)/400;
+            this.speed = (1200)/400;
           }, 1000)
         }
        // v.destroyed = this.id;
@@ -362,7 +362,7 @@ getRandomColor() {
         if(players[i].isMain){
           // ctx.font = "25px ariel";
           // ctx.fillStyle = "green";
-          // ctx.fillText("HIDER", window.innerWidth - 110, 30);
+          // ctx.fillText("HIDER", 1200 - 110, 30);
           ctx.font = "25px ariel";
           //ctx.textBaseline = 'top';
 
