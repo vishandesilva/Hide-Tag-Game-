@@ -5,6 +5,7 @@ import path from "path";
 import mongo from "mongodb"; 
 import crypto from "crypto";
 import bodyParser from "body-parser";
+
 //import login from "";
 const app = express(),
   server = http.createServer(app),
@@ -17,11 +18,13 @@ const app = express(),
 __dirname = path.resolve(path.dirname(''))
 
 server.listen(process.env.PORT || 3002, () => console.log("Server listening on port 3002"));
+app.set('view engine', 'html');
 app.use(bodyParser());
 app.use(express.static(__dirname + "/"));
 app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
 app.get("/leaderboards", (req, res) => res.sendFile(__dirname + "/leaderboards.html"));
 app.get("/credits", (req, res) => res.sendFile(__dirname + "/credits.html"));
+app.get("/indexlogin", (req, res) => res.sendFile(__dirname + "/index-login.html"));
 
 app.route('/signup')
   .get((req,res) => {
@@ -35,7 +38,7 @@ app.route('/signup')
     var pass = req.body.password;
     
 
- /*    var getHash = ( pass , name ) => {
+     /* var getHash = ( pass , name ) => {
        
        var hmac = crypto.createHmac('sha512', name);
 
@@ -44,7 +47,7 @@ app.route('/signup')
        console.log("hmac : " + gen_hmac);
        return gen_hmac;
     }
-    var password = getHash( pass , name); */
+    var password = getHash( pass , name);  */
     
      var data = {
        "name":name,	
@@ -68,62 +71,10 @@ app.route('/signup')
     res.set({
        'Access-Control-Allow-Origin' : '*'
     });
-    return res.render('index-login.html');  
+    return res.sendFile(__dirname + "/index-login.html");  
     
  });
 
-
-/* app.route('/signup')
-.get((req,res) => {
-   res.sendFile(__dirname + "/signup.html");
-}) */
-
-/* .post((req, res) => {
-  var mongo = require('mongodb');
-  var crypto = require('crypto');
-  var user_db = "mongodb://localhost/userdb";
-
-  var getHash = ( pass , name ) => {
-     
-     var hmac = crypto.createHmac('sha512', name);
-
-     data = hmac.update(pass);
-     gen_hmac= data.digest('hex');
-     console.log("hmac : " + gen_hmac);
-     return gen_hmac;
-  }
-
-   var NAME = req.body.name;
-   var pass = req.body.password;
-   var password = getHash( pass , NAME); 				
-
-  
-   var data = {
-     "name":NAME,	
-     "password": password
-     
-  }
-  
-  mongo.connect(user_db , function(error , db){
-     if (error){
-        throw error;
-     }
-     console.log("connected to database successfully");
-     db.collection("users").insertOne(data, (err , collection) => {
-        if(err) throw err;
-        console.log("Record inserted successfully");
-        console.log(collection);
-     });
-  });
-  
-  console.log("DATA is " + JSON.stringify(data) );
-  res.set({
-     'Access-Control-Allow-Origin' : '*'
-  });
-  return res.render('index-login.html');  
-
-});
- */
 import Coin from "./js/coin.mjs"; 
  
 let players = []; 
@@ -169,24 +120,6 @@ setInterval(function(){
   socket.on("stop-player", dir =>
     socket.broadcast.emit("stop-player", { id: socket.id, dir })
   );
-
-  // socket.on("destroy-item", ({ playerId, playertwoID }) => {
-  //   if (players.find(v => v.id === playertwoID)) {
-  //     const player = players.find(v => v.id === playerId);
-  //     const sock = io.sockets.connected[player.id];
-  //     player.x =50;
-  //     player.y =50;
-  //     //players = players.filter(v => v.id !== playertwoID);
-  //     //player.xp += 200;
-  //     //socket.broadcast.emit("destroy-item", playerId);
-
-     // sock.emit("update-player", player);
-      // if (player.xp === 200) {
-      //   sock.emit("end-game", "win");
-      //   sock.broadcast.emit("end-game", "lose"); 
-      // }
-  //   } 
-  // }); 
 
   socket.on("disconnect", () => {
     socket.broadcast.emit("remove-player", socket.id);

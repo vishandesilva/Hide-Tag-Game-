@@ -15,6 +15,10 @@
 
 
 <style> 
+body {
+          background-image: linear-gradient(110deg,#f39c12, #c0392b);
+          font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
   *{
     margin: 0px;
     padding: 0px;
@@ -31,30 +35,7 @@
   #container {
    min-height: 100%;
   }
-  th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    padding: 5px;
-    text-align: center;
-  }
-  .table :nth-child(1) {
-    background: gold;
-  }
-  .table :nth-child(2) {
-    background: gold;
-  }
-  .table2 :nth-child(1) {
-    background: silver;
-  }
-  .table2 :nth-child(2) {
-    background: silver;
-  }
-  .table3 :nth-child(1) {
-    background: brown;
-  }
-  .table3 :nth-child(2) {
-    background: brown;
-  }
+ 
   #main {
     overflow: auto;
     padding-bottom: 236px;
@@ -68,7 +49,7 @@
     display: flex;
     position: relative;
     margin: auto;
-    background-color: grey;
+    background-color: #333333;
     min-height: 8vh;
     align-items: center;
     padding: 1%;
@@ -83,9 +64,6 @@
     color: white;
   }
   
-  .nav-links li {
-    position: relative;
-  }
   
   /* .nav-links a::before {
     content: '';
@@ -104,23 +82,23 @@
   }
   
   .nav-links a{
-    float: left;
+    float: right;
     display: block;
     color:whitesmoke;
-    text-align: center;
+    text-align: right;
     text-decoration: none;
   }
   
   .nav-links{
-    justify-content: space-around;
+    justify-content:space-evenly;
     list-style: none;
-    width: 2%;
+    width: 1%;
     letter-spacing: 1px;
-    font-size: 17px;
+    font-size: 20px;
   }
   
   .nav-links a:hover{
-    background-color: grey;
+    background-color: #333333;
     color:orange;
   }
   
@@ -129,8 +107,8 @@
   }
   
   nav{
-    display: flex;
-    align-items: center;
+    display:flex;
+    align-items: right;
     flex: 1;
     padding: 1%; 
   }
@@ -146,7 +124,7 @@
     color: orange;
   }
   
-  #canvas {
+  #game {
     position: relative;
     overflow: auto;
     top:0;
@@ -158,7 +136,7 @@
   
   /* Footer Styling */
   .footer {
-    background: grey;
+    background: #777777;
     position: relative;
     height: 236px;
     margin-top: -236px;
@@ -225,7 +203,7 @@
   #gamebutton {
     display: inherit;
     border-radius: 4px;
-    background-color: orange;
+    background-image: linear-gradient(110deg,#f39c12, #c0392b);
     border: none;
     color: white;
     text-align: center;
@@ -274,14 +252,7 @@
       <h4 class="logo">Lights & <span>Shadows</span></h4>
     </div>
     <nav class="nav-links">
-      <li><a class="nav-link" href="/about">About Us</a></li>
-      <li><a class="nav-link" href="#">The Game</a></li>
       <li><a class="nav-link" href="/leaderboards">Leaderboards</a></li>
-      <li><a class="nav-link">
-        <script>
-        getScript('main.js', function(){
-        alert(NAME);
-      });</script></i>
       </a></li>
     </nav>
   </header>
@@ -289,10 +260,24 @@
   <div id= "container">
     <div id="main">
         <button id="gamebutton" type="button" onclick=myFunction()><span>Play Game!</span></button>
-     <canvas id="canvas" width="400" height="300">No HTML5 canvas support</canvas>
-     <div id="timer">
-      <input id="minutes" value="6" type="text" style="width: 14px; border: none; background-color:none; font-size: 16px; font-weight: bold;">:<input id="seconds" value="00" type="text" style="width: 26px; border: none; background-color:none; font-size: 16px; font-weight: bold;"> remaining
+     <canvas id="game">No HTML5 canvas support</canvas>
+     <div id="wait" style = "display:none;">
+      Waiting for players...
     </div>
+     <script>
+     document.getElementById("game").style.display="none";
+function myFunction()
+{
+  document.getElementById("wait").style.display="block";
+  // document.getElementById("game").style.display="block";
+   document.getElementById("gamebutton").style.display="none";
+   document.getElementById("header").style.display="none";
+   document.getElementById("footer").style.display="none";
+}
+     </script>
+     <!-- <div id="timer">
+      <input id="minutes" value="6" type="text" style="width: 14px; border: none; background-color:none; font-size: 16px; font-weight: bold;">:<input id="seconds" value="00" type="text" style="width: 26px; border: none; background-color:none; font-size: 16px; font-weight: bold;"> remaining
+    </div> -->
 
     </div>
   </div>
@@ -309,16 +294,13 @@
           <h1>Quick Links</h1>
           <br>
           <ul>
-            <a href="/about">
-              <li>About Us</li>
-            </a>
             <a href="/leaderboards">
-              <li>Leader Boards</li>
+             <li>Leaderboards</li>
             </a>
             <a href="#">
               <li>Terms and Conditions</li>
             </a>
-            <a href="#">
+            <a href="/credits">
               <li>Credits</li>
             </a>
           </ul>
@@ -340,8 +322,9 @@
     </div>
   </footer>
   </div>
-  <script src="./js/index.js"></script>
-  <script src = "/socket.io/socket.io.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- <script src="app.mjs" type="module"></script> -->
+  <script src="./js/main.mjs" type="module"></script>
   <script>
       var socket=io(); 
       socket.emit('clientEvent', 'Sent an event from the client!');
