@@ -4,6 +4,7 @@ import SocketIO from "socket.io";
 import path from "path";
 import mongo from "mongodb"; 
 import crypto from "crypto";
+import bodyParser from "body-parser";
 //import login from "";
 const app = express(),
   server = http.createServer(app),
@@ -16,8 +17,8 @@ const app = express(),
 __dirname = path.resolve(path.dirname(''))
 
 server.listen(process.env.PORT || 3002, () => console.log("Server listening on port 3002"));
+app.use(bodyParser());
 app.use(express.static(__dirname + "/"));
-
 app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
 app.get("/leaderboards", (req, res) => res.sendFile(__dirname + "/leaderboards.html"));
 app.get("/credits", (req, res) => res.sendFile(__dirname + "/credits.html"));
@@ -28,26 +29,26 @@ app.route('/signup')
   })
 
   .post((req, res) => {
+  
     var user_db = "mongodb://localhost/userdb";
+    var name = req.body.name;
+    var pass = req.body.password;
+    
 
-    // var getHash = ( pass , name ) => {
+ /*    var getHash = ( pass , name ) => {
        
-    //    var hmac = crypto.createHmac('sha512', name);
+       var hmac = crypto.createHmac('sha512', name);
 
-    //    data = hmac.update(pass);
-    //    gen_hmac= data.digest('hex');
-    //    console.log("hmac : " + gen_hmac);
-    //    return gen_hmac;
-    // }
-
-     var name = req.body.name;
-     var pass = req.body.password;
-     var password = getHash( pass , name); 				
- 
+       data = hmac.update(pass);
+       gen_hmac= data.digest('hex');
+       console.log("hmac : " + gen_hmac);
+       return gen_hmac;
+    }
+    var password = getHash( pass , name); */
     
      var data = {
        "name":name,	
-       "password": password
+       "password": pass
        
     }
     
@@ -68,7 +69,7 @@ app.route('/signup')
        'Access-Control-Allow-Origin' : '*'
     });
     return res.render('index-login.html');  
- 
+    
  });
 
 
