@@ -20,4 +20,4 @@ app.engine('html', require('ejs').renderFile);
 
 var port_number = app.listen(process.env.PORT || 3000);
 app.listen(port_number);
-console.log("Express is running");
+console.log("Express is running at port 3000");
