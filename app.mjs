@@ -2,7 +2,9 @@ import express from "express";
 import http from "http";
 import SocketIO from "socket.io";
 import path from "path";
- 
+import mongo from "mongodb"; 
+import crypto from "crypto";
+//import login from "";
 const app = express(),
   server = http.createServer(app),
   io = SocketIO(server),
@@ -19,10 +21,61 @@ app.use(express.static(__dirname + "/"));
 app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
 app.get("/leaderboards", (req, res) => res.sendFile(__dirname + "/leaderboards.html"));
 app.get("/credits", (req, res) => res.sendFile(__dirname + "/credits.html"));
+
 app.route('/signup')
+  .get((req,res) => {
+     res.render('signup.html');
+  })
+
+  .post((req, res) => {
+    var user_db = "mongodb://localhost/userdb";
+
+    // var getHash = ( pass , name ) => {
+       
+    //    var hmac = crypto.createHmac('sha512', name);
+
+    //    data = hmac.update(pass);
+    //    gen_hmac= data.digest('hex');
+    //    console.log("hmac : " + gen_hmac);
+    //    return gen_hmac;
+    // }
+
+     var name = req.body.name;
+     var pass = req.body.password;
+     var password = getHash( pass , name); 				
+ 
+    
+     var data = {
+       "name":name,	
+       "password": password
+       
+    }
+    
+    mongo.connect(user_db , function(error , db){
+       if (error){
+          throw error;
+       }
+       console.log("connected to database successfully");
+       db.collection("users").insertOne(data, (err , collection) => {
+          if(err) throw err;
+          console.log("Record inserted successfully");
+          console.log(collection);
+       });
+    });
+    
+    console.log("DATA is " + JSON.stringify(data) );
+    res.set({
+       'Access-Control-Allow-Origin' : '*'
+    });
+    return res.render('index-login.html');  
+ 
+ });
+
+
+/* app.route('/signup')
 .get((req,res) => {
    res.sendFile(__dirname + "/signup.html");
-})
+}) */
 
 /* .post((req, res) => {
   var mongo = require('mongodb');
@@ -138,4 +191,10 @@ setInterval(function(){
     socket.broadcast.emit("remove-player", socket.id);
     players = players.filter(v => v.id !== socket.id);
   });
+
+   
+  
+
+
+
 });
