@@ -61,7 +61,6 @@ app.route('/signup')
     
  });
 
- import Coin from "./js/coin.mjs"; 
  
  let players = []; 
 
