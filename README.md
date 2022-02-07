@@ -1,5 +1,4 @@
-# website
-
+# Hide-Tag-Game-
 Group Project For Web Programming 2019 - 2020
 https://lightsandshadows.herokuapp.com/ the game
 -------------------------------------------------------How to run the game locally---------------------------------------------------------
